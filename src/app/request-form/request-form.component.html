@@ -1,0 +1,252 @@
+<app-header></app-header>
+<h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Request Form</h1>
+
+<form [formGroup]="enrichmentRequestFormGroup">
+  <mat-horizontal-stepper linear #stepper formArrayName="requestForm">
+    <mat-step formGroupName="0" [stepControl]="requestForm?.get([0])" label="Animal Data">
+      <div>
+        <!-- <label for="dept">Department: </label> -->
+        <mat-form-field id="dept" name="dept">
+          <input matInput placeholder="Department" formControlName="department" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- <label for="species">Species: </label>  -->
+        <mat-form-field id="species" name="species">
+          <input matInput placeholder="Species" formControlName="species" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-grid-list cols="3" rowHeight="2:1">
+          <mat-grid-tile [colspan]="1">
+            <mat-card class="mat-elevation-z8">
+              <mat-card-header>
+                <mat-card-title>Housed</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-radio-group class="radio-group" formControlName="housed" required>
+                  <mat-radio-button class="radio-button" value="individual">Individual</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="conspecific">Group/Conspecific</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="mixedSpecies">Group/Mixed Species</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="onExhibit">On Exhibit</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="offExhibit">Off Exhibit</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="requestForm?.get([0]).get('housed').hasError('required')">'Housed' is required</mat-error>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <mat-card class="mat-elevation-z8">
+              <mat-card-header>
+                <mat-card-title>Activity Cycle</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-radio-group class="radio-group" formControlName="activityCycle" required>
+                  <mat-radio-button class="radio-button" value="nocturnal">Nocturnal</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="diurnal">Diurnal</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="crepuscular">Crepuscular</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="variable">Variable</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="requestForm?.get([0]).get('activityCycle').hasError('required')">'Activity Cycle' is required</mat-error>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <mat-card class="mat-elevation-z8">
+              <mat-card-header>
+                <mat-card-title>Age(s)</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-radio-group class="radio-group" formControlName="age" required>
+                  <mat-radio-button class="radio-button" value="infant">Infant</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="juvenile">Juvenile</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="subadult">Subadult</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="adult">Adult</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="geriatric">Geriatric</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="requestForm?.get([0]).get('age').hasError('required')">'Age(s)' is required</mat-error>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <div>
+        <button mat-raised-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="1" [stepControl]="requestForm?.get([1])" label="Type of Enrichment">
+      <div>
+        <label for="enrichmentName">Enrichment Name: </label>
+        <mat-form-field id="enrichmentName" name="enrichmentName">
+          <input matInput placeholder="Name" formControlName="enrichmentName" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="description">Describe the Enrichment:</label>
+        <br/>
+        <mat-form-field class="increased-width" id="description" name="description">
+          <textarea matInput placeholder="Details, articles, any data if possible" formControlName="enrichmentDescription" required></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="presented">How/Where will it be presented:</label>
+        <br/>
+        <mat-form-field class="increased-width" id="presented" name="presented">
+          <textarea matInput placeholder="Presentation" formControlName="enrichmentPresentation" required></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="enrichmentWhen">Time of day/night presented: </label>
+        <mat-form-field id="enrichmentWhen" name="enrichmentWhen">
+          <input matInput placeholder="Time" formControlName="enrichmentDayNightTime" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="enrichmentFreq">Frequency/Duration of presentation: </label>
+        <mat-form-field id="enrichmentFreq" name="enrichmentFreq">
+          <input matInput placeholder="Frequency/Duration" formControlName="enrichmentFrequency" required>
+        </mat-form-field>
+      </div>
+      <!-- TODO: uncomment and add file upload capability -->
+      <!-- <div>
+        <label for="photo">Upload a photo (optional): </label>
+        <input type="file" id="photo" name="photo" formControlName="enrichmentPhoto">
+      </div> -->
+      <div class="button-row">
+        <button mat-raised-button matStepperPrevious type="button">Back</button>
+        <button mat-raised-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="2" [stepControl]="requestForm?.get([2])" label="Current Data">
+      <div>
+        <label for="lifeStrategies">Have you completed a "Life Strategies" worksheet and researched the species' natural history?</label>
+        <br/>
+        <mat-form-field id="lifeStrategies" name="lifeStrategies">
+          <mat-select placeholder="Yes/No" formControlName="lifeStrategiesWksht" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="anotherPlace">Has another department or zoo used this enrichment before?</label>
+        <br/>
+        <mat-form-field id="anotherPlace" name="anotherPlace">
+          <mat-select placeholder="Yes/No" formControlName="anotherDeptZoo" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="requestForm?.get([2]).value.anotherDeptZoo">
+        <!-- TODO: still required even if anotherDeptZoo is false -->
+        <label for="anotherPlaceMoreInfo">Have they been contacted for more information?</label>
+        <br/>
+        <mat-form-field id="anotherPlaceMoreInfo" name="anotherPlaceMoreInfo">
+          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" [required]="requestForm?.get([2]).value.anotherDeptZoo">
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="safety">Have you addressed safety questions in "Enrichment Protocol"? Have risks and hazards been minimized?</label>
+        <br/>
+        <mat-form-field id="safety" name="safety">
+          <mat-select placeholder="Yes/No" formControlName="safetyQuestion" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="increased-width">
+          <textarea matInput placeholder="Leave a comment" formControlName="safetyComment"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="3" [stepControl]="requestForm?.get([3])" label="Goal of Enrichment">
+      <div>
+        <label for="behaviors">What natural behaviors do you expect this enrichment to encourage/elicit?</label>
+        <mat-form-field id="behaviors" name="behaviors" class="full-width">
+          <textarea matInput placeholder="Natural Behaviors" formControlName="naturalBehaviors" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button mat-raised-button matStepperPrevious type="button">Back</button>
+        <button mat-raised-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="4" [stepControl]="requestForm?.get([4])" label="Materials/Cost Analysis">
+      <div>
+        <label for="source">Source:</label>
+        <br/>
+        <mat-radio-group class="radio-group left-margin" id="source" name="source" formControlName="source" required>
+          <mat-radio-button class="radio-button" value="toBePurchased">Needs to be purchased</mat-radio-button>
+          <mat-radio-button class="radio-button" value="zooGrounds">Zoo grounds</mat-radio-button>
+          <mat-radio-button class="radio-button" value="donation">Donation</mat-radio-button>
+          <mat-radio-button class="radio-button" value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div *ngIf="requestForm?.get([4]).value.source === 'other'" class="left-margin">
+        <mat-form-field>
+          <input matInput placeholder="Other source" formControlName="otherSource" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="timeRequired">Time Required: </label>
+        <mat-form-field id="timeRequired" name="timeRequired">
+          <input matInput placeholder="Time required" formControlName="timeRequired" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="construct">Who will construct (if needed): </label>
+        <mat-form-field id="construct" name="construct">
+          <input matInput placeholder="Person" formControlName="whoConstructs">
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="volunteer">Can volunteer(s)/docent(s) be utilized? </label>
+        <mat-form-field id="volunteer" name="volunteer">
+          <mat-select placeholder="Yes/No" formControlName="volunteerDocentUtilized" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="inventory">For inventory use, please check applicable category for this enrichment: </label>
+        <mat-form-field id="inventory" name="inventory">
+          <mat-select placeholder="Category" formControlName="enrichmentCategory" required>
+            <mat-option [value]="'sensory'">Sensory/Wellbeing</mat-option>
+            <mat-option [value]="'feeding'">Feeding</mat-option>
+            <mat-option [value]="'habitation'">Habitation</mat-option>
+            <mat-option [value]="'social'">Social</mat-option>
+            <mat-option [value]="'learning'">Learning</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="name">Your name: </label>
+        <mat-form-field id="name" name="name">
+          <input matInput placeholder="John Smith" formControlName="nameOfSubmitter" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="date">Date of submission: </label>
+        <mat-form-field id="date" name="date">
+          <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="dateOfSubmission" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button mat-raised-button matStepperPrevious type="button">Back</button>
+        <button mat-raised-button color="primary" (click)="submitForm(stepper)">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
