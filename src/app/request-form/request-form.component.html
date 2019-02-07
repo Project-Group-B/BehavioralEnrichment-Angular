@@ -219,6 +219,7 @@
       </div>
       <div>
         <label for="inventory">For inventory use, please check applicable category for this enrichment: </label>
+        <!-- TODO: change to use chips; can select multiple categories -->
         <mat-form-field id="inventory" name="inventory">
           <mat-select placeholder="Category" formControlName="enrichmentCategory" required>
             <mat-option [value]="'sensory'">Sensory/Wellbeing</mat-option>
