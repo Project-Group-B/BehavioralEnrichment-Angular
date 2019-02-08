@@ -1,38 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, FormArray} from '@angular/forms';
 import { EnrichmentService, StandardReturnObject } from '../shared/main/enrichment.service';
-import { MatSnackBar, MatStepper } from '@angular/material';
-
-export interface CompleteRequestForm {
-  department: string;
-  species: string;
-  housed: string;
-  activityCycle: string;
-  age: string;
-
-  enrichmentName: string;
-  enrichmentDayNightTime: string;
-  enrichmentDescription: string;
-  enrichmentFrequency: string;
-  enrichmentPresentation: string;
-
-  anotherDeptZoo: boolean;
-  anotherDeptZooMoreInfo: boolean;
-  lifeStrategiesWksht: boolean;
-  safetyComment: string;
-  safetyQuestion: boolean;
-
-  naturalBehaviors: string;
-
-  enrichmentCategory: string;
-  nameOfSubmitter: string;
-  otherSource: string;
-  source: string;
-  timeRequired: string;
-  volunteerDocentUtilized: boolean;
-  whoConstructs: string;
-  dateOfSubmission: Date;
-}
+import { MatSnackBar, MatStepper, MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import { CompleteRequestForm } from '../shared/interfaces/complete-request-form';
 
 @Component({
   selector: 'app-request-form',
@@ -42,6 +15,19 @@ export interface CompleteRequestForm {
 export class RequestFormComponent implements OnInit {
   enrichmentRequestFormGroup: FormGroup;
   get requestForm(): AbstractControl | null { return this.enrichmentRequestFormGroup.get('requestForm'); }
+
+  // Category chips variables
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  private enrichmentCategoryFormControl: FormArray;
+  public categories: string[] = [];
+  public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
+  public filteredCategories: Observable<string[]>;
+  @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   constructor(private formBuilder: FormBuilder, private service: EnrichmentService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
@@ -79,12 +65,16 @@ export class RequestFormComponent implements OnInit {
           timeRequired: new FormControl('', Validators.required),
           whoConstructs: new FormControl(''),
           volunteerDocentUtilized: new FormControl(null, Validators.required),
-          enrichmentCategory: new FormControl('', Validators.required),
+          enrichmentCategory: new FormControl([''], Validators.required),
           nameOfSubmitter: new FormControl('', Validators.required),
           dateOfSubmission: new FormControl(new Date(), Validators.required)
         })
       ])
     });
+    this.enrichmentCategoryFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
+    this.filteredCategories = this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allCategories.slice()));
   }
 
   submitForm(stepper: MatStepper) {
@@ -134,7 +124,7 @@ export class RequestFormComponent implements OnInit {
 
       naturalBehaviors: requestArray[3].naturalBehaviors,
 
-      enrichmentCategory: requestArray[4].enrichmentCategory,
+      enrichmentCategory: this.categories,
       nameOfSubmitter: requestArray[4].nameOfSubmitter,
       otherSource: requestArray[4].otherSource,
       source: requestArray[4].source,
@@ -144,6 +134,47 @@ export class RequestFormComponent implements OnInit {
       dateOfSubmission: requestArray[4].dateOfSubmission
     };
     return completeForm;
+  }
+
+  add(event: MatChipInputEvent): void {
+    // Add category only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our category
+      if ((value || '').trim()) {
+        this.categories.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').setValue(null);
+    }
+  }
+
+  remove(category: string): void {
+    const index = this.categories.indexOf(category);
+
+    if (index >= 0) {
+      this.categories.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.categories.push(event.option.viewValue);
+    this.categoryInput.nativeElement.value = '';
+    this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allCategories.filter(category => category.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

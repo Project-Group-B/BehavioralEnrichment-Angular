@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { globals } from '../globals';
+import { Globals } from '../globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private service: AuthService, private router: Router) { }
+  constructor(private service: AuthService, private router: Router, private globals: Globals) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogIn(url: string): boolean {
-    if (sessionStorage.getItem(globals.sessionIdKey)) {
+    if (sessionStorage.getItem(this.globals.sessionIdKey)) {
       return true;
     }
 

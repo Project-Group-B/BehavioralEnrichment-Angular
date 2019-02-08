@@ -24,6 +24,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import {MatChipsModule} from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { RequestFormComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { Globals } from './globals';
 
 @NgModule({
   declarations: [
@@ -72,9 +74,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

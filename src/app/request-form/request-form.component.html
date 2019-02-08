@@ -2,7 +2,7 @@
 <h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Request Form</h1>
 
 <form [formGroup]="enrichmentRequestFormGroup">
-  <mat-horizontal-stepper linear #stepper formArrayName="requestForm">
+  <mat-horizontal-stepper [linear]="false" #stepper formArrayName="requestForm">
     <mat-step formGroupName="0" [stepControl]="requestForm?.get([0])" label="Animal Data">
       <div>
         <!-- <label for="dept">Department: </label> -->
@@ -218,16 +218,32 @@
         </mat-form-field>
       </div>
       <div>
-        <label for="inventory">For inventory use, please check applicable category for this enrichment: </label>
-        <!-- TODO: change to use chips; can select multiple categories -->
-        <mat-form-field id="inventory" name="inventory">
-          <mat-select placeholder="Category" formControlName="enrichmentCategory" required>
-            <mat-option [value]="'sensory'">Sensory/Wellbeing</mat-option>
-            <mat-option [value]="'feeding'">Feeding</mat-option>
-            <mat-option [value]="'habitation'">Habitation</mat-option>
-            <mat-option [value]="'social'">Social</mat-option>
-            <mat-option [value]="'learning'">Learning</mat-option>
-          </mat-select>
+        <label for="inventory">For inventory use, please select applicable categories for this enrichment: </label>
+        <mat-form-field id="inventory" name="inventory" class="full-width">
+          <mat-chip-list #categoryList>
+            <mat-chip
+              *ngFor="let category of categories"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(category)">
+              {{category}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Categories"
+              #categoryInput
+              formControlName="enrichmentCategory"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="categoryList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
       </div>
       <div>

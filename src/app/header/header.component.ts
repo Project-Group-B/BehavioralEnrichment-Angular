@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
-import { globals } from '../globals';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +10,13 @@ import { globals } from '../globals';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private globals: Globals) { }
 
   ngOnInit() {
   }
 
   logout() {
-    sessionStorage.removeItem(globals.sessionIdKey);
+    sessionStorage.removeItem(this.globals.sessionIdKey);
     this.authService.redirectUrl = '';
     this.router.navigate(['/login']);
   }
