@@ -138,12 +138,11 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="requestForm?.get([2]).value.anotherDeptZoo">
-        <!-- TODO: still required even if anotherDeptZoo is false -->
+      <div *ngIf="requestForm.at(2).get('anotherDeptZoo').value">
         <label for="anotherPlaceMoreInfo">Have they been contacted for more information?</label>
         <br/>
         <mat-form-field id="anotherPlaceMoreInfo" name="anotherPlaceMoreInfo">
-          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" [required]="requestForm?.get([2]).value.anotherDeptZoo">
+          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" [required]="requestForm.at(2).get('anotherDeptZoo').value">
             <mat-option [value]="true">Yes</mat-option>
             <mat-option [value]="false">No</mat-option>
           </mat-select>
@@ -262,7 +261,7 @@
       </div>
       <div class="button-row">
         <button mat-raised-button matStepperPrevious type="button">Back</button>
-        <button mat-raised-button color="primary" (click)="submitForm(stepper)">Submit</button>
+        <button mat-raised-button color="primary" [disabled]="!enrichmentRequestFormGroup.valid" (click)="submitForm(stepper)">Submit</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

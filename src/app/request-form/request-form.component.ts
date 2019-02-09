@@ -22,7 +22,7 @@ export class RequestFormComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  private enrichmentCategoryFormControl: FormArray;
+  private enrichmentFormControl: FormArray;
   public categories: string[] = [];
   public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
   public filteredCategories: Observable<string[]>;
@@ -31,6 +31,14 @@ export class RequestFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private service: EnrichmentService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
+    this.initFormGroup();
+    this.enrichmentFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
+    this.filteredCategories = this.enrichmentFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allCategories.slice()));
+  }
+
+  initFormGroup() {
     this.enrichmentRequestFormGroup = this.formBuilder.group({
       requestForm: this.formBuilder.array([
         this.formBuilder.group({
@@ -71,10 +79,6 @@ export class RequestFormComponent implements OnInit {
         })
       ])
     });
-    this.enrichmentCategoryFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
-    this.filteredCategories = this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allCategories.slice()));
   }
 
   submitForm(stepper: MatStepper) {
@@ -153,7 +157,7 @@ export class RequestFormComponent implements OnInit {
         input.value = '';
       }
 
-      this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').setValue(null);
+      this.enrichmentFormControl.at(4).get('enrichmentCategory').setValue(null);
     }
   }
 
@@ -168,7 +172,7 @@ export class RequestFormComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.categories.push(event.option.viewValue);
     this.categoryInput.nativeElement.value = '';
-    this.enrichmentCategoryFormControl.at(4).get('enrichmentCategory').setValue(null);
+    this.enrichmentFormControl.at(4).get('enrichmentCategory').setValue(null);
   }
 
   private _filter(value: string): string[] {
