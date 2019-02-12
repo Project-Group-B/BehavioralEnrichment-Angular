@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, UserInfo } from '../auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Globals } from '../globals';
+import UserInfo from '../shared/interfaces/user-info';
+import { CurrentUserService } from '../auth/user/current-user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
     private service: AuthService,
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private globals: Globals) { }
+    private globals: Globals,
+    private currentUser: CurrentUserService) { }
 
   // https://angular.io/guide/reactive-forms
   ngOnInit() {
@@ -28,19 +31,23 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       password: new FormControl('', Validators.required)
     });
-    console.log(`global baseUrl value: ${this.globals.baseUrl}`);
   }
 
   logIn() {
     this.service.loginUser(this.loginForm.value.username, this.loginForm.value.password).subscribe((data: UserInfo) => {
-      console.log(`session storage key: ${this.globals.sessionIdKey}`);
-      console.log(`session id: ${data.sessionId}`);
       if (data.loggedIn) {
+        // set current user info; will not be available on refresh
+        this.currentUser.setIsAdmin(data.admin);
+        this.currentUser.setUserName(data.username);
+        this.currentUser.setSessionId(data.sessionId);
+        this.currentUser.setPermissions(data.permissions);
+
+        // put session id in session storage to track user
         sessionStorage.setItem(this.globals.sessionIdKey, data.sessionId);
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';
         this.router.navigate([redirect]);
       } else {
-        this.snackbar.open('Username or password invalid', 'OK', {
+        this.snackbar.open(data.errorMsg, 'OK', {
           duration: 3000
         });
       }

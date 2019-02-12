@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { Globals } from '../globals';
+import { CurrentUserService } from '../auth/user/current-user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,16 @@ import { Globals } from '../globals';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router, private globals: Globals) { }
+  username: string;
+  isAdmin: boolean;
+  constructor(private authService: AuthService,
+    private router: Router,
+    private globals: Globals,
+    private currentUser: CurrentUserService) { }
 
   ngOnInit() {
+    this.username = this.currentUser.getUsername();
+    this.isAdmin = this.currentUser.adminUser();
   }
 
   logout() {
