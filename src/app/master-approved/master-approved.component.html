@@ -1,4 +1,69 @@
 <app-header></app-header>
-<p>
-  master-approved works!
-</p>
+
+<h1 class="mat-display-1 center-align">All Approved Items</h1>
+
+<div>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Enrichment Item Column -->
+      <ng-container matColumnDef="enrichmentItem">
+        <mat-header-cell *matHeaderCellDef> Enrichment Item </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.enrichmentItem}} </mat-cell>
+      </ng-container>
+    
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      </ng-container>
+    
+      <!-- Species Column -->
+      <ng-container matColumnDef="species">
+        <mat-header-cell *matHeaderCellDef> Species </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.species}} </mat-cell>
+      </ng-container>
+    
+      <!-- Behaviors Encouraged Column -->
+      <ng-container matColumnDef="behaviorsEncouraged">
+        <mat-header-cell *matHeaderCellDef> Behaviors Encouraged </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.behaviorsEncouraged}} </mat-cell>
+      </ng-container>
+
+      <!-- Date Approved Column -->
+      <ng-container matColumnDef="dateApproved">
+          <mat-header-cell *matHeaderCellDef> Date Approved </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.dateApproved}} </mat-cell>
+      </ng-container>
+
+      <!-- Comments Column -->
+      <ng-container matColumnDef="comments">
+          <mat-header-cell *matHeaderCellDef> Comments </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.comments}} </mat-cell>
+      </ng-container>
+
+      <!-- Safety Concerns Column -->
+      <ng-container matColumnDef="safetyConcerns">
+          <mat-header-cell *matHeaderCellDef> Safety Concerns </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.safetyConcerns}} </mat-cell>
+      </ng-container>  
+      
+      <!-- Reports Column -->
+      <ng-container matColumnDef="reports">
+          <mat-header-cell *matHeaderCellDef> Reports </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.reports}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+</div>
+<!--
+<mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event">
+</mat-paginator>
+-->
