@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// for table displays
+import { MatPaginatorModule} from '@angular/material';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import {MatListModule} from '@angular/material/list';
@@ -23,7 +26,7 @@ import {MatNativeDateModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSortModule} from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { RequestFormComponent } from './request-form/request-form.component';
@@ -76,9 +79,11 @@ import { Globals } from './globals';
     MatIconModule,
     MatSortModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatPaginatorModule
   ],
   providers: [Globals],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
