@@ -25,6 +25,7 @@
       <mat-card-actions>
         <button mat-button routerLink="/sign-up" routerLinkActive="active">Sign Up</button>
         <button mat-raised-button (click)="logIn()" color="primary" [disabled]="!loginForm.valid">Log In</button>
+        <!-- TODO: add loading/progress spinner when logging in (errors take longer, lets user know it's working) -->
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
