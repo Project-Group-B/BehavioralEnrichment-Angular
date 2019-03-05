@@ -4,9 +4,26 @@
     <mat-card class="max-width">
       <mat-card-content>
         <form class="form-css" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <mat-form-field class="full-width" hintLabel="Max 50 characters">
+            <input matInput formControlName="firstName" type="text" placeholder="First Name" autofocus required/>
+            <mat-hint align="end">{{signUpForm.get('firstName').value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="signUpForm.get('firstName').invalid">{{getFirstNameErrorMsg()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width" hintLabel="Max 45 characters">
+            <input matInput formControlName="lastName" type="text" placeholder="Last Name" required/>
+            <mat-hint align="end">{{signUpForm.get('lastName').value?.length || 0}}/45</mat-hint>
+            <mat-error *ngIf="signUpForm.get('lastName').invalid">{{getLastNameErrorMsg()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width" hintLabel="Select a department">
+            <mat-select placeholder="Department Name" formControlName="department" required>
+              <mat-option *ngFor="let dept of departments" [value]="dept">
+                {{dept.departmentName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
           <mat-form-field class="full-width" hintLabel="Max 15 characters">
-            <input matInput formControlName="username" type="text" placeholder="Username" autofocus required/>
-            <mat-hint align="end">{{signUpForm.get('username').value?.length || 0}}/15</mat-hint>
+            <input matInput formControlName="username" type="text" placeholder="Username" required/>
+            <mat-hint align="end">{{signUpForm.get('username').value?.length || 0}}/25</mat-hint>
             <mat-error *ngIf="signUpForm.get('username').invalid">{{getUsernameErrorMsg()}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">

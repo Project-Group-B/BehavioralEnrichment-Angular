@@ -21,6 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   matcher = new MyErrorStateMatcher();
+  departments: DepartmentInfo[];
   constructor(
     private service: EnrichmentService,
     private formBuilder: FormBuilder,
@@ -30,14 +31,22 @@ export class SignUpComponent implements OnInit {
   // https://stackoverflow.com/a/51606362
   ngOnInit() {
     this.signUpForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      lastName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+      department: new FormControl(null, [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('')
     }, {validator: this.checkPasswords});
+    this.service.getDepartments().subscribe((data: DepartmentInfo[]) => {
+      this.departments = data;
+    }, (err: any) => {
+      console.error('Error getting departments:', err);
+    });
   }
 
   signUp() {
-    this.service.signUp(this.signUpForm.value.username, this.signUpForm.value.password).subscribe((data: any) => {
+    this.service.signUp(this.signUpForm).subscribe((data: any) => {
       if (!data.error) {
         this.snackbar.open(data.message, 'OK', {
           duration: 3000
@@ -46,7 +55,6 @@ export class SignUpComponent implements OnInit {
           this.router.navigate(['/login']);
         }, 3000);
       } else {
-        // TODO: show error on input (<mat-error>) if username is taken
         this.snackbar.open(data.errorMsg, 'OK', {
           duration: 5000
         });
@@ -63,9 +71,29 @@ export class SignUpComponent implements OnInit {
     if (this.signUpForm.get('username').hasError('required')) {
       return 'Username is required';
     } else if (this.signUpForm.get('username').hasError('maxlength')) {
-      return 'Must be between 1 and 15 characters';
+      return 'Must be between 1 and 25 characters';
     } else {
       return 'Invalid username';
+    }
+  }
+
+  getFirstNameErrorMsg(): string {
+    if (this.signUpForm.get('firstName').hasError('required')) {
+      return 'First Name is required';
+    } else if (this.signUpForm.get('firstName').hasError('maxlength')) {
+      return 'Must be between 1 and 50 characters';
+    } else {
+      return 'Invalid input';
+    }
+  }
+
+  getLastNameErrorMsg(): string {
+    if (this.signUpForm.get('lastName').hasError('required')) {
+      return 'Last Name is required';
+    } else if (this.signUpForm.get('lastName').hasError('maxlength')) {
+      return 'Must be between 1 and 45 characters';
+    } else {
+      return 'Invalid input';
     }
   }
 
