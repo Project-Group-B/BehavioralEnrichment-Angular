@@ -37,10 +37,15 @@ export class LoginComponent implements OnInit {
     this.service.loginUser(this.loginForm.value.username, this.loginForm.value.password).subscribe((data: UserInfo) => {
       if (data.loggedIn) {
         // set current user info; will not be available on refresh
+        // TODO: store user info in session storage as stringified JSON
+        // TODO: in app.component.ts#ngOnInit(), set current user to data from session storage
         this.currentUser.setIsAdmin(data.admin);
         this.currentUser.setUserName(data.username);
         this.currentUser.setSessionId(data.sessionId);
         this.currentUser.setPermissions(data.permissions);
+        this.currentUser.setDepartmentId(data.departmentId);
+        this.currentUser.setFirstName(data.firstName);
+        this.currentUser.setLastName(data.lastName);
 
         // put session id in session storage to track user
         sessionStorage.setItem(this.globals.sessionIdKey, data.sessionId);

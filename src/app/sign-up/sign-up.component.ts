@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-      department: new FormControl(null, [Validators.required]),
+      department: new FormControl({departmentId: -1, departmentName: ''}, [Validators.required]),
       username: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('')
@@ -67,33 +67,13 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  getUsernameErrorMsg(): string {
-    if (this.signUpForm.get('username').hasError('required')) {
-      return 'Username is required';
-    } else if (this.signUpForm.get('username').hasError('maxlength')) {
-      return 'Must be between 1 and 25 characters';
+  getErrorMsg(formControlName: string): string {
+    if (this.signUpForm.get(formControlName).hasError('required')) {
+      return 'Input is required.';
+    } else if (this.signUpForm.get(formControlName).hasError('maxlength')) {
+      return 'Input exceeds max length.';
     } else {
-      return 'Invalid username';
-    }
-  }
-
-  getFirstNameErrorMsg(): string {
-    if (this.signUpForm.get('firstName').hasError('required')) {
-      return 'First Name is required';
-    } else if (this.signUpForm.get('firstName').hasError('maxlength')) {
-      return 'Must be between 1 and 50 characters';
-    } else {
-      return 'Invalid input';
-    }
-  }
-
-  getLastNameErrorMsg(): string {
-    if (this.signUpForm.get('lastName').hasError('required')) {
-      return 'Last Name is required';
-    } else if (this.signUpForm.get('lastName').hasError('maxlength')) {
-      return 'Must be between 1 and 45 characters';
-    } else {
-      return 'Invalid input';
+      return 'Invalid input.';
     }
   }
 

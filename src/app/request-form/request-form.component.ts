@@ -15,6 +15,7 @@ import { CompleteRequestForm } from '../shared/interfaces/complete-request-form'
 export class RequestFormComponent implements OnInit {
   enrichmentRequestFormGroup: FormGroup;
   get requestForm(): AbstractControl | null { return this.enrichmentRequestFormGroup.get('requestForm'); }
+  departments: DepartmentInfo[];
 
   // Category chips variables
   visible = true;
@@ -24,6 +25,7 @@ export class RequestFormComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   private enrichmentFormControl: FormArray;
   public categories: string[] = [];
+  // TODO: find a way to make this work with the category data from database
   public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
   public filteredCategories: Observable<string[]>;
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
@@ -35,47 +37,54 @@ export class RequestFormComponent implements OnInit {
     this.enrichmentFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
     this.filteredCategories = this.enrichmentFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allCategories.slice()));
+      map((category: string | null) => category ? this._filter(category) : this.allCategories.slice()));
+    this.getDepartmentsFromDb();
+    this.getCategoriesFromDb();
   }
 
   initFormGroup() {
+    // TODO: enrichment item id? - get from 'item' table
+    // TODO: enrichment animal id? - get from 'animal' table
+    // TODO: enrichment location id? - get from 'location' table
     this.enrichmentRequestFormGroup = this.formBuilder.group({
       requestForm: this.formBuilder.array([
         this.formBuilder.group({
-          department: new FormControl('', Validators.required),
-          species: new FormControl('', Validators.required),
+          department: new FormControl({departmentId: -1, departmentName: ''}, Validators.required), // Enrichment_Department
+          species: new FormControl('', Validators.required), // TODO: get id from 'species' table; Enrichment_Species
           housed: new FormControl('', Validators.required),
           activityCycle: new FormControl('', Validators.required),
           age: new FormControl('', Validators.required)
         }),
         this.formBuilder.group({
-          enrichmentName: new FormControl('', Validators.required),
-          enrichmentDescription: new FormControl('', Validators.required),
-          enrichmentPresentation: new FormControl('', Validators.required),
-          enrichmentDayNightTime: new FormControl('', Validators.required),
-          enrichmentFrequency: new FormControl('', Validators.required)
-          // TODO: add file input/upload capability
+          enrichmentName: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Name
+          enrichmentDescription: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Description
+          enrichmentPresentation: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_PresentationMethod
+          // time picker: https://www.npmjs.com/package/ngx-material-timepicker
+          enrichmentDayNightTime: new FormControl('', Validators.required), // TODO: Enrichment_TimeStart & Enrichment_TimeEnd inputs
+          enrichmentFrequency: new FormControl('', Validators.required) // Enrichment_Frequency: int
+          // TODO: add image input/upload capability
           // enrichmentPhoto: new FormControl(null)
         }),
         this.formBuilder.group({
-          lifeStrategiesWksht: new FormControl(null, Validators.required),
-          anotherDeptZoo: new FormControl(null, Validators.required),
+          lifeStrategiesWksht: new FormControl(null, Validators.required), // Enrichment_LifeStrategies: int (0: false, 1: true)
+          anotherDeptZoo: new FormControl(null, Validators.required), // Enrichment_PreviousUse: int (0: false, 1: true)
           anotherDeptZooMoreInfo: new FormControl(null),
-          safetyQuestion: new FormControl(null, Validators.required),
-          safetyComment: new FormControl('')
+          safetyQuestion: new FormControl(null, Validators.required), // Enrichment_SafetyQuestions: int
+          risksQuestion: new FormControl(null, Validators.required), // Enrichment_RisksHazards: int
+          safetyComment: new FormControl('', Validators.maxLength(1000)) // Enrichment_Concerns
         }),
         this.formBuilder.group({
-          naturalBehaviors: new FormControl('', Validators.required)
+          naturalBehaviors: new FormControl('', [Validators.required, Validators.maxLength(1000)]) // Enrichment_ExpectedBehavior
         }),
         this.formBuilder.group({
-          source: new FormControl('', Validators.required),
-          otherSource: new FormControl(''),
-          timeRequired: new FormControl('', Validators.required),
-          whoConstructs: new FormControl(''),
-          volunteerDocentUtilized: new FormControl(null, Validators.required),
-          enrichmentCategory: new FormControl([''], Validators.required),
-          nameOfSubmitter: new FormControl('', Validators.required),
-          dateOfSubmission: new FormControl(new Date(), Validators.required)
+          source: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Source
+          otherSource: new FormControl(null, Validators.maxLength(50)), // Enrichment_Source
+          timeRequired: new FormControl('', Validators.required), // Enrichment_TimeRequired: int
+          whoConstructs: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Construction
+          volunteerDocentUtilized: new FormControl(null, Validators.required), // Enrichment_Volunteers: int (0: false, 1: true)
+          enrichmentCategory: new FormControl([''], Validators.required), // 'item/category' -> 'category'
+          nameOfSubmitter: new FormControl('', Validators.required), // TODO: get 'id' from current signed in user; Enrichment_Submittor
+          dateOfSubmission: new FormControl(new Date(), Validators.required) // Enrichment_DateSubmitted
         })
       ])
     });
@@ -105,7 +114,7 @@ export class RequestFormComponent implements OnInit {
     });
   }
 
-  toSingleObject(groupValue: any): CompleteRequestForm {
+  private toSingleObject(groupValue: any): CompleteRequestForm {
     const requestArray = groupValue.requestForm;
     const completeForm: CompleteRequestForm = {
       department: requestArray[0].department,
@@ -125,6 +134,7 @@ export class RequestFormComponent implements OnInit {
       lifeStrategiesWksht: requestArray[2].lifeStrategiesWksht,
       safetyComment: requestArray[2].safetyComment,
       safetyQuestion: requestArray[2].safetyQuestion,
+      risksQuestion: requestArray[2].risksQuestion,
 
       naturalBehaviors: requestArray[3].naturalBehaviors,
 
@@ -138,6 +148,34 @@ export class RequestFormComponent implements OnInit {
       dateOfSubmission: requestArray[4].dateOfSubmission
     };
     return completeForm;
+  }
+
+  private getDepartmentsFromDb() {
+    this.service.getDepartments().subscribe((data: DepartmentInfo[]) => {
+      this.departments = data;
+    }, (err: any) => {
+        console.error('Error getting departments:', err);
+    });
+  }
+
+  private getCategoriesFromDb() {
+    this.service.getCategories().subscribe((data: CategoryInfo) => {
+      console.log('data from categories:');
+      console.log(data);
+      // this.allCategories = data;
+    }, (err: any) => {
+      console.error('Error getting categories:', err);
+    });
+  }
+
+  getErrorMsg(index: number, formControlName: string): string {
+    if (this.enrichmentFormControl.at(index).get(formControlName).hasError('required')) {
+      return 'Input is required.';
+    } else if (this.enrichmentFormControl.at(index).get(formControlName).hasError('maxlength')) {
+      return 'Input exceeds max length.';
+    } else {
+      return 'Invalid input.';
+    }
   }
 
   add(event: MatChipInputEvent): void {

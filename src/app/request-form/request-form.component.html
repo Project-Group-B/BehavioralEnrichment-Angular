@@ -5,13 +5,15 @@
   <mat-horizontal-stepper [linear]="false" #stepper formArrayName="requestForm">
     <mat-step formGroupName="0" [stepControl]="requestForm?.get([0])" label="Animal Data">
       <div>
-        <!-- <label for="dept">Department: </label> -->
         <mat-form-field id="dept" name="dept">
-          <input matInput placeholder="Department" formControlName="department" required>
+          <mat-select placeholder="Department Name" formControlName="department" required>
+            <mat-option *ngFor="let dept of departments" [value]="dept">
+              {{dept.departmentName}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div>
-        <!-- <label for="species">Species: </label>  -->
         <mat-form-field id="species" name="species">
           <input matInput placeholder="Species" formControlName="species" required>
         </mat-form-field>
@@ -79,6 +81,8 @@
         <label for="enrichmentName">Enrichment Name: </label>
         <mat-form-field id="enrichmentName" name="enrichmentName">
           <input matInput placeholder="Name" formControlName="enrichmentName" required>
+          <mat-hint align="end">{{requestForm.at(1).get('enrichmentName').value?.length || 0}}/50</mat-hint>
+          <mat-error *ngIf="requestForm.at(1).get('enrichmentName')">{{getErrorMsg(1, 'enrichmentName')}}</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -86,6 +90,8 @@
         <br/>
         <mat-form-field class="increased-width" id="description" name="description">
           <textarea matInput placeholder="Details, articles, any data if possible" formControlName="enrichmentDescription" required></textarea>
+          <mat-hint align="end">{{requestForm.at(1).get('enrichmentDescription').value?.length || 0}}/1000</mat-hint>
+          <mat-error *ngIf="requestForm.at(1).get('enrichmentDescription')">{{getErrorMsg(1, 'enrichmentDescription')}}</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -93,6 +99,8 @@
         <br/>
         <mat-form-field class="increased-width" id="presented" name="presented">
           <textarea matInput placeholder="Presentation" formControlName="enrichmentPresentation" required></textarea>
+          <mat-hint align="end">{{requestForm.at(1).get('enrichmentPresentation').value?.length || 0}}/1000</mat-hint>
+          <mat-error *ngIf="requestForm.at(1).get('enrichmentPresentation')">{{getErrorMsg(1, 'enrichmentPresentation')}}</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -149,7 +157,7 @@
         </mat-form-field>
       </div>
       <div>
-        <label for="safety">Have you addressed safety questions in "Enrichment Protocol"? Have risks and hazards been minimized?</label>
+        <label for="safety">Have you addressed safety questions in "Enrichment Protocol"?</label>
         <br/>
         <mat-form-field id="safety" name="safety">
           <mat-select placeholder="Yes/No" formControlName="safetyQuestion" required>
@@ -158,8 +166,19 @@
           </mat-select>
         </mat-form-field>
         <br/>
+        <label for="risks">Have risks and hazards been minimized?</label>
+        <br/>
+        <mat-form-field id="risks" name="risks">
+          <mat-select placeholder="Yes/No" formControlName="risksQuestion" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br/>
         <mat-form-field class="increased-width">
-          <textarea matInput placeholder="Leave a comment" formControlName="safetyComment"></textarea>
+          <textarea matInput placeholder="Detail any concerns here" formControlName="safetyComment"></textarea>
+          <mat-hint align="end">{{requestForm.at(2).get('safetyComment').value?.length || 0}}/1000</mat-hint>
+          <mat-error *ngIf="requestForm.at(2).get('safetyComment')">{{getErrorMsg(2, 'safetyComment')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="button-row">
@@ -172,6 +191,8 @@
         <label for="behaviors">What natural behaviors do you expect this enrichment to encourage/elicit?</label>
         <mat-form-field id="behaviors" name="behaviors" class="full-width">
           <textarea matInput placeholder="Natural Behaviors" formControlName="naturalBehaviors" required></textarea>
+          <mat-hint align="end">{{requestForm.at(3).get('naturalBehaviors').value?.length || 0}}/1000</mat-hint>
+          <mat-error *ngIf="requestForm.at(3).get('naturalBehaviors')">{{getErrorMsg(3, 'naturalBehaviors')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="button-row">
@@ -193,6 +214,8 @@
       <div *ngIf="requestForm?.get([4]).value.source === 'other'" class="left-margin">
         <mat-form-field>
           <input matInput placeholder="Other source" formControlName="otherSource" required>
+          <mat-hint align="end">{{requestForm.at(4).get('otherSource').value?.length || 0}}/50</mat-hint>
+          <mat-error *ngIf="requestForm.at(4).get('otherSource')">{{getErrorMsg(4, 'otherSource')}}</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -202,9 +225,11 @@
         </mat-form-field>
       </div>
       <div>
-        <label for="construct">Who will construct (if needed): </label>
-        <mat-form-field id="construct" name="construct">
-          <input matInput placeholder="Person" formControlName="whoConstructs">
+        <label for="construct">Who will construct and how?: </label>
+        <mat-form-field id="construct" name="construct" class="full-width">
+          <textarea matInput placeholder="Who/How?" formControlName="whoConstructs" required></textarea>
+          <mat-hint align="end">{{requestForm.at(4).get('whoConstructs').value?.length || 0}}/1000</mat-hint>
+          <mat-error *ngIf="requestForm.at(4).get('whoConstructs')">{{getErrorMsg(4, 'whoConstructs')}}</mat-error>
         </mat-form-field>
       </div>
       <div>

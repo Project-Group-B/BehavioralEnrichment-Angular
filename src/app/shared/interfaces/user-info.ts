@@ -5,6 +5,9 @@ export default interface UserInfo {
   permissions: UserPermissions;
   admin: boolean;
   errorMsg: string;
+  firstName: string;
+  lastName: string;
+  departmentId: string;
 }
 
 export interface UserPermissions {

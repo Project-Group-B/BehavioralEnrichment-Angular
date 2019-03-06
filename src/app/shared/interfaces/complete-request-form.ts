@@ -1,4 +1,4 @@
-export interface CompleteRequestForm {
+export default interface CompleteRequestForm {
   department: string;
   species: string;
   housed: string;
@@ -16,6 +16,7 @@ export interface CompleteRequestForm {
   lifeStrategiesWksht: boolean;
   safetyComment: string;
   safetyQuestion: boolean;
+  risksQuestion: boolean;
 
   naturalBehaviors: string;
 

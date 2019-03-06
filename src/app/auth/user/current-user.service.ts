@@ -11,6 +11,7 @@ export class CurrentUserService {
   private isAdmin = false;
   private permissions: UserPermissions = {canRead: false, canEdit: false, canDelete: false};
   private sessionId = '';
+  private departmentId = '';
 
   constructor() { }
 
@@ -41,6 +42,9 @@ export class CurrentUserService {
   setSessionId(id: string) {
     this.sessionId = id;
   }
+  setDepartmentId(id: string) {
+    this.departmentId = id;
+  }
   getUsername(): string {
     return this.username;
   }
@@ -64,5 +68,8 @@ export class CurrentUserService {
   }
   getSessionId(): string {
     return this.sessionId;
+  }
+  getDepartmentId(): string {
+    return this.departmentId;
   }
 }

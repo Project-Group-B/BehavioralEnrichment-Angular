@@ -38,6 +38,10 @@ export class EnrichmentService {
     return this.http.get<DepartmentInfo[]>(`${this.globals.baseUrl}/departments`);
   }
 
+  getCategories() {
+    return this.http.get<CategoryInfo>(`${this.globals.baseUrl}/categories`);
+  }
+
   submitEnrichmentRequestForm(completeForm: CompleteRequestForm) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/enrichmentRequest`, completeForm, httpOptions);
   }
