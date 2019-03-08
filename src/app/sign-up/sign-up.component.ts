@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormGroupDirective, Ng
 import { MatSnackBar, ErrorStateMatcher } from '@angular/material';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 import { Router } from '@angular/router';
+import { DepartmentInfo } from '../shared/interfaces/department-info';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class PasswordErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
     const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
@@ -20,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
-  matcher = new MyErrorStateMatcher();
+  matcher = new PasswordErrorStateMatcher();
   departments: DepartmentInfo[];
   constructor(
     private service: EnrichmentService,
@@ -38,11 +39,7 @@ export class SignUpComponent implements OnInit {
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('')
     }, {validator: this.checkPasswords});
-    this.service.getDepartments().subscribe((data: DepartmentInfo[]) => {
-      this.departments = data;
-    }, (err: any) => {
-      console.error('Error getting departments:', err);
-    });
+    this.getDepartments();
   }
 
   signUp() {
@@ -67,6 +64,14 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  private getDepartments() {
+    this.service.getDepartments().subscribe((data: DepartmentInfo[]) => {
+      this.departments = data;
+    }, (err: any) => {
+      console.error('Error getting departments:', err);
+    });
+  }
+
   getErrorMsg(formControlName: string): string {
     if (this.signUpForm.get(formControlName).hasError('required')) {
       return 'Input is required.';
@@ -77,7 +82,7 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  checkPasswords(group: FormGroup) {
+  private checkPasswords(group: FormGroup) {
     const pass = group.controls.password.value;
     const confirmPass = group.controls.confirmPassword.value;
 

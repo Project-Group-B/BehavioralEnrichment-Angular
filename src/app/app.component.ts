@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from './globals';
+import { UserInfo } from './shared/interfaces/user-info';
+import { CurrentUserService } from './auth/user/current-user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'BehavioralEnrichment-Angular';
 
+  constructor(private globals: Globals, private currentUser: CurrentUserService) {}
+
   ngOnInit() {
+    const userInfo = JSON.parse(sessionStorage.getItem(this.globals.userInfoKey)) as UserInfo;
     console.log('initialized AppComponent');
+    if (userInfo) {
+      this.globals.setCurrentUser(userInfo);
+    }
   }
 }

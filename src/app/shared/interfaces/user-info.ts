@@ -1,4 +1,4 @@
-export default interface UserInfo {
+export interface UserInfo {
   loggedIn: boolean;
   username: string;
   sessionId: string;
@@ -8,9 +8,10 @@ export default interface UserInfo {
   firstName: string;
   lastName: string;
   departmentId: string;
+  id: number;
 }
 
-export interface UserPermissions {
+interface UserPermissions {
   canRead: boolean;
   canEdit: boolean;
   canDelete: boolean;

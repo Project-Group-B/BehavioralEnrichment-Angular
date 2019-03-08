@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
-import { UserPermissions } from 'src/app/shared/interfaces/user-info';
+import { UserInfo } from 'src/app/shared/interfaces/user-info';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentUserService {
-  private username = '';
+  /* private username = '';
   private firstName = '';
   private lastName = '';
   private isAdmin = false;
   private permissions: UserPermissions = {canRead: false, canEdit: false, canDelete: false};
   private sessionId = '';
-  private departmentId = '';
+  private departmentId = ''; */
+  private user: UserInfo;
 
   constructor() { }
 
-  setUserName(name: string) {
+  setUser(user: UserInfo) {
+    this.user = user;
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  /* setUserName(name: string) {
     this.username = name;
   }
   setFirstName(first: string) {
@@ -71,5 +80,5 @@ export class CurrentUserService {
   }
   getDepartmentId(): string {
     return this.departmentId;
-  }
+  } */
 }

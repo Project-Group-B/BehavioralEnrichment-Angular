@@ -1,6 +1,10 @@
-export default interface CompleteRequestForm {
-  department: string;
-  species: string;
+import { SpeciesInfo } from './species-info';
+import { DepartmentInfo } from './department-info';
+import { PartialUserInfo } from './partial-user-info';
+
+export interface CompleteRequestForm {
+  department: DepartmentInfo;
+  species: SpeciesInfo;
   housed: string;
   activityCycle: string;
   age: string;
@@ -21,7 +25,7 @@ export default interface CompleteRequestForm {
   naturalBehaviors: string;
 
   enrichmentCategory: string[];
-  nameOfSubmitter: string;
+  nameOfSubmitter: PartialUserInfo;
   otherSource: string;
   source: string;
   timeRequired: string;

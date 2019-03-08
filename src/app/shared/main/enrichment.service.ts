@@ -3,18 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Globals } from '../../globals';
 import { CompleteRequestForm } from '../interfaces/complete-request-form';
 import { FormGroup } from '@angular/forms';
+import { SpeciesInfo } from '../interfaces/species-info';
+import { StandardReturnObject } from '../interfaces/standard-return-object';
+import { CategoryInfo } from '../interfaces/category-info';
+import { DepartmentInfo } from '../interfaces/department-info';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
   })
 };
-
-export interface StandardReturnObject {
-  message: string;
-  error: boolean;
-  errorMsg: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -34,15 +32,19 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/signUpUser`, requestBody, httpOptions);
   }
 
+  submitEnrichmentRequestForm(completeForm: CompleteRequestForm) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/enrichmentRequest`, completeForm, httpOptions);
+  }
+
   getDepartments() {
     return this.http.get<DepartmentInfo[]>(`${this.globals.baseUrl}/departments`);
   }
 
   getCategories() {
-    return this.http.get<CategoryInfo>(`${this.globals.baseUrl}/categories`);
+    return this.http.get<CategoryInfo[]>(`${this.globals.baseUrl}/categories`);
   }
 
-  submitEnrichmentRequestForm(completeForm: CompleteRequestForm) {
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/enrichmentRequest`, completeForm, httpOptions);
+  getSpecies() {
+    return this.http.get<SpeciesInfo[]>(`${this.globals.baseUrl}/species`);
   }
 }

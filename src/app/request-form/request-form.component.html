@@ -15,7 +15,11 @@
       </div>
       <div>
         <mat-form-field id="species" name="species">
-          <input matInput placeholder="Species" formControlName="species" required>
+          <mat-select placeholder="Species Name" formControlName="species" required>
+            <mat-option *ngFor="let spec of species" [value]="spec">
+              {{spec.speciesName}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div>
@@ -109,6 +113,7 @@
           <input matInput placeholder="Time" formControlName="enrichmentDayNightTime" required>
         </mat-form-field>
       </div>
+      Time selected: '{{requestForm.at(1).get('enrichmentDayNightTime')}}'
       <div>
         <label for="enrichmentFreq">Frequency/Duration of presentation: </label>
         <mat-form-field id="enrichmentFreq" name="enrichmentFreq">

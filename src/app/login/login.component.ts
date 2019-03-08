@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Globals } from '../globals';
-import UserInfo from '../shared/interfaces/user-info';
-import { CurrentUserService } from '../auth/user/current-user.service';
+import { UserInfo } from '../shared/interfaces/user-info';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +18,7 @@ export class LoginComponent implements OnInit {
     private service: AuthService,
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private globals: Globals,
-    private currentUser: CurrentUserService) { }
+    private globals: Globals) { }
 
   // https://angular.io/guide/reactive-forms
   ngOnInit() {
@@ -36,16 +34,11 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.service.loginUser(this.loginForm.value.username, this.loginForm.value.password).subscribe((data: UserInfo) => {
       if (data.loggedIn) {
-        // set current user info; will not be available on refresh
-        // TODO: store user info in session storage as stringified JSON
-        // TODO: in app.component.ts#ngOnInit(), set current user to data from session storage
-        this.currentUser.setIsAdmin(data.admin);
-        this.currentUser.setUserName(data.username);
-        this.currentUser.setSessionId(data.sessionId);
-        this.currentUser.setPermissions(data.permissions);
-        this.currentUser.setDepartmentId(data.departmentId);
-        this.currentUser.setFirstName(data.firstName);
-        this.currentUser.setLastName(data.lastName);
+        // set current user info
+        this.globals.setCurrentUser(data);
+
+        // put user info as stringified JSON in session storage
+        sessionStorage.setItem(this.globals.userInfoKey, JSON.stringify(data));
 
         // put session id in session storage to track user
         sessionStorage.setItem(this.globals.sessionIdKey, data.sessionId);

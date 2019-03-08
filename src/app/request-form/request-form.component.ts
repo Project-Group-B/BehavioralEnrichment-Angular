@@ -1,11 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, FormArray} from '@angular/forms';
-import { EnrichmentService, StandardReturnObject } from '../shared/main/enrichment.service';
+import { EnrichmentService } from '../shared/main/enrichment.service';
 import { MatSnackBar, MatStepper, MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { CompleteRequestForm } from '../shared/interfaces/complete-request-form';
+import { StandardReturnObject } from '../shared/interfaces/standard-return-object';
+import { CategoryInfo } from '../shared/interfaces/category-info';
+import { SpeciesInfo } from '../shared/interfaces/species-info';
+import { DepartmentInfo } from '../shared/interfaces/department-info';
+import { UserInfo } from '../shared/interfaces/user-info';
+import { CurrentUserService } from '../auth/user/current-user.service';
 
 @Component({
   selector: 'app-request-form',
@@ -16,6 +22,8 @@ export class RequestFormComponent implements OnInit {
   enrichmentRequestFormGroup: FormGroup;
   get requestForm(): AbstractControl | null { return this.enrichmentRequestFormGroup.get('requestForm'); }
   departments: DepartmentInfo[];
+  species: SpeciesInfo[];
+  submitter: UserInfo;
 
   // Category chips variables
   visible = true;
@@ -30,9 +38,15 @@ export class RequestFormComponent implements OnInit {
   public filteredCategories: Observable<string[]>;
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  constructor(private formBuilder: FormBuilder, private service: EnrichmentService, private snackbar: MatSnackBar) { }
+
+  constructor(private formBuilder: FormBuilder,
+    private service: EnrichmentService,
+    private snackbar: MatSnackBar,
+    private currentUser: CurrentUserService
+  ) { }
 
   ngOnInit() {
+    this.submitter = this.currentUser.getUser();
     this.initFormGroup();
     this.enrichmentFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
     this.filteredCategories = this.enrichmentFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
@@ -40,6 +54,7 @@ export class RequestFormComponent implements OnInit {
       map((category: string | null) => category ? this._filter(category) : this.allCategories.slice()));
     this.getDepartmentsFromDb();
     this.getCategoriesFromDb();
+    this.getSpeciesFromDb();
   }
 
   initFormGroup() {
@@ -50,7 +65,8 @@ export class RequestFormComponent implements OnInit {
       requestForm: this.formBuilder.array([
         this.formBuilder.group({
           department: new FormControl({departmentId: -1, departmentName: ''}, Validators.required), // Enrichment_Department
-          species: new FormControl('', Validators.required), // TODO: get id from 'species' table; Enrichment_Species
+          species: new FormControl({speciesId: -1, speciesName: '', speciesDescription: '', speciesIsisNumber: -1}
+            , Validators.required), // Enrichment_Species
           housed: new FormControl('', Validators.required),
           activityCycle: new FormControl('', Validators.required),
           age: new FormControl('', Validators.required)
@@ -59,8 +75,8 @@ export class RequestFormComponent implements OnInit {
           enrichmentName: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Name
           enrichmentDescription: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Description
           enrichmentPresentation: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_PresentationMethod
-          // time picker: https://www.npmjs.com/package/ngx-material-timepicker
-          enrichmentDayNightTime: new FormControl('', Validators.required), // TODO: Enrichment_TimeStart & Enrichment_TimeEnd inputs
+          // time picker:
+          enrichmentDayNightTime: new FormControl('', Validators.required), // TODO: Enrichment_TimeStart inputs
           enrichmentFrequency: new FormControl('', Validators.required) // Enrichment_Frequency: int
           // TODO: add image input/upload capability
           // enrichmentPhoto: new FormControl(null)
@@ -83,8 +99,9 @@ export class RequestFormComponent implements OnInit {
           whoConstructs: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Construction
           volunteerDocentUtilized: new FormControl(null, Validators.required), // Enrichment_Volunteers: int (0: false, 1: true)
           enrichmentCategory: new FormControl([''], Validators.required), // 'item/category' -> 'category'
-          nameOfSubmitter: new FormControl('', Validators.required), // TODO: get 'id' from current signed in user; Enrichment_Submittor
-          dateOfSubmission: new FormControl(new Date(), Validators.required) // Enrichment_DateSubmitted
+          nameOfSubmitter: new FormControl({value: `${this.submitter.firstName} ${this.submitter.lastName}`, disabled: true},
+            Validators.required), // Enrichment_Submittor
+          dateOfSubmission: new FormControl({value: new Date(), disabled: true}, Validators.required) // Enrichment_DateSubmitted
         })
       ])
     });
@@ -139,7 +156,7 @@ export class RequestFormComponent implements OnInit {
       naturalBehaviors: requestArray[3].naturalBehaviors,
 
       enrichmentCategory: this.categories,
-      nameOfSubmitter: requestArray[4].nameOfSubmitter,
+      nameOfSubmitter: {name: requestArray[4].nameOfSubmitter, id: this.submitter.id},
       otherSource: requestArray[4].otherSource,
       source: requestArray[4].source,
       timeRequired: requestArray[4].timeRequired,
@@ -159,12 +176,22 @@ export class RequestFormComponent implements OnInit {
   }
 
   private getCategoriesFromDb() {
-    this.service.getCategories().subscribe((data: CategoryInfo) => {
+    this.service.getCategories().subscribe((data: CategoryInfo[]) => {
       console.log('data from categories:');
       console.log(data);
       // this.allCategories = data;
     }, (err: any) => {
       console.error('Error getting categories:', err);
+    });
+  }
+
+  private getSpeciesFromDb() {
+    this.service.getSpecies().subscribe((data: SpeciesInfo[]) => {
+      console.log('data from species:');
+      console.log(data);
+      this.species = data;
+    }, (err: any) => {
+      console.error('Error getting species:', err);
     });
   }
 
