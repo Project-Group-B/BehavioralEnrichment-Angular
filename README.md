@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
+## Documentation
+
+Documentation was generated with Compodoc (https://compodoc.app) version 1.1.9. Navigate to https://project-group-b.github.io/BehavioralEnrichment-Angular/ to view the documentation pages.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
