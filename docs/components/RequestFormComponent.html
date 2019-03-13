@@ -1,0 +1,2210 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>behavioral-enrichment-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">behavioral-enrichment-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>RequestFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/request-form/request-form.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-request-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./request-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./request-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addOnBlur">addOnBlur</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#allCategories">allCategories</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#categories">categories</a>
+                            </li>
+                            <li>
+                                <a href="#categoryInput">categoryInput</a>
+                            </li>
+                            <li>
+                                <a href="#departments">departments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#enrichmentFormControl">enrichmentFormControl</a>
+                            </li>
+                            <li>
+                                <a href="#enrichmentRequestFormGroup">enrichmentRequestFormGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#filteredCategories">filteredCategories</a>
+                            </li>
+                            <li>
+                                <a href="#matAutocomplete">matAutocomplete</a>
+                            </li>
+                            <li>
+                                <a href="#removable">removable</a>
+                            </li>
+                            <li>
+                                <a href="#selectable">selectable</a>
+                            </li>
+                            <li>
+                                <a href="#separatorKeysCodes">separatorKeysCodes</a>
+                            </li>
+                            <li>
+                                <a href="#species">species</a>
+                            </li>
+                            <li>
+                                <a href="#submitter">submitter</a>
+                            </li>
+                            <li>
+                                <a href="#visible">visible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_filter">_filter</a>
+                            </li>
+                            <li>
+                                <a href="#add">add</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getCategoriesFromDb">getCategoriesFromDb</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getDepartmentsFromDb">getDepartmentsFromDb</a>
+                            </li>
+                            <li>
+                                <a href="#getErrorMsg">getErrorMsg</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSpeciesFromDb">getSpeciesFromDb</a>
+                            </li>
+                            <li>
+                                <a href="#initFormGroup">initFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#remove">remove</a>
+                            </li>
+                            <li>
+                                <a href="#selected">selected</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm">submitForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#toSingleObject">toSingleObject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#requestForm">requestForm</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, service: <a href="../injectables/EnrichmentService.html">EnrichmentService</a>, snackbar: MatSnackBar, currentUser: <a href="../injectables/CurrentUserService.html">CurrentUserService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/request-form/request-form.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EnrichmentService.html" target="_self" >EnrichmentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>currentUser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_filter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _filter
+                        </b>
+                        <a href="#_filter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_filter(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:243</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add"></a>
+                    <span class="name">
+                        <b>
+                            add
+                        </b>
+                        <a href="#add"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>add(event: MatChipInputEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:208</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MatChipInputEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCategoriesFromDb"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getCategoriesFromDb
+                        </b>
+                        <a href="#getCategoriesFromDb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCategoriesFromDb()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDepartmentsFromDb"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getDepartmentsFromDb
+                        </b>
+                        <a href="#getDepartmentsFromDb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDepartmentsFromDb()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getErrorMsg"></a>
+                    <span class="name">
+                        <b>
+                            getErrorMsg
+                        </b>
+                        <a href="#getErrorMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getErrorMsg(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, formControlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>formControlName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSpeciesFromDb"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getSpeciesFromDb
+                        </b>
+                        <a href="#getSpeciesFromDb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSpeciesFromDb()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:188</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initFormGroup"></a>
+                    <span class="name">
+                        <b>
+                            initFormGroup
+                        </b>
+                        <a href="#initFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initFormGroup()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <b>
+                            remove
+                        </b>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove(category: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>category</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selected"></a>
+                    <span class="name">
+                        <b>
+                            selected
+                        </b>
+                        <a href="#selected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selected(event: MatAutocompleteSelectedEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:237</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MatAutocompleteSelectedEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <b>
+                            submitForm
+                        </b>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm(stepper: MatStepper)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stepper</td>
+                                    <td>
+                                            <code>MatStepper</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toSingleObject"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            toSingleObject
+                        </b>
+                        <a href="#toSingleObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toSingleObject(groupValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/app/request-form/request-form.component.ts:134</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupValue</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/CompleteRequestForm.html" target="_self" >CompleteRequestForm</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addOnBlur"></a>
+                        <span class="name">
+                            <b>
+                            addOnBlur</b>
+                            <a href="#addOnBlur"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/request-form/request-form.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allCategories"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            allCategories</b>
+                            <a href="#allCategories"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[&#x27;Sensory&#x27;, &#x27;Feeding&#x27;, &#x27;Habitation&#x27;, &#x27;Social&#x27;, &#x27;Learning&#x27;]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/request-form/request-form.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="categories"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            categories</b>
+                            <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/request-form/request-form.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="categoryInput"></a>
+                        <span class="name">
+                            <b>
+                            categoryInput</b>
+                            <a href="#categoryInput"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ElementRef&lt;HTMLInputElement&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;categoryInput&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/request-form/request-form.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="departments"></a>
+                        <span class="name">
+                            <b>
+                            departments</b>
+                            <a href="#departments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/DepartmentInfo.html" target="_self" >DepartmentInfo[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/request-form/request-form.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enrichmentFormControl"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            enrichmentFormControl</b>
+                            <a href="#enrichmentFormControl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormArray" target="_blank" >FormArray</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/request-form/request-form.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enrichmentRequestFormGroup"></a>
+                        <span class="name">
+                            <b>
+                            enrichmentRequestFormGroup</b>
+                            <a href="#enrichmentRequestFormGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/request-form/request-form.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filteredCategories"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            filteredCategories</b>
+                            <a href="#filteredCategories"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;string[]&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/request-form/request-form.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="matAutocomplete"></a>
+                        <span class="name">
+                            <b>
+                            matAutocomplete</b>
+                            <a href="#matAutocomplete"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatAutocomplete</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;auto&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/request-form/request-form.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removable"></a>
+                        <span class="name">
+                            <b>
+                            removable</b>
+                            <a href="#removable"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/request-form/request-form.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectable"></a>
+                        <span class="name">
+                            <b>
+                            selectable</b>
+                            <a href="#selectable"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/request-form/request-form.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="separatorKeysCodes"></a>
+                        <span class="name">
+                            <b>
+                            separatorKeysCodes</b>
+                            <a href="#separatorKeysCodes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>number[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[ENTER, COMMA]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/request-form/request-form.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="species"></a>
+                        <span class="name">
+                            <b>
+                            species</b>
+                            <a href="#species"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/SpeciesInfo.html" target="_self" >SpeciesInfo[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/request-form/request-form.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitter"></a>
+                        <span class="name">
+                            <b>
+                            submitter</b>
+                            <a href="#submitter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/UserInfo.html" target="_self" >UserInfo</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/request-form/request-form.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="visible"></a>
+                        <span class="name">
+                            <b>
+                            visible</b>
+                            <a href="#visible"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/request-form/request-form.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requestForm"></a>
+                        <span class="name"><b>requestForm</b><a href="#requestForm"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>requestForm()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/request-form/request-form.component.ts:23</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, ElementRef } from &#x27;@angular/core&#x27;;
+import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, FormArray} from &#x27;@angular/forms&#x27;;
+import { EnrichmentService } from &#x27;../shared/main/enrichment.service&#x27;;
+import { MatSnackBar, MatStepper, MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent } from &#x27;@angular/material&#x27;;
+import {COMMA, ENTER} from &#x27;@angular/cdk/keycodes&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import {map, startWith} from &#x27;rxjs/operators&#x27;;
+import { CompleteRequestForm } from &#x27;../shared/interfaces/complete-request-form&#x27;;
+import { StandardReturnObject } from &#x27;../shared/interfaces/standard-return-object&#x27;;
+import { CategoryInfo } from &#x27;../shared/interfaces/category-info&#x27;;
+import { SpeciesInfo } from &#x27;../shared/interfaces/species-info&#x27;;
+import { DepartmentInfo } from &#x27;../shared/interfaces/department-info&#x27;;
+import { UserInfo } from &#x27;../shared/interfaces/user-info&#x27;;
+import { CurrentUserService } from &#x27;../auth/user/current-user.service&#x27;;
+
+@Component({
+  selector: &#x27;app-request-form&#x27;,
+  templateUrl: &#x27;./request-form.component.html&#x27;,
+  styleUrls: [&#x27;./request-form.component.scss&#x27;]
+})
+export class RequestFormComponent implements OnInit {
+  enrichmentRequestFormGroup: FormGroup;
+  get requestForm(): AbstractControl | null { return this.enrichmentRequestFormGroup.get(&#x27;requestForm&#x27;); }
+  departments: DepartmentInfo[];
+  species: SpeciesInfo[];
+  submitter: UserInfo;
+
+  // Category chips variables
+  visible &#x3D; true;
+  selectable &#x3D; true;
+  removable &#x3D; true;
+  addOnBlur &#x3D; true;
+  separatorKeysCodes: number[] &#x3D; [ENTER, COMMA];
+  private enrichmentFormControl: FormArray;
+  public categories: string[] &#x3D; [];
+  // TODO: find a way to make this work with the category data from database
+  public allCategories &#x3D; [&#x27;Sensory&#x27;, &#x27;Feeding&#x27;, &#x27;Habitation&#x27;, &#x27;Social&#x27;, &#x27;Learning&#x27;];
+  public filteredCategories: Observable&lt;string[]&gt;;
+  @ViewChild(&#x27;categoryInput&#x27;) categoryInput: ElementRef&lt;HTMLInputElement&gt;;
+  @ViewChild(&#x27;auto&#x27;) matAutocomplete: MatAutocomplete;
+
+  constructor(private formBuilder: FormBuilder,
+    private service: EnrichmentService,
+    private snackbar: MatSnackBar,
+    private currentUser: CurrentUserService
+  ) { }
+
+  ngOnInit() {
+    this.submitter &#x3D; this.currentUser.getUser();
+    this.initFormGroup();
+    this.enrichmentFormControl &#x3D; this.enrichmentRequestFormGroup.controls[&#x27;requestForm&#x27;] as FormArray;
+    this.filteredCategories &#x3D; this.enrichmentFormControl.at(4).get(&#x27;enrichmentCategory&#x27;).valueChanges.pipe(
+      startWith(null),
+      map((category: string | null) &#x3D;&gt; category ? this._filter(category) : this.allCategories.slice()));
+    this.getDepartmentsFromDb();
+    this.getCategoriesFromDb();
+    this.getSpeciesFromDb();
+  }
+
+  initFormGroup() {
+    // TODO: enrichment item id? - get from &#x27;item&#x27; table
+    // TODO: enrichment animal id? - get from &#x27;animal&#x27; table
+    // TODO: enrichment location id? - get from &#x27;location&#x27; table
+    this.enrichmentRequestFormGroup &#x3D; this.formBuilder.group({
+      requestForm: this.formBuilder.array([
+        this.formBuilder.group({
+          department: new FormControl({departmentId: -1, departmentName: &#x27;&#x27;}, Validators.required), // Enrichment_Department
+          species: new FormControl({speciesId: -1, speciesName: &#x27;&#x27;, speciesDescription: &#x27;&#x27;, speciesIsisNumber: -1}
+            , Validators.required), // Enrichment_Species
+          housed: new FormControl(&#x27;&#x27;, Validators.required),
+          activityCycle: new FormControl(&#x27;&#x27;, Validators.required),
+          age: new FormControl(&#x27;&#x27;, Validators.required)
+        }),
+        this.formBuilder.group({
+          enrichmentName: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(50)]), // Enrichment_Name
+          enrichmentDescription: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(1000)]), // Enrichment_Description
+          enrichmentPresentation: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(1000)]), // Enrichment_PresentationMethod
+          // time picker:
+          enrichmentDayNightTime: new FormControl(&#x27;&#x27;, Validators.required), // TODO: Enrichment_TimeStart inputs
+          enrichmentFrequency: new FormControl(&#x27;&#x27;, Validators.required) // Enrichment_Frequency: int
+          // TODO: add image input/upload capability
+          // enrichmentPhoto: new FormControl(null)
+        }),
+        this.formBuilder.group({
+          lifeStrategiesWksht: new FormControl(null, Validators.required), // Enrichment_LifeStrategies: int (0: false, 1: true)
+          anotherDeptZoo: new FormControl(null, Validators.required), // Enrichment_PreviousUse: int (0: false, 1: true)
+          anotherDeptZooMoreInfo: new FormControl(null),
+          safetyQuestion: new FormControl(null, Validators.required), // Enrichment_SafetyQuestions: int
+          risksQuestion: new FormControl(null, Validators.required), // Enrichment_RisksHazards: int
+          safetyComment: new FormControl(&#x27;&#x27;, Validators.maxLength(1000)) // Enrichment_Concerns
+        }),
+        this.formBuilder.group({
+          naturalBehaviors: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(1000)]) // Enrichment_ExpectedBehavior
+        }),
+        this.formBuilder.group({
+          source: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(50)]), // Enrichment_Source
+          otherSource: new FormControl(null, Validators.maxLength(50)), // Enrichment_Source
+          timeRequired: new FormControl(&#x27;&#x27;, Validators.required), // Enrichment_TimeRequired: int
+          whoConstructs: new FormControl(&#x27;&#x27;, [Validators.required, Validators.maxLength(1000)]), // Enrichment_Construction
+          volunteerDocentUtilized: new FormControl(null, Validators.required), // Enrichment_Volunteers: int (0: false, 1: true)
+          enrichmentCategory: new FormControl([&#x27;&#x27;], Validators.required), // &#x27;item/category&#x27; -&gt; &#x27;category&#x27;
+          nameOfSubmitter: new FormControl({value: &#x60;${this.submitter.firstName} ${this.submitter.lastName}&#x60;, disabled: true},
+            Validators.required), // Enrichment_Submittor
+          dateOfSubmission: new FormControl({value: new Date(), disabled: true}, Validators.required) // Enrichment_DateSubmitted
+        })
+      ])
+    });
+  }
+
+  submitForm(stepper: MatStepper) {
+    // TODO: submit image options:
+    // https://stackoverflow.com/questions/1665730/images-in-mysql
+    // https://stackoverflow.com/questions/3014578/storing-images-in-mysql
+    // https://stackoverflow.com/questions/6472233/can-i-store-images-in-mysql
+    // https://www.quora.com/What-is-the-best-way-to-store-100-images-in-a-MySQL-database-in-this-case
+    console.log(&#x27;form submitted:&#x27;);
+    console.log(this.toSingleObject(this.enrichmentRequestFormGroup.value));
+    this.service.submitEnrichmentRequestForm(this.toSingleObject(this.enrichmentRequestFormGroup.value)).subscribe(
+      (data: StandardReturnObject) &#x3D;&gt; {
+        if (!data.error) {
+          this.snackbar.open(data.message, &#x27;OK&#x27;, {
+            duration: 5000
+          });
+          stepper.reset();
+        } else {
+          // do NOT reset form
+          this.snackbar.open(&#x60;ERROR: ${data.errorMsg}&#x60;, &#x27;OK&#x27;, {
+            duration: 5000
+          });
+        }
+    });
+  }
+
+  private toSingleObject(groupValue: any): CompleteRequestForm {
+    const requestArray &#x3D; groupValue.requestForm;
+    const completeForm: CompleteRequestForm &#x3D; {
+      department: requestArray[0].department,
+      species: requestArray[0].species,
+      housed: requestArray[0].housed,
+      activityCycle: requestArray[0].activityCycle,
+      age: requestArray[0].age,
+
+      enrichmentName: requestArray[1].enrichmentName,
+      enrichmentDayNightTime: requestArray[1].enrichmentDayNightTime,
+      enrichmentDescription: requestArray[1].enrichmentDescription,
+      enrichmentFrequency: requestArray[1].enrichmentFrequency,
+      enrichmentPresentation: requestArray[1].enrichmentPresentation,
+
+      anotherDeptZoo: requestArray[2].anotherDeptZoo,
+      anotherDeptZooMoreInfo: requestArray[2].anotherDeptZooMoreInfo,
+      lifeStrategiesWksht: requestArray[2].lifeStrategiesWksht,
+      safetyComment: requestArray[2].safetyComment,
+      safetyQuestion: requestArray[2].safetyQuestion,
+      risksQuestion: requestArray[2].risksQuestion,
+
+      naturalBehaviors: requestArray[3].naturalBehaviors,
+
+      enrichmentCategory: this.categories,
+      nameOfSubmitter: {name: requestArray[4].nameOfSubmitter, id: this.submitter.id},
+      otherSource: requestArray[4].otherSource,
+      source: requestArray[4].source,
+      timeRequired: requestArray[4].timeRequired,
+      volunteerDocentUtilized: requestArray[4].volunteerDocentUtilized,
+      whoConstructs: requestArray[4].whoConstructs,
+      dateOfSubmission: requestArray[4].dateOfSubmission
+    };
+    return completeForm;
+  }
+
+  private getDepartmentsFromDb() {
+    this.service.getDepartments().subscribe((data: DepartmentInfo[]) &#x3D;&gt; {
+      this.departments &#x3D; data;
+    }, (err: any) &#x3D;&gt; {
+        console.error(&#x27;Error getting departments:&#x27;, err);
+    });
+  }
+
+  private getCategoriesFromDb() {
+    this.service.getCategories().subscribe((data: CategoryInfo[]) &#x3D;&gt; {
+      console.log(&#x27;data from categories:&#x27;);
+      console.log(data);
+      // this.allCategories &#x3D; data;
+    }, (err: any) &#x3D;&gt; {
+      console.error(&#x27;Error getting categories:&#x27;, err);
+    });
+  }
+
+  private getSpeciesFromDb() {
+    this.service.getSpecies().subscribe((data: SpeciesInfo[]) &#x3D;&gt; {
+      console.log(&#x27;data from species:&#x27;);
+      console.log(data);
+      this.species &#x3D; data;
+    }, (err: any) &#x3D;&gt; {
+      console.error(&#x27;Error getting species:&#x27;, err);
+    });
+  }
+
+  getErrorMsg(index: number, formControlName: string): string {
+    if (this.enrichmentFormControl.at(index).get(formControlName).hasError(&#x27;required&#x27;)) {
+      return &#x27;Input is required.&#x27;;
+    } else if (this.enrichmentFormControl.at(index).get(formControlName).hasError(&#x27;maxlength&#x27;)) {
+      return &#x27;Input exceeds max length.&#x27;;
+    } else {
+      return &#x27;Invalid input.&#x27;;
+    }
+  }
+
+  add(event: MatChipInputEvent): void {
+    // Add category only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input &#x3D; event.input;
+      const value &#x3D; event.value;
+
+      // Add our category
+      if ((value || &#x27;&#x27;).trim()) {
+        this.categories.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value &#x3D; &#x27;&#x27;;
+      }
+
+      this.enrichmentFormControl.at(4).get(&#x27;enrichmentCategory&#x27;).setValue(null);
+    }
+  }
+
+  remove(category: string): void {
+    const index &#x3D; this.categories.indexOf(category);
+
+    if (index &gt;&#x3D; 0) {
+      this.categories.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.categories.push(event.option.viewValue);
+    this.categoryInput.nativeElement.value &#x3D; &#x27;&#x27;;
+    this.enrichmentFormControl.at(4).get(&#x27;enrichmentCategory&#x27;).setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue &#x3D; value.toLowerCase();
+
+    return this.allCategories.filter(category &#x3D;&gt; category.toLowerCase().indexOf(filterValue) &#x3D;&#x3D;&#x3D; 0);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header&gt;&lt;/app-header&gt;
+&lt;h1 class&#x3D;&quot;mat-display-1 center-align&quot;&gt;Novel Life Strategy Enrichment Request Form&lt;/h1&gt;
+
+&lt;form [formGroup]&#x3D;&quot;enrichmentRequestFormGroup&quot;&gt;
+  &lt;mat-horizontal-stepper [linear]&#x3D;&quot;false&quot; #stepper formArrayName&#x3D;&quot;requestForm&quot;&gt;
+    &lt;mat-step formGroupName&#x3D;&quot;0&quot; [stepControl]&#x3D;&quot;requestForm?.get([0])&quot; label&#x3D;&quot;Animal Data&quot;&gt;
+      &lt;div&gt;
+        &lt;mat-form-field id&#x3D;&quot;dept&quot; name&#x3D;&quot;dept&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Department Name&quot; formControlName&#x3D;&quot;department&quot; required&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let dept of departments&quot; [value]&#x3D;&quot;dept&quot;&gt;
+              {{dept.departmentName}}
+            &lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;mat-form-field id&#x3D;&quot;species&quot; name&#x3D;&quot;species&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Species Name&quot; formControlName&#x3D;&quot;species&quot; required&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let spec of species&quot; [value]&#x3D;&quot;spec&quot;&gt;
+              {{spec.speciesName}}
+            &lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;mat-grid-list cols&#x3D;&quot;3&quot; rowHeight&#x3D;&quot;2:1&quot;&gt;
+          &lt;mat-grid-tile [colspan]&#x3D;&quot;1&quot;&gt;
+            &lt;mat-card class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+              &lt;mat-card-header&gt;
+                &lt;mat-card-title&gt;Housed&lt;/mat-card-title&gt;
+              &lt;/mat-card-header&gt;
+              &lt;mat-card-content&gt;
+                &lt;mat-radio-group class&#x3D;&quot;radio-group&quot; formControlName&#x3D;&quot;housed&quot; required&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;individual&quot;&gt;Individual&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;conspecific&quot;&gt;Group/Conspecific&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;mixedSpecies&quot;&gt;Group/Mixed Species&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;onExhibit&quot;&gt;On Exhibit&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;offExhibit&quot;&gt;Off Exhibit&lt;/mat-radio-button&gt;
+                &lt;/mat-radio-group&gt;
+                &lt;mat-error *ngIf&#x3D;&quot;requestForm?.get([0]).get(&#x27;housed&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;&#x27;Housed&#x27; is required&lt;/mat-error&gt;
+              &lt;/mat-card-content&gt;
+            &lt;/mat-card&gt;
+          &lt;/mat-grid-tile&gt;
+          &lt;mat-grid-tile [colspan]&#x3D;&quot;1&quot;&gt;
+            &lt;mat-card class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+              &lt;mat-card-header&gt;
+                &lt;mat-card-title&gt;Activity Cycle&lt;/mat-card-title&gt;
+              &lt;/mat-card-header&gt;
+              &lt;mat-card-content&gt;
+                &lt;mat-radio-group class&#x3D;&quot;radio-group&quot; formControlName&#x3D;&quot;activityCycle&quot; required&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;nocturnal&quot;&gt;Nocturnal&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;diurnal&quot;&gt;Diurnal&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;crepuscular&quot;&gt;Crepuscular&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;variable&quot;&gt;Variable&lt;/mat-radio-button&gt;
+                &lt;/mat-radio-group&gt;
+                &lt;mat-error *ngIf&#x3D;&quot;requestForm?.get([0]).get(&#x27;activityCycle&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;&#x27;Activity Cycle&#x27; is required&lt;/mat-error&gt;
+              &lt;/mat-card-content&gt;
+            &lt;/mat-card&gt;
+          &lt;/mat-grid-tile&gt;
+          &lt;mat-grid-tile [colspan]&#x3D;&quot;1&quot;&gt;
+            &lt;mat-card class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+              &lt;mat-card-header&gt;
+                &lt;mat-card-title&gt;Age(s)&lt;/mat-card-title&gt;
+              &lt;/mat-card-header&gt;
+              &lt;mat-card-content&gt;
+                &lt;mat-radio-group class&#x3D;&quot;radio-group&quot; formControlName&#x3D;&quot;age&quot; required&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;infant&quot;&gt;Infant&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;juvenile&quot;&gt;Juvenile&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;subadult&quot;&gt;Subadult&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;adult&quot;&gt;Adult&lt;/mat-radio-button&gt;
+                  &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;geriatric&quot;&gt;Geriatric&lt;/mat-radio-button&gt;
+                &lt;/mat-radio-group&gt;
+                &lt;mat-error *ngIf&#x3D;&quot;requestForm?.get([0]).get(&#x27;age&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;&#x27;Age(s)&#x27; is required&lt;/mat-error&gt;
+              &lt;/mat-card-content&gt;
+            &lt;/mat-card&gt;
+          &lt;/mat-grid-tile&gt;
+        &lt;/mat-grid-list&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;button mat-raised-button matStepperNext type&#x3D;&quot;button&quot;&gt;Next&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step formGroupName&#x3D;&quot;1&quot; [stepControl]&#x3D;&quot;requestForm?.get([1])&quot; label&#x3D;&quot;Type of Enrichment&quot;&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;enrichmentName&quot;&gt;Enrichment Name: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;enrichmentName&quot; name&#x3D;&quot;enrichmentName&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Name&quot; formControlName&#x3D;&quot;enrichmentName&quot; required&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(1).get(&#x27;enrichmentName&#x27;).value?.length || 0}}/50&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(1).get(&#x27;enrichmentName&#x27;)&quot;&gt;{{getErrorMsg(1, &#x27;enrichmentName&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;description&quot;&gt;Describe the Enrichment:&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field class&#x3D;&quot;increased-width&quot; id&#x3D;&quot;description&quot; name&#x3D;&quot;description&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;Details, articles, any data if possible&quot; formControlName&#x3D;&quot;enrichmentDescription&quot; required&gt;&lt;/textarea&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(1).get(&#x27;enrichmentDescription&#x27;).value?.length || 0}}/1000&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(1).get(&#x27;enrichmentDescription&#x27;)&quot;&gt;{{getErrorMsg(1, &#x27;enrichmentDescription&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;presented&quot;&gt;How/Where will it be presented:&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field class&#x3D;&quot;increased-width&quot; id&#x3D;&quot;presented&quot; name&#x3D;&quot;presented&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;Presentation&quot; formControlName&#x3D;&quot;enrichmentPresentation&quot; required&gt;&lt;/textarea&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(1).get(&#x27;enrichmentPresentation&#x27;).value?.length || 0}}/1000&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(1).get(&#x27;enrichmentPresentation&#x27;)&quot;&gt;{{getErrorMsg(1, &#x27;enrichmentPresentation&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;enrichmentWhen&quot;&gt;Time of day/night presented: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;enrichmentWhen&quot; name&#x3D;&quot;enrichmentWhen&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Time&quot; formControlName&#x3D;&quot;enrichmentDayNightTime&quot; required&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      Time selected: &#x27;{{requestForm.at(1).get(&#x27;enrichmentDayNightTime&#x27;)}}&#x27;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;enrichmentFreq&quot;&gt;Frequency/Duration of presentation: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;enrichmentFreq&quot; name&#x3D;&quot;enrichmentFreq&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Frequency/Duration&quot; formControlName&#x3D;&quot;enrichmentFrequency&quot; required&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;!-- TODO: uncomment and add file upload capability --&gt;
+      &lt;!-- &lt;div&gt;
+        &lt;label for&#x3D;&quot;photo&quot;&gt;Upload a photo (optional): &lt;/label&gt;
+        &lt;input type&#x3D;&quot;file&quot; id&#x3D;&quot;photo&quot; name&#x3D;&quot;photo&quot; formControlName&#x3D;&quot;enrichmentPhoto&quot;&gt;
+      &lt;/div&gt; --&gt;
+      &lt;div class&#x3D;&quot;button-row&quot;&gt;
+        &lt;button mat-raised-button matStepperPrevious type&#x3D;&quot;button&quot;&gt;Back&lt;/button&gt;
+        &lt;button mat-raised-button matStepperNext type&#x3D;&quot;button&quot;&gt;Next&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step formGroupName&#x3D;&quot;2&quot; [stepControl]&#x3D;&quot;requestForm?.get([2])&quot; label&#x3D;&quot;Current Data&quot;&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;lifeStrategies&quot;&gt;Have you completed a &quot;Life Strategies&quot; worksheet and researched the species&#x27; natural history?&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field id&#x3D;&quot;lifeStrategies&quot; name&#x3D;&quot;lifeStrategies&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;lifeStrategiesWksht&quot; required&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;anotherPlace&quot;&gt;Has another department or zoo used this enrichment before?&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field id&#x3D;&quot;anotherPlace&quot; name&#x3D;&quot;anotherPlace&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;anotherDeptZoo&quot; required&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;requestForm.at(2).get(&#x27;anotherDeptZoo&#x27;).value&quot;&gt;
+        &lt;label for&#x3D;&quot;anotherPlaceMoreInfo&quot;&gt;Have they been contacted for more information?&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field id&#x3D;&quot;anotherPlaceMoreInfo&quot; name&#x3D;&quot;anotherPlaceMoreInfo&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;anotherDeptZooMoreInfo&quot; [required]&#x3D;&quot;requestForm.at(2).get(&#x27;anotherDeptZoo&#x27;).value&quot;&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;safety&quot;&gt;Have you addressed safety questions in &quot;Enrichment Protocol&quot;?&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field id&#x3D;&quot;safety&quot; name&#x3D;&quot;safety&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;safetyQuestion&quot; required&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br/&gt;
+        &lt;label for&#x3D;&quot;risks&quot;&gt;Have risks and hazards been minimized?&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field id&#x3D;&quot;risks&quot; name&#x3D;&quot;risks&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;risksQuestion&quot; required&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br/&gt;
+        &lt;mat-form-field class&#x3D;&quot;increased-width&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;Detail any concerns here&quot; formControlName&#x3D;&quot;safetyComment&quot;&gt;&lt;/textarea&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(2).get(&#x27;safetyComment&#x27;).value?.length || 0}}/1000&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(2).get(&#x27;safetyComment&#x27;)&quot;&gt;{{getErrorMsg(2, &#x27;safetyComment&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;button-row&quot;&gt;
+        &lt;button mat-raised-button matStepperPrevious&gt;Back&lt;/button&gt;
+        &lt;button mat-raised-button matStepperNext&gt;Next&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step formGroupName&#x3D;&quot;3&quot; [stepControl]&#x3D;&quot;requestForm?.get([3])&quot; label&#x3D;&quot;Goal of Enrichment&quot;&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;behaviors&quot;&gt;What natural behaviors do you expect this enrichment to encourage/elicit?&lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;behaviors&quot; name&#x3D;&quot;behaviors&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;Natural Behaviors&quot; formControlName&#x3D;&quot;naturalBehaviors&quot; required&gt;&lt;/textarea&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(3).get(&#x27;naturalBehaviors&#x27;).value?.length || 0}}/1000&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(3).get(&#x27;naturalBehaviors&#x27;)&quot;&gt;{{getErrorMsg(3, &#x27;naturalBehaviors&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;button-row&quot;&gt;
+        &lt;button mat-raised-button matStepperPrevious type&#x3D;&quot;button&quot;&gt;Back&lt;/button&gt;
+        &lt;button mat-raised-button matStepperNext type&#x3D;&quot;button&quot;&gt;Next&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step formGroupName&#x3D;&quot;4&quot; [stepControl]&#x3D;&quot;requestForm?.get([4])&quot; label&#x3D;&quot;Materials/Cost Analysis&quot;&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;source&quot;&gt;Source:&lt;/label&gt;
+        &lt;br/&gt;
+        &lt;mat-radio-group class&#x3D;&quot;radio-group left-margin&quot; id&#x3D;&quot;source&quot; name&#x3D;&quot;source&quot; formControlName&#x3D;&quot;source&quot; required&gt;
+          &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;toBePurchased&quot;&gt;Needs to be purchased&lt;/mat-radio-button&gt;
+          &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;zooGrounds&quot;&gt;Zoo grounds&lt;/mat-radio-button&gt;
+          &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;donation&quot;&gt;Donation&lt;/mat-radio-button&gt;
+          &lt;mat-radio-button class&#x3D;&quot;radio-button&quot; value&#x3D;&quot;other&quot;&gt;Other&lt;/mat-radio-button&gt;
+        &lt;/mat-radio-group&gt;
+      &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;requestForm?.get([4]).value.source &#x3D;&#x3D;&#x3D; &#x27;other&#x27;&quot; class&#x3D;&quot;left-margin&quot;&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Other source&quot; formControlName&#x3D;&quot;otherSource&quot; required&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(4).get(&#x27;otherSource&#x27;).value?.length || 0}}/50&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(4).get(&#x27;otherSource&#x27;)&quot;&gt;{{getErrorMsg(4, &#x27;otherSource&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;timeRequired&quot;&gt;Time Required: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;timeRequired&quot; name&#x3D;&quot;timeRequired&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Time required&quot; formControlName&#x3D;&quot;timeRequired&quot; required&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;construct&quot;&gt;Who will construct and how?: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;construct&quot; name&#x3D;&quot;construct&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;Who/How?&quot; formControlName&#x3D;&quot;whoConstructs&quot; required&gt;&lt;/textarea&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;{{requestForm.at(4).get(&#x27;whoConstructs&#x27;).value?.length || 0}}/1000&lt;/mat-hint&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;requestForm.at(4).get(&#x27;whoConstructs&#x27;)&quot;&gt;{{getErrorMsg(4, &#x27;whoConstructs&#x27;)}}&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;volunteer&quot;&gt;Can volunteer(s)/docent(s) be utilized? &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;volunteer&quot; name&#x3D;&quot;volunteer&quot;&gt;
+          &lt;mat-select placeholder&#x3D;&quot;Yes/No&quot; formControlName&#x3D;&quot;volunteerDocentUtilized&quot; required&gt;
+            &lt;mat-option [value]&#x3D;&quot;true&quot;&gt;Yes&lt;/mat-option&gt;
+            &lt;mat-option [value]&#x3D;&quot;false&quot;&gt;No&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;inventory&quot;&gt;For inventory use, please select applicable categories for this enrichment: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;inventory&quot; name&#x3D;&quot;inventory&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-chip-list #categoryList&gt;
+            &lt;mat-chip
+              *ngFor&#x3D;&quot;let category of categories&quot;
+              [selectable]&#x3D;&quot;selectable&quot;
+              [removable]&#x3D;&quot;removable&quot;
+              (removed)&#x3D;&quot;remove(category)&quot;&gt;
+              {{category}}
+              &lt;mat-icon matChipRemove *ngIf&#x3D;&quot;removable&quot;&gt;cancel&lt;/mat-icon&gt;
+            &lt;/mat-chip&gt;
+            &lt;input
+              placeholder&#x3D;&quot;Categories&quot;
+              #categoryInput
+              formControlName&#x3D;&quot;enrichmentCategory&quot;
+              [matAutocomplete]&#x3D;&quot;auto&quot;
+              [matChipInputFor]&#x3D;&quot;categoryList&quot;
+              [matChipInputSeparatorKeyCodes]&#x3D;&quot;separatorKeysCodes&quot;
+              [matChipInputAddOnBlur]&#x3D;&quot;addOnBlur&quot;
+              (matChipInputTokenEnd)&#x3D;&quot;add($event)&quot;&gt;
+          &lt;/mat-chip-list&gt;
+          &lt;mat-autocomplete #auto&#x3D;&quot;matAutocomplete&quot; (optionSelected)&#x3D;&quot;selected($event)&quot;&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let category of filteredCategories | async&quot; [value]&#x3D;&quot;category&quot;&gt;
+              {{category}}
+            &lt;/mat-option&gt;
+          &lt;/mat-autocomplete&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;name&quot;&gt;Your name: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;name&quot; name&#x3D;&quot;name&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;John Smith&quot; formControlName&#x3D;&quot;nameOfSubmitter&quot; required&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for&#x3D;&quot;date&quot;&gt;Date of submission: &lt;/label&gt;
+        &lt;mat-form-field id&#x3D;&quot;date&quot; name&#x3D;&quot;date&quot;&gt;
+          &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot; placeholder&#x3D;&quot;Date&quot; formControlName&#x3D;&quot;dateOfSubmission&quot; required&gt;
+          &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+          &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+        &lt;/mat-form-field&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;button-row&quot;&gt;
+        &lt;button mat-raised-button matStepperPrevious type&#x3D;&quot;button&quot;&gt;Back&lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!enrichmentRequestFormGroup.valid&quot; (click)&#x3D;&quot;submitForm(stepper)&quot;&gt;Submit&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-step&gt;
+  &lt;/mat-horizontal-stepper&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./request-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.increased-width {
+  width: 500px;
+}
+.full-width {
+  width: 100%;
+}
+.radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+.radio-button {
+  margin: 5px;
+}
+.button-row button {
+  margin-right: 8px;
+}
+.left-margin {
+  margin-left: 50px;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header></app-header><h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Request Form</h1><form [formGroup]="enrichmentRequestFormGroup">  <mat-horizontal-stepper [linear]="false" #stepper formArrayName="requestForm">    <mat-step formGroupName="0" [stepControl]="requestForm?.get([0])" label="Animal Data">      <div>        <mat-form-field id="dept" name="dept">          <mat-select placeholder="Department Name" formControlName="department" required>            <mat-option *ngFor="let dept of departments" [value]="dept">              {{dept.departmentName}}            </mat-option>          </mat-select>        </mat-form-field>      </div>      <div>        <mat-form-field id="species" name="species">          <mat-select placeholder="Species Name" formControlName="species" required>            <mat-option *ngFor="let spec of species" [value]="spec">              {{spec.speciesName}}            </mat-option>          </mat-select>        </mat-form-field>      </div>      <div>        <mat-grid-list cols="3" rowHeight="2:1">          <mat-grid-tile [colspan]="1">            <mat-card class="mat-elevation-z8">              <mat-card-header>                <mat-card-title>Housed</mat-card-title>              </mat-card-header>              <mat-card-content>                <mat-radio-group class="radio-group" formControlName="housed" required>                  <mat-radio-button class="radio-button" value="individual">Individual</mat-radio-button>                  <mat-radio-button class="radio-button" value="conspecific">Group/Conspecific</mat-radio-button>                  <mat-radio-button class="radio-button" value="mixedSpecies">Group/Mixed Species</mat-radio-button>                  <mat-radio-button class="radio-button" value="onExhibit">On Exhibit</mat-radio-button>                  <mat-radio-button class="radio-button" value="offExhibit">Off Exhibit</mat-radio-button>                </mat-radio-group>                <mat-error *ngIf="requestForm?.get([0]).get(\'housed\').hasError(\'required\')">\'Housed\' is required</mat-error>              </mat-card-content>            </mat-card>          </mat-grid-tile>          <mat-grid-tile [colspan]="1">            <mat-card class="mat-elevation-z8">              <mat-card-header>                <mat-card-title>Activity Cycle</mat-card-title>              </mat-card-header>              <mat-card-content>                <mat-radio-group class="radio-group" formControlName="activityCycle" required>                  <mat-radio-button class="radio-button" value="nocturnal">Nocturnal</mat-radio-button>                  <mat-radio-button class="radio-button" value="diurnal">Diurnal</mat-radio-button>                  <mat-radio-button class="radio-button" value="crepuscular">Crepuscular</mat-radio-button>                  <mat-radio-button class="radio-button" value="variable">Variable</mat-radio-button>                </mat-radio-group>                <mat-error *ngIf="requestForm?.get([0]).get(\'activityCycle\').hasError(\'required\')">\'Activity Cycle\' is required</mat-error>              </mat-card-content>            </mat-card>          </mat-grid-tile>          <mat-grid-tile [colspan]="1">            <mat-card class="mat-elevation-z8">              <mat-card-header>                <mat-card-title>Age(s)</mat-card-title>              </mat-card-header>              <mat-card-content>                <mat-radio-group class="radio-group" formControlName="age" required>                  <mat-radio-button class="radio-button" value="infant">Infant</mat-radio-button>                  <mat-radio-button class="radio-button" value="juvenile">Juvenile</mat-radio-button>                  <mat-radio-button class="radio-button" value="subadult">Subadult</mat-radio-button>                  <mat-radio-button class="radio-button" value="adult">Adult</mat-radio-button>                  <mat-radio-button class="radio-button" value="geriatric">Geriatric</mat-radio-button>                </mat-radio-group>                <mat-error *ngIf="requestForm?.get([0]).get(\'age\').hasError(\'required\')">\'Age(s)\' is required</mat-error>              </mat-card-content>            </mat-card>          </mat-grid-tile>        </mat-grid-list>      </div>      <div>        <button mat-raised-button matStepperNext type="button">Next</button>      </div>    </mat-step>    <mat-step formGroupName="1" [stepControl]="requestForm?.get([1])" label="Type of Enrichment">      <div>        <label for="enrichmentName">Enrichment Name: </label>        <mat-form-field id="enrichmentName" name="enrichmentName">          <input matInput placeholder="Name" formControlName="enrichmentName" required>          <mat-hint align="end">{{requestForm.at(1).get(\'enrichmentName\').value?.length || 0}}/50</mat-hint>          <mat-error *ngIf="requestForm.at(1).get(\'enrichmentName\')">{{getErrorMsg(1, \'enrichmentName\')}}</mat-error>        </mat-form-field>      </div>      <div>        <label for="description">Describe the Enrichment:</label>        <br/>        <mat-form-field class="increased-width" id="description" name="description">          <textarea matInput placeholder="Details, articles, any data if possible" formControlName="enrichmentDescription" required></textarea>          <mat-hint align="end">{{requestForm.at(1).get(\'enrichmentDescription\').value?.length || 0}}/1000</mat-hint>          <mat-error *ngIf="requestForm.at(1).get(\'enrichmentDescription\')">{{getErrorMsg(1, \'enrichmentDescription\')}}</mat-error>        </mat-form-field>      </div>      <div>        <label for="presented">How/Where will it be presented:</label>        <br/>        <mat-form-field class="increased-width" id="presented" name="presented">          <textarea matInput placeholder="Presentation" formControlName="enrichmentPresentation" required></textarea>          <mat-hint align="end">{{requestForm.at(1).get(\'enrichmentPresentation\').value?.length || 0}}/1000</mat-hint>          <mat-error *ngIf="requestForm.at(1).get(\'enrichmentPresentation\')">{{getErrorMsg(1, \'enrichmentPresentation\')}}</mat-error>        </mat-form-field>      </div>      <div>        <label for="enrichmentWhen">Time of day/night presented: </label>        <mat-form-field id="enrichmentWhen" name="enrichmentWhen">          <input matInput placeholder="Time" formControlName="enrichmentDayNightTime" required>        </mat-form-field>      </div>      Time selected: \'{{requestForm.at(1).get(\'enrichmentDayNightTime\')}}\'      <div>        <label for="enrichmentFreq">Frequency/Duration of presentation: </label>        <mat-form-field id="enrichmentFreq" name="enrichmentFreq">          <input matInput placeholder="Frequency/Duration" formControlName="enrichmentFrequency" required>        </mat-form-field>      </div>      <!-- TODO: uncomment and add file upload capability -->      <!-- <div>        <label for="photo">Upload a photo (optional): </label>        <input type="file" id="photo" name="photo" formControlName="enrichmentPhoto">      </div> -->      <div class="button-row">        <button mat-raised-button matStepperPrevious type="button">Back</button>        <button mat-raised-button matStepperNext type="button">Next</button>      </div>    </mat-step>    <mat-step formGroupName="2" [stepControl]="requestForm?.get([2])" label="Current Data">      <div>        <label for="lifeStrategies">Have you completed a "Life Strategies" worksheet and researched the species\' natural history?</label>        <br/>        <mat-form-field id="lifeStrategies" name="lifeStrategies">          <mat-select placeholder="Yes/No" formControlName="lifeStrategiesWksht" required>            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>      </div>      <div>        <label for="anotherPlace">Has another department or zoo used this enrichment before?</label>        <br/>        <mat-form-field id="anotherPlace" name="anotherPlace">          <mat-select placeholder="Yes/No" formControlName="anotherDeptZoo" required>            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>      </div>      <div *ngIf="requestForm.at(2).get(\'anotherDeptZoo\').value">        <label for="anotherPlaceMoreInfo">Have they been contacted for more information?</label>        <br/>        <mat-form-field id="anotherPlaceMoreInfo" name="anotherPlaceMoreInfo">          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" [required]="requestForm.at(2).get(\'anotherDeptZoo\').value">            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>      </div>      <div>        <label for="safety">Have you addressed safety questions in "Enrichment Protocol"?</label>        <br/>        <mat-form-field id="safety" name="safety">          <mat-select placeholder="Yes/No" formControlName="safetyQuestion" required>            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>        <br/>        <label for="risks">Have risks and hazards been minimized?</label>        <br/>        <mat-form-field id="risks" name="risks">          <mat-select placeholder="Yes/No" formControlName="risksQuestion" required>            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>        <br/>        <mat-form-field class="increased-width">          <textarea matInput placeholder="Detail any concerns here" formControlName="safetyComment"></textarea>          <mat-hint align="end">{{requestForm.at(2).get(\'safetyComment\').value?.length || 0}}/1000</mat-hint>          <mat-error *ngIf="requestForm.at(2).get(\'safetyComment\')">{{getErrorMsg(2, \'safetyComment\')}}</mat-error>        </mat-form-field>      </div>      <div class="button-row">        <button mat-raised-button matStepperPrevious>Back</button>        <button mat-raised-button matStepperNext>Next</button>      </div>    </mat-step>    <mat-step formGroupName="3" [stepControl]="requestForm?.get([3])" label="Goal of Enrichment">      <div>        <label for="behaviors">What natural behaviors do you expect this enrichment to encourage/elicit?</label>        <mat-form-field id="behaviors" name="behaviors" class="full-width">          <textarea matInput placeholder="Natural Behaviors" formControlName="naturalBehaviors" required></textarea>          <mat-hint align="end">{{requestForm.at(3).get(\'naturalBehaviors\').value?.length || 0}}/1000</mat-hint>          <mat-error *ngIf="requestForm.at(3).get(\'naturalBehaviors\')">{{getErrorMsg(3, \'naturalBehaviors\')}}</mat-error>        </mat-form-field>      </div>      <div class="button-row">        <button mat-raised-button matStepperPrevious type="button">Back</button>        <button mat-raised-button matStepperNext type="button">Next</button>      </div>    </mat-step>    <mat-step formGroupName="4" [stepControl]="requestForm?.get([4])" label="Materials/Cost Analysis">      <div>        <label for="source">Source:</label>        <br/>        <mat-radio-group class="radio-group left-margin" id="source" name="source" formControlName="source" required>          <mat-radio-button class="radio-button" value="toBePurchased">Needs to be purchased</mat-radio-button>          <mat-radio-button class="radio-button" value="zooGrounds">Zoo grounds</mat-radio-button>          <mat-radio-button class="radio-button" value="donation">Donation</mat-radio-button>          <mat-radio-button class="radio-button" value="other">Other</mat-radio-button>        </mat-radio-group>      </div>      <div *ngIf="requestForm?.get([4]).value.source === \'other\'" class="left-margin">        <mat-form-field>          <input matInput placeholder="Other source" formControlName="otherSource" required>          <mat-hint align="end">{{requestForm.at(4).get(\'otherSource\').value?.length || 0}}/50</mat-hint>          <mat-error *ngIf="requestForm.at(4).get(\'otherSource\')">{{getErrorMsg(4, \'otherSource\')}}</mat-error>        </mat-form-field>      </div>      <div>        <label for="timeRequired">Time Required: </label>        <mat-form-field id="timeRequired" name="timeRequired">          <input matInput placeholder="Time required" formControlName="timeRequired" required>        </mat-form-field>      </div>      <div>        <label for="construct">Who will construct and how?: </label>        <mat-form-field id="construct" name="construct" class="full-width">          <textarea matInput placeholder="Who/How?" formControlName="whoConstructs" required></textarea>          <mat-hint align="end">{{requestForm.at(4).get(\'whoConstructs\').value?.length || 0}}/1000</mat-hint>          <mat-error *ngIf="requestForm.at(4).get(\'whoConstructs\')">{{getErrorMsg(4, \'whoConstructs\')}}</mat-error>        </mat-form-field>      </div>      <div>        <label for="volunteer">Can volunteer(s)/docent(s) be utilized? </label>        <mat-form-field id="volunteer" name="volunteer">          <mat-select placeholder="Yes/No" formControlName="volunteerDocentUtilized" required>            <mat-option [value]="true">Yes</mat-option>            <mat-option [value]="false">No</mat-option>          </mat-select>        </mat-form-field>      </div>      <div>        <label for="inventory">For inventory use, please select applicable categories for this enrichment: </label>        <mat-form-field id="inventory" name="inventory" class="full-width">          <mat-chip-list #categoryList>            <mat-chip              *ngFor="let category of categories"              [selectable]="selectable"              [removable]="removable"              (removed)="remove(category)">              {{category}}              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>            </mat-chip>            <input              placeholder="Categories"              #categoryInput              formControlName="enrichmentCategory"              [matAutocomplete]="auto"              [matChipInputFor]="categoryList"              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"              [matChipInputAddOnBlur]="addOnBlur"              (matChipInputTokenEnd)="add($event)">          </mat-chip-list>          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">            <mat-option *ngFor="let category of filteredCategories | async" [value]="category">              {{category}}            </mat-option>          </mat-autocomplete>        </mat-form-field>      </div>      <div>        <label for="name">Your name: </label>        <mat-form-field id="name" name="name">          <input matInput placeholder="John Smith" formControlName="nameOfSubmitter" required>        </mat-form-field>      </div>      <div>        <label for="date">Date of submission: </label>        <mat-form-field id="date" name="date">          <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="dateOfSubmission" required>          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>          <mat-datepicker #picker></mat-datepicker>        </mat-form-field>      </div>      <div class="button-row">        <button mat-raised-button matStepperPrevious type="button">Back</button>        <button mat-raised-button color="primary" [disabled]="!enrichmentRequestFormGroup.valid" (click)="submitForm(stepper)">Submit</button>      </div>    </mat-step>  </mat-horizontal-stepper></form></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IncidentReportComponent', 'selector': 'app-incident-report'},{'name': 'IncidentReportStatusComponent', 'selector': 'app-incident-report-status'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MasterApprovedComponent', 'selector': 'app-master-approved'},{'name': 'RequestFormComponent', 'selector': 'app-request-form'},{'name': 'RequestFormStatusComponent', 'selector': 'app-request-form-status'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RequestFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RequestFormComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
