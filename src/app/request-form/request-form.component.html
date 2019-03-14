@@ -82,6 +82,16 @@
     </mat-step>
     <mat-step formGroupName="1" [stepControl]="requestForm?.get([1])" label="Type of Enrichment">
       <div>
+        <mat-form-field id="itemId" name="itemId">
+          <mat-select placeholder="Select Item" formControlName="itemId" required>
+            <mat-option *ngFor="let item of items" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="openNewItemDialog()">Add New Item</button>
+      </div>
+      <div>
         <label for="enrichmentName">Enrichment Name: </label>
         <mat-form-field id="enrichmentName" name="enrichmentName">
           <input matInput placeholder="Name" formControlName="enrichmentName" required>
@@ -113,18 +123,12 @@
           <input matInput placeholder="Time" formControlName="enrichmentDayNightTime" required>
         </mat-form-field>
       </div>
-      Time selected: '{{requestForm.at(1).get('enrichmentDayNightTime')}}'
       <div>
         <label for="enrichmentFreq">Frequency/Duration of presentation: </label>
         <mat-form-field id="enrichmentFreq" name="enrichmentFreq">
           <input matInput placeholder="Frequency/Duration" formControlName="enrichmentFrequency" required>
         </mat-form-field>
       </div>
-      <!-- TODO: uncomment and add file upload capability -->
-      <!-- <div>
-        <label for="photo">Upload a photo (optional): </label>
-        <input type="file" id="photo" name="photo" formControlName="enrichmentPhoto">
-      </div> -->
       <div class="button-row">
         <button mat-raised-button matStepperPrevious type="button">Back</button>
         <button mat-raised-button matStepperNext type="button">Next</button>

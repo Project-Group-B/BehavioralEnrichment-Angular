@@ -9,6 +9,7 @@ export interface CompleteRequestForm {
   activityCycle: string;
   age: string;
 
+  itemId: number;
   enrichmentName: string;
   enrichmentDayNightTime: string;
   enrichmentDescription: string;

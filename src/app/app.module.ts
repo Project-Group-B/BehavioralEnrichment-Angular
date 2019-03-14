@@ -28,8 +28,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
-import { RequestFormComponent } from './request-form/request-form.component';
+import { RequestFormComponent, InsertNewItemDialogComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
 import { IncidentReportComponent } from './incident-report/incident-report.component';
 import { IncidentReportStatusComponent } from './incident-report-status/incident-report-status.component';
@@ -51,7 +52,8 @@ import { Globals } from './globals';
     IncidentReportStatusComponent,
     MasterApprovedComponent,
     HeaderComponent,
-    SignUpComponent
+    SignUpComponent,
+    InsertNewItemDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,8 +82,10 @@ import { Globals } from './globals';
     MatSortModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
+  entryComponents: [InsertNewItemDialogComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })
