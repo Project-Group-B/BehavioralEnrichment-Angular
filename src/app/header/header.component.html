@@ -8,10 +8,7 @@
     <button mat-menu-item color="primary" routerLink="/request-form-status" routerLinkActive="active">Request Form Status Report</button>
     <button mat-menu-item color="primary" routerLink="/incident-report-status" routerLinkActive="active">Incident Status Report</button>
   </mat-menu>
-  <button *ngIf="isAdmin" mat-button [matMenuTriggerFor]="adminMenu">Admin</button>
-  <mat-menu #adminMenu="matMenu">
-    <button mat-menu-item color="primary" routerLink="" routerLinkActive="active">Create User</button>
-  </mat-menu>
+  <button *ngIf="isAdmin" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
   <span class="fill-remaining-space"></span>
   <button mat-raised-button color="accent" (click)="logout()">Logout</button>
 </mat-toolbar>
