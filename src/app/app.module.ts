@@ -42,6 +42,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
 import { AdminComponent } from './admin/admin.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AdminComponent } from './admin/admin.component';
     MasterApprovedComponent,
     HeaderComponent,
     InsertNewItemDialogComponent,
-    AdminComponent
+    AdminComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,

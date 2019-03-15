@@ -48,6 +48,16 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
   }
 
+  changePassword(userId: number, userName: string, passForm: FormGroup) {
+    const requestBody = {
+      userId,
+      userName,
+      oldPassword: passForm.value.oldPassword,
+      newPassword: passForm.value.newPassword
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/changePassword`, requestBody, httpOptions);
+  }
+
   addDepartment(departmentName: string) {
     const requestBody = {
       departmentName

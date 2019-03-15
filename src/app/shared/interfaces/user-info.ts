@@ -7,7 +7,7 @@ export interface UserInfo {
   errorMsg: string;
   firstName: string;
   lastName: string;
-  departmentId: string;
+  department: string;
   id: number;
 }
 

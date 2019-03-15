@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       if (data.loggedIn) {
         // set current user info
         this.globals.setCurrentUser(data);
+        console.log(data);
 
         // put user info as stringified JSON in session storage
         sessionStorage.setItem(this.globals.userInfoKey, JSON.stringify(data));

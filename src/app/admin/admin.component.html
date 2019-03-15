@@ -44,7 +44,6 @@
       </mat-select>
     </mat-form-field>
     <button class="button-margin" [disabled]="!deptIdToRemove" (click)="removeDept()" mat-raised-button color="primary">Remove Department</button>
-    ID to remove: {{deptIdToRemove}}
     <br/>
     <mat-form-field class="max-width">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
