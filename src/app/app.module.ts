@@ -30,6 +30,7 @@ import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { HomeComponent } from './home/home.component';
 import { RequestFormComponent, InsertNewItemDialogComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
@@ -85,7 +86,8 @@ import { AdminComponent } from './admin/admin.component';
     MatAutocompleteModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
   ],
   entryComponents: [InsertNewItemDialogComponent],
   providers: [Globals],

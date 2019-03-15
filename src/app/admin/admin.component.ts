@@ -1,20 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, FormGroupDirective, NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { DepartmentInfo } from '../shared/interfaces/department-info';
-import { ErrorStateMatcher, MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 import { UserListInfo } from '../shared/interfaces/user-list-info';
 import { SelectionModel } from '@angular/cdk/collections';
 import { StandardReturnObject } from '../shared/interfaces/standard-return-object';
-
-export class PasswordErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-
-    return (invalidCtrl || invalidParent);
-  }
-}
 
 @Component({
   selector: 'app-admin',
@@ -24,13 +15,16 @@ export class PasswordErrorStateMatcher implements ErrorStateMatcher {
 export class AdminComponent implements OnInit {
   // Add User variables
   addUserForm: FormGroup;
-  matcher = new PasswordErrorStateMatcher();
   departments: DepartmentInfo[];
 
   // Remove User variables
   displayedColumns: string[] = ['select', 'id', 'username', 'firstName', 'lastName', 'department'];
-  selection = new SelectionModel<UserListInfo>(true, []);
+  userSelection = new SelectionModel<UserListInfo>(true, []);
   dataSource: MatTableDataSource<UserListInfo>;
+
+  // Department Variables
+  newDeptName = '';
+  deptIdToRemove: number;
 
   // ViewChild
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -49,10 +43,8 @@ export class AdminComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
       department: new FormControl({departmentId: -1, departmentName: ''}, [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.maxLength(25)]),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('')
-    }, {validator: this.checkPasswords});
+      username: new FormControl('', [Validators.required, Validators.maxLength(25)])
+    });
     this.getDepartments();
     this.getUsers();
   }
@@ -67,7 +59,7 @@ export class AdminComponent implements OnInit {
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
+    const numSelected = this.userSelection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
@@ -75,8 +67,8 @@ export class AdminComponent implements OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+        this.userSelection.clear() :
+        this.dataSource.data.forEach(row => this.userSelection.select(row));
   }
 
   addUser() {
@@ -111,12 +103,58 @@ export class AdminComponent implements OnInit {
   }
 
   removeUsers() {
-    this.service.removeUsers(this.selection.selected).subscribe((data: StandardReturnObject) => {
-      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK');
+    this.service.removeUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.userSelection.clear();
       this.getUsers();
     }, (err: any) => {
       console.error('error removing users:', err);
       this.snackbar.open('HTTP error when removing user(s). Please try again.', 'OK');
+    });
+  }
+
+  addNewDepartment() {
+    this.service.addDepartment(this.newDeptName).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.newDeptName = '';
+      this.getDepartments();
+    }, (err: any) => {
+      console.error('error adding new department:', err);
+      this.snackbar.open('HTTP error adding new department', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  removeDept() {
+    this.service.removeDepartmentById(this.deptIdToRemove).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.deptIdToRemove = null;
+    }, (err: any) => {
+      console.error(`error removing department with id ${this.deptIdToRemove}`, err);
+      this.snackbar.open('HTTP error when removing department', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  resetPasswords() {
+    this.service.resetPasswords(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.userSelection.clear();
+    }, (err: any) => {
+      console.error(`error resetting passwords:`, err);
+      this.snackbar.open('HTTP error when resetting passwords', 'OK', {
+        duration: 3000
+      });
     });
   }
 
@@ -137,12 +175,4 @@ export class AdminComponent implements OnInit {
       return 'Invalid input.';
     }
   }
-
-  private checkPasswords(group: FormGroup) {
-    const pass = group.controls.password.value;
-    const confirmPass = group.controls.confirmPassword.value;
-
-    return pass === confirmPass ? null : { notSame: true };
-  }
-
 }

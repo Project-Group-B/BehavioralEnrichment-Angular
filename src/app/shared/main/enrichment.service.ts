@@ -27,7 +27,6 @@ export class EnrichmentService {
       firstName: form.value.firstName,
       lastName: form.value.lastName,
       username: form.value.username,
-      password: form.value.password,
       status: 0,
       department: form.value.department
     };
@@ -49,8 +48,23 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
   }
 
+  addDepartment(departmentName: string) {
+    const requestBody = {
+      departmentName
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newDept`, requestBody, httpOptions);
+  }
+
+  removeDepartmentById(departmentId: number) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeDept`, {departmentId}, httpOptions);
+  }
+
   removeUsers(users: UserListInfo[]) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeUsers`, users, httpOptions);
+  }
+
+  resetPasswords(users: UserListInfo[]) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/resetUserPasswords`, users, httpOptions);
   }
 
   getDepartments() {
