@@ -62,7 +62,7 @@ export class UserAccountComponent implements OnInit {
       this.formDirective.reset();
       this.changePasswordToggle = false;
     }, (err: any) => {
-      this.snackbar.open('HTTP when changing passwords', 'OK', {
+      this.snackbar.open('HTTP error when changing passwords', 'OK', {
         duration: 3000
       });
       console.error('error changing passwords:', err);
