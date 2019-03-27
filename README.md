@@ -48,3 +48,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 8) $cp ~/BehavioralEnrichment-Angular/dist /var/www/html (copies to nginx, install directions
 here: https://arjunphp.com/deploy-angular-app-production-nginx/)
+
+9) Edit /etc/nginx/nginx.conf so that it is as follows:
+
+http {
+         ...
+  server{
+                listen 80;
+                server_name 52.90.189.136;
+                location / {
+                        root /var/www/html/BehavioralEnrichment-Angular;
+                        index index.html index.htm;
+                }
+        }
+        ...
+}
