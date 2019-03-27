@@ -7,6 +7,8 @@ import { SpeciesInfo } from '../interfaces/species-info';
 import { StandardReturnObject } from '../interfaces/standard-return-object';
 import { CategoryInfo } from '../interfaces/category-info';
 import { DepartmentInfo } from '../interfaces/department-info';
+import { ItemInfo } from '../interfaces/item-info';
+import { UserListInfo } from '../interfaces/user-list-info';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,20 +22,59 @@ const httpOptions = {
 export class EnrichmentService {
   constructor(private http: HttpClient, private globals: Globals) { }
 
-  signUp(form: FormGroup) {
+  addUser(form: FormGroup) {
     const requestBody = {
       firstName: form.value.firstName,
       lastName: form.value.lastName,
       username: form.value.username,
-      password: form.value.password,
       status: 0,
       department: form.value.department
     };
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/signUpUser`, requestBody, httpOptions);
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/addUser`, requestBody, httpOptions);
   }
 
   submitEnrichmentRequestForm(completeForm: CompleteRequestForm) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/enrichmentRequest`, completeForm, httpOptions);
+  }
+
+  submitNewItem(itemForm: FormGroup) {
+    const requestBody = {
+      itemName: itemForm.value.name,
+      photo: itemForm.value.photo,
+      comments: itemForm.value.comments,
+      safetyNotes: itemForm.value.safetyNotes,
+      exceptions: itemForm.value.exceptions
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
+  }
+
+  changePassword(userId: number, userName: string, passForm: FormGroup) {
+    const requestBody = {
+      userId,
+      userName,
+      oldPassword: passForm.value.oldPassword,
+      newPassword: passForm.value.newPassword
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/changePassword`, requestBody, httpOptions);
+  }
+
+  addDepartment(departmentName: string) {
+    const requestBody = {
+      departmentName
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newDept`, requestBody, httpOptions);
+  }
+
+  removeDepartmentById(departmentId: number) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeDept`, {departmentId}, httpOptions);
+  }
+
+  removeUsers(users: UserListInfo[]) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeUsers`, users, httpOptions);
+  }
+
+  resetPasswords(users: UserListInfo[]) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/resetUserPasswords`, users, httpOptions);
   }
 
   getDepartments() {
@@ -46,5 +87,13 @@ export class EnrichmentService {
 
   getSpecies() {
     return this.http.get<SpeciesInfo[]>(`${this.globals.baseUrl}/species`);
+  }
+
+  getItems() {
+    return this.http.get<ItemInfo[]>(`${this.globals.baseUrl}/items`);
+  }
+
+  getUsers() {
+    return this.http.get<UserListInfo[]>(`${this.globals.baseUrl}/userList`);
   }
 }

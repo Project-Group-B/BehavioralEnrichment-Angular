@@ -21,12 +21,5 @@ export class Globals {
 
   public setCurrentUser(info: UserInfo) {
     this.currentUser.setUser(info);
-    /* this.currentUser.setIsAdmin(info.admin);
-    this.currentUser.setUserName(info.username);
-    this.currentUser.setSessionId(info.sessionId);
-    this.currentUser.setPermissions(info.permissions);
-    this.currentUser.setDepartmentId(info.departmentId);
-    this.currentUser.setFirstName(info.firstName);
-    this.currentUser.setLastName(info.lastName); */
   }
 }
