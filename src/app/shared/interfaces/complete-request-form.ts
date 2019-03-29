@@ -5,16 +5,14 @@ import { PartialUserInfo } from './partial-user-info';
 export interface CompleteRequestForm {
   department: DepartmentInfo;
   species: SpeciesInfo;
-  housed: string;
-  activityCycle: string;
-  age: string;
+  animal: number;
 
   itemId: number;
   enrichmentName: string;
   enrichmentDayNightTime: string;
   enrichmentDescription: string;
   enrichmentFrequency: string;
-  enrichmentPresentation: string;
+  enrichmentPresentationMethod: string;
 
   anotherDeptZoo: boolean;
   anotherDeptZooMoreInfo: boolean;

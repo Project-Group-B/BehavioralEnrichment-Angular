@@ -31,8 +31,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { HomeComponent } from './home/home.component';
-import { RequestFormComponent, InsertNewItemDialogComponent } from './request-form/request-form.component';
+import { RequestFormComponent, InsertNewItemDialogComponent, InsertNewAnimalDialogComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
 import { IncidentReportComponent } from './incident-report/incident-report.component';
 import { IncidentReportStatusComponent } from './incident-report-status/incident-report-status.component';
@@ -43,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
 import { AdminComponent } from './admin/admin.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { UserAccountComponent } from './user-account/user-account.component';
     HeaderComponent,
     InsertNewItemDialogComponent,
     AdminComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    HelpComponent,
+    InsertNewAnimalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,9 +93,10 @@ import { UserAccountComponent } from './user-account/user-account.component';
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatExpansionModule
   ],
-  entryComponents: [InsertNewItemDialogComponent],
+  entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

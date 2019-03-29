@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './auth/admin.guard';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { HelpComponent } from './help/help.component';
 
 // https://angular.io/guide/router#milestone-5-route-guards
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'master-approved',  canActivate: [AuthGuard], component: MasterApprovedComponent},
   {path: 'admin', canActivate: [AdminGuard], component: AdminComponent},
   {path: 'account', canActivate: [AuthGuard], component: UserAccountComponent},
+  {path: 'help', canActivate: [AuthGuard], component: HelpComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '**', redirectTo: '/login'}
 ];

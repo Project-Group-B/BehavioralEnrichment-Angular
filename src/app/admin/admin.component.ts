@@ -102,6 +102,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  // TODO: removing users that have entries in the enrichment_experience.Enrichment_ApprovedBy table creates a foreign key SQL exception
   removeUsers() {
     this.service.removeUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
       this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
@@ -116,6 +117,12 @@ export class AdminComponent implements OnInit {
   }
 
   addNewDepartment() {
+    if (this.newDeptName.length <= 0 || this.newDeptName.length > 50) {
+      this.snackbar.open('Department Name must be between 1 and 50 characters', 'OK', {
+        duration: 3000
+      });
+      return;
+    }
     this.service.addDepartment(this.newDeptName).subscribe((data: StandardReturnObject) => {
       this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
         duration: 3000

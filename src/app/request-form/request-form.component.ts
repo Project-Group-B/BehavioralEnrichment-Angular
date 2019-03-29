@@ -14,10 +14,12 @@ import { DepartmentInfo } from '../shared/interfaces/department-info';
 import { UserInfo } from '../shared/interfaces/user-info';
 import { CurrentUserService } from '../auth/user/current-user.service';
 import { ItemInfo } from '../shared/interfaces/item-info';
+import { AnimalInfo } from '../shared/interfaces/animal-info';
+import { LocationInfo } from '../shared/interfaces/location-info';
 
 interface DialogData {
-  name: string;
-  animal: string;
+  species: SpeciesInfo[];
+  locations: LocationInfo[];
 }
 
 @Component({
@@ -32,6 +34,8 @@ export class RequestFormComponent implements OnInit {
   species: SpeciesInfo[];
   submitter: UserInfo;
   items: ItemInfo[];
+  animals: AnimalInfo[];
+  locations: LocationInfo[];
 
   // Category chips variables
   visible = true;
@@ -65,40 +69,38 @@ export class RequestFormComponent implements OnInit {
     this.getCategoriesFromDb();
     this.getSpeciesFromDb();
     this.getItemsFromDb();
+    this.getAnimalsFromDb();
+    this.getLocationsFromDb();
   }
 
   initFormGroup() {
-    // TODO: enrichment animal id? - get from 'animal' table
-    // TODO: enrichment location id? - get from 'location' table
     this.enrichmentRequestFormGroup = this.formBuilder.group({
       requestForm: this.formBuilder.array([
         this.formBuilder.group({
           department: new FormControl({departmentId: -1, departmentName: ''}, Validators.required), // Enrichment_Department
           species: new FormControl({speciesId: -1, speciesName: '', speciesDescription: '', speciesIsisNumber: -1}
             , Validators.required), // Enrichment_Species
-          housed: new FormControl('', Validators.required),
-          activityCycle: new FormControl('', Validators.required),
-          age: new FormControl('', Validators.required)
+          animal: new FormControl(-1, [Validators.required]) // Enrichment_Animal
         }),
         this.formBuilder.group({
-          itemId: new FormControl(-1, Validators.required),
+          itemId: new FormControl(-1, Validators.required), // Foreign Key: 'item' table
           enrichmentName: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Name
           enrichmentDescription: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Description
-          enrichmentPresentation: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_PresentationMethod
-          // time picker:
-          enrichmentDayNightTime: new FormControl('', Validators.required), // TODO: Enrichment_TimeStart inputs
+          enrichmentPresentationMethod: new FormControl('', [Validators.required,
+            Validators.maxLength(1000)]), // Enrichment_PresentationMethod
+          enrichmentDayNightTime: new FormControl('', Validators.required), // Enrichment_TimeStart & Enrichment_TimeEnd
           enrichmentFrequency: new FormControl('', Validators.required) // Enrichment_Frequency: int
         }),
         this.formBuilder.group({
           lifeStrategiesWksht: new FormControl(null, Validators.required), // Enrichment_LifeStrategies: int (0: false, 1: true)
           anotherDeptZoo: new FormControl(null, Validators.required), // Enrichment_PreviousUse: int (0: false, 1: true)
-          anotherDeptZooMoreInfo: new FormControl(null),
+          anotherDeptZooMoreInfo: new FormControl(null), // Enrichment_Contact: int (0: false, 1: true), can be null
           safetyQuestion: new FormControl(null, Validators.required), // Enrichment_SafetyQuestions: int
           risksQuestion: new FormControl(null, Validators.required), // Enrichment_RisksHazards: int
           safetyComment: new FormControl('', Validators.maxLength(1000)) // Enrichment_Concerns
         }),
         this.formBuilder.group({
-          naturalBehaviors: new FormControl('', [Validators.required, Validators.maxLength(1000)]) // Enrichment_ExpectedBehavior
+          naturalBehaviors: new FormControl('', [Validators.required, Validators.maxLength(1000)]) // Enrichment_Goal
         }),
         this.formBuilder.group({
           source: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Source
@@ -106,7 +108,7 @@ export class RequestFormComponent implements OnInit {
           timeRequired: new FormControl('', Validators.required), // Enrichment_TimeRequired: int
           whoConstructs: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Construction
           volunteerDocentUtilized: new FormControl(null, Validators.required), // Enrichment_Volunteers: int (0: false, 1: true)
-          enrichmentCategory: new FormControl([''], Validators.required), // 'item/category' -> 'category'
+          enrichmentCategory: new FormControl([''], Validators.required), // Enrichment_Inventory: 'item/category' -> 'category'
           nameOfSubmitter: new FormControl({value: `${this.submitter.firstName} ${this.submitter.lastName}`, disabled: true},
             Validators.required), // Enrichment_Submittor
           dateOfSubmission: new FormControl({value: new Date(), disabled: true}, Validators.required) // Enrichment_DateSubmitted
@@ -139,16 +141,14 @@ export class RequestFormComponent implements OnInit {
     const completeForm: CompleteRequestForm = {
       department: requestArray[0].department,
       species: requestArray[0].species,
-      housed: requestArray[0].housed,
-      activityCycle: requestArray[0].activityCycle,
-      age: requestArray[0].age,
+      animal: requestArray[0].animal,
 
       itemId: requestArray[1].itemId,
       enrichmentName: requestArray[1].enrichmentName,
       enrichmentDayNightTime: requestArray[1].enrichmentDayNightTime,
       enrichmentDescription: requestArray[1].enrichmentDescription,
       enrichmentFrequency: requestArray[1].enrichmentFrequency,
-      enrichmentPresentation: requestArray[1].enrichmentPresentation,
+      enrichmentPresentationMethod: requestArray[1].enrichmentPresentationMethod,
 
       anotherDeptZoo: requestArray[2].anotherDeptZoo,
       anotherDeptZooMoreInfo: requestArray[2].anotherDeptZooMoreInfo,
@@ -200,6 +200,22 @@ export class RequestFormComponent implements OnInit {
       this.items = data;
     }, (err: any) => {
       console.error('Error getting items:', err);
+    });
+  }
+
+  private getAnimalsFromDb() {
+    this.service.getAnimals().subscribe((data: AnimalInfo[]) => {
+      this.animals = data;
+    }, (err: any) => {
+      console.error('Error getting animals:', err);
+    });
+  }
+
+  private getLocationsFromDb() {
+    this.service.getLocations().subscribe((data: LocationInfo[]) => {
+      this.locations = data;
+    }, (err: any) => {
+      console.error('Error getting locations:', err);
     });
   }
 
@@ -255,15 +271,67 @@ export class RequestFormComponent implements OnInit {
   }
 
   openNewItemDialog(): void {
-    const dialogRef = this.dialog.open(InsertNewItemDialogComponent);
+    const itemDialogRef = this.dialog.open(InsertNewItemDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
+    itemDialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.getItemsFromDb();
       }
     });
   }
 
+  openNewAnimalDialog(): void {
+    const animalDialogRef = this.dialog.open(InsertNewAnimalDialogComponent, {
+      data: {species: this.species, locations: this.locations}
+    });
+
+    animalDialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.getAnimalsFromDb();
+      }
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-insert-new-animal-dialog',
+  templateUrl: './insert-new-animal-dialog.html',
+})
+export class InsertNewAnimalDialogComponent {
+  newAnimalForm = new FormGroup({
+    isisNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    species: new FormControl(null, Validators.required),
+    location: new FormControl(null, Validators.required),
+    housed: new FormControl('', Validators.required),
+    activityCycle: new FormControl('', Validators.required),
+    age: new FormControl('', Validators.required)
+  });
+  constructor(
+    public dialogRef: MatDialogRef<InsertNewAnimalDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private service: EnrichmentService,
+    private snackbar: MatSnackBar) {}
+
+  cancel() {
+    this.dialogRef.close(false);
+  }
+
+  submitNewAnimalForm() {
+    return null;
+  }
+
+  getErrorMsg(formControlName: string): string {
+    if (this.newAnimalForm.get(formControlName).hasError('required')) {
+      return 'Input is required.';
+    } else if (this.newAnimalForm.get(formControlName).hasError('maxlength')) {
+      return 'Input exceeds max length.';
+    } else if (this.newAnimalForm.get(formControlName).hasError('pattern')) {
+      return 'Input must be a number.';
+    } else {
+      return 'Invalid input.';
+    }
+  }
 }
 
 @Component({
@@ -280,7 +348,6 @@ export class InsertNewItemDialogComponent {
   });
   constructor(
     public dialogRef: MatDialogRef<InsertNewItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private changeDetector: ChangeDetectorRef,
     private service: EnrichmentService,
     private snackbar: MatSnackBar) {}

@@ -9,6 +9,8 @@ import { CategoryInfo } from '../interfaces/category-info';
 import { DepartmentInfo } from '../interfaces/department-info';
 import { ItemInfo } from '../interfaces/item-info';
 import { UserListInfo } from '../interfaces/user-list-info';
+import { AnimalInfo } from '../interfaces/animal-info';
+import { LocationInfo } from '../interfaces/location-info';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -95,5 +97,13 @@ export class EnrichmentService {
 
   getUsers() {
     return this.http.get<UserListInfo[]>(`${this.globals.baseUrl}/userList`);
+  }
+
+  getAnimals() {
+    return this.http.get<AnimalInfo[]>(`${this.globals.baseUrl}/animals`);
+  }
+
+  getLocations() {
+    return this.http.get<LocationInfo[]>(`${this.globals.baseUrl}/locations`);
   }
 }

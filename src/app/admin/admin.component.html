@@ -33,8 +33,9 @@
   <mat-tab label="User/Department Actions">
     <mat-form-field class="max-width">
       <input matInput [(ngModel)]="newDeptName" placeholder="New Department Name">
+      <mat-hint align="end">{{newDeptName.length || 0}}/50</mat-hint>
     </mat-form-field>
-    <button class="button-margin" [disabled]="!newDeptName" (click)="addNewDepartment()" mat-raised-button color="primary">Add Department</button>
+    <button class="button-margin" [disabled]="!newDeptName || newDeptName.length > 50" (click)="addNewDepartment()" mat-raised-button color="primary">Add Department</button>
     <br/>
     <mat-form-field hintLabel="Select a department to remove">
       <mat-select placeholder="Department" [(ngModel)]="deptIdToRemove">
