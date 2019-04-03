@@ -17,14 +17,17 @@ export class AdminComponent implements OnInit {
   addUserForm: FormGroup;
   departments: DepartmentInfo[];
 
-  // Remove User variables
-  displayedColumns: string[] = ['select', 'id', 'username', 'firstName', 'lastName', 'department'];
+  // Deactivate User variables
+  displayedColumns: string[] = ['select', 'id', 'username', 'firstName', 'lastName', 'department', 'status', 'editButton'];
   userSelection = new SelectionModel<UserListInfo>(true, []);
   dataSource: MatTableDataSource<UserListInfo>;
 
   // Department Variables
   newDeptName = '';
   deptIdToRemove: number;
+
+  // Picture Variables
+  newHomePagePicture: File;
 
   // ViewChild
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -92,6 +95,12 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  // TODO: edit user information dialog
+  editUser(userInfo: any) {
+    console.log('will edit user:');
+    console.log(userInfo);
+  }
+
   getUsers(): void {
     this.service.getUsers().subscribe((data: UserListInfo[]) => {
       this.dataSource = new MatTableDataSource(data);
@@ -102,8 +111,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  // TODO: removing users that have entries in the enrichment_experience.Enrichment_ApprovedBy table creates a foreign key SQL exception
-  removeUsers() {
+  deactivateUsers() {
     this.service.removeUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
       this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
         duration: 3000
@@ -111,8 +119,8 @@ export class AdminComponent implements OnInit {
       this.userSelection.clear();
       this.getUsers();
     }, (err: any) => {
-      console.error('error removing users:', err);
-      this.snackbar.open('HTTP error when removing user(s). Please try again.', 'OK');
+      console.error('error deactivating users:', err);
+      this.snackbar.open('HTTP error when deactivating user(s). Please try again.', 'OK');
     });
   }
 
@@ -163,6 +171,38 @@ export class AdminComponent implements OnInit {
         duration: 3000
       });
     });
+  }
+
+  setHomepageFileVariable(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+
+      reader.onloadend = () => {
+        console.log('file uploaded:');
+        console.log(file);
+        this.newHomePagePicture = file;
+      };
+    }
+  }
+
+  // TODO: upload image to database/filesystem
+  uploadNewHomepageImage() {
+      console.log('image to be uploaded:');
+      console.log(this.newHomePagePicture);
+      this.service.uploadNewHomepageImage(this.newHomePagePicture).subscribe((data: StandardReturnObject) => {
+        this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+          duration: 3000
+        });
+      }, (err: any) => {
+        console.error('HTTP error when uploading image:');
+        console.error(err);
+        this.snackbar.open('HTTP error when uploading image; please try again', 'OK', {
+          duration: 5000
+        });
+      });
   }
 
   private getDepartments() {

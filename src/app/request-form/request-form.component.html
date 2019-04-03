@@ -2,7 +2,7 @@
 <h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Request Form</h1>
 
 <form [formGroup]="enrichmentRequestFormGroup">
-  <mat-horizontal-stepper [linear]="false" #stepper formArrayName="requestForm">
+  <mat-horizontal-stepper [linear]="true" #stepper formArrayName="requestForm">
     <mat-step formGroupName="0" [stepControl]="requestForm?.get([0])" label="Animal Data">
       <div>
         <!-- Foreign Key: 'department' table -->
@@ -69,10 +69,21 @@
           <mat-error *ngIf="requestForm.at(1).get('enrichmentDescription')">{{getErrorMsg(1, 'enrichmentDescription')}}</mat-error>
         </mat-form-field>
       </div>
-      <!-- TODO: add location from location table; "Where will it be presented?" -->
+      <div>
+        <!-- Foreign Key: 'location' table -->
+        <label for="location">Where will it be presented?</label>
+        <br/>
+        <mat-form-field id="location" name="location">
+          <mat-select placeholder="Location Name" formControlName="enrichmentLocation" required>
+            <mat-option *ngFor="let loc of locations" [value]="loc.id">
+              {{loc.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div>
         <!-- Normal Key: Enrichment_PresentationMethod -->
-        <label for="presented">How will it be presented:</label>
+        <label for="presented">How will it be presented?:</label>
         <br/>
         <mat-form-field class="increased-width" id="presented" name="presented">
           <textarea matInput placeholder="Presentation" formControlName="enrichmentPresentationMethod" required></textarea>
@@ -92,6 +103,7 @@
         <label for="enrichmentFreq">Frequency/Duration of presentation: </label>
         <mat-form-field id="enrichmentFreq" name="enrichmentFreq">
           <input matInput placeholder="Frequency/Duration" formControlName="enrichmentFrequency" required>
+          <mat-error *ngIf="requestForm.at(1).get('enrichmentFrequency')">{{getErrorMsg(1, 'enrichmentFrequency')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="button-row">
@@ -191,10 +203,10 @@
         <label for="source">Source:</label>
         <br/>
         <mat-radio-group class="radio-group left-margin" id="source" name="source" formControlName="source" required>
-          <mat-radio-button class="radio-button" value="toBePurchased">Needs to be purchased</mat-radio-button>
-          <mat-radio-button class="radio-button" value="zooGrounds">Zoo grounds</mat-radio-button>
-          <mat-radio-button class="radio-button" value="donation">Donation</mat-radio-button>
-          <mat-radio-button class="radio-button" value="other">Other</mat-radio-button>
+          <mat-radio-button class="radio-button" value="To Be Purchased">Needs to be purchased</mat-radio-button>
+          <mat-radio-button class="radio-button" value="Zoo Grounds">Zoo grounds</mat-radio-button>
+          <mat-radio-button class="radio-button" value="Donation">Donation</mat-radio-button>
+          <mat-radio-button class="radio-button" value="Other">Other</mat-radio-button>
         </mat-radio-group>
       </div>
       <div *ngIf="requestForm?.get([4]).value.source === 'other'" class="left-margin">
@@ -210,6 +222,7 @@
         <label for="timeRequired">Time Required: </label>
         <mat-form-field id="timeRequired" name="timeRequired">
           <input matInput placeholder="Time required" formControlName="timeRequired" required>
+          <mat-error *ngIf="requestForm.at(4).get('timeRequired')">{{getErrorMsg(4, 'timeRequired')}}</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -252,7 +265,7 @@
               [matChipInputFor]="categoryList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)">
+              (matChipInputTokenEnd)="add($event)" required>
           </mat-chip-list>
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let category of filteredCategories | async" [value]="category">

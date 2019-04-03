@@ -37,6 +37,9 @@ export class RequestFormComponent implements OnInit {
   animals: AnimalInfo[];
   locations: LocationInfo[];
 
+  // Numbers only regex
+  private readonly numberRegex = '^[0-9]*$';
+
   // Category chips variables
   visible = true;
   selectable = true;
@@ -45,11 +48,12 @@ export class RequestFormComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   private enrichmentFormControl: FormArray;
   public categories: string[] = [];
-  // TODO: find a way to make this work with the category data from database
-  public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
+  public allCategoryNames: string[];
   public filteredCategories: Observable<string[]>;
+  public allCategories: CategoryInfo[];
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  // public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
 
   constructor(private formBuilder: FormBuilder,
     private service: EnrichmentService,
@@ -62,9 +66,6 @@ export class RequestFormComponent implements OnInit {
     this.submitter = this.currentUser.getUser();
     this.initFormGroup();
     this.enrichmentFormControl = this.enrichmentRequestFormGroup.controls['requestForm'] as FormArray;
-    this.filteredCategories = this.enrichmentFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
-      startWith(null),
-      map((category: string | null) => category ? this._filter(category) : this.allCategories.slice()));
     this.getDepartmentsFromDb();
     this.getCategoriesFromDb();
     this.getSpeciesFromDb();
@@ -77,19 +78,20 @@ export class RequestFormComponent implements OnInit {
     this.enrichmentRequestFormGroup = this.formBuilder.group({
       requestForm: this.formBuilder.array([
         this.formBuilder.group({
-          department: new FormControl({departmentId: -1, departmentName: ''}, Validators.required), // Enrichment_Department
-          species: new FormControl({speciesId: -1, speciesName: '', speciesDescription: '', speciesIsisNumber: -1}
-            , Validators.required), // Enrichment_Species
-          animal: new FormControl(-1, [Validators.required]) // Enrichment_Animal
+          department: new FormControl(null, Validators.required), // Enrichment_Department
+          species: new FormControl(null, Validators.required), // Enrichment_Species
+          animal: new FormControl(null, [Validators.required]) // Enrichment_Animal
         }),
         this.formBuilder.group({
-          itemId: new FormControl(-1, Validators.required), // Foreign Key: 'item' table
+          itemId: new FormControl(null, Validators.required), // Foreign Key: 'item' table
           enrichmentName: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Name
           enrichmentDescription: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Description
+          enrichmentLocation: new FormControl(null, [Validators.required]),
           enrichmentPresentationMethod: new FormControl('', [Validators.required,
             Validators.maxLength(1000)]), // Enrichment_PresentationMethod
           enrichmentDayNightTime: new FormControl('', Validators.required), // Enrichment_TimeStart & Enrichment_TimeEnd
-          enrichmentFrequency: new FormControl('', Validators.required) // Enrichment_Frequency: int
+          enrichmentFrequency: new FormControl(null, [Validators.required,
+            Validators.pattern(this.numberRegex)]) // Enrichment_Frequency: int
         }),
         this.formBuilder.group({
           lifeStrategiesWksht: new FormControl(null, Validators.required), // Enrichment_LifeStrategies: int (0: false, 1: true)
@@ -105,7 +107,7 @@ export class RequestFormComponent implements OnInit {
         this.formBuilder.group({
           source: new FormControl('', [Validators.required, Validators.maxLength(50)]), // Enrichment_Source
           otherSource: new FormControl(null, Validators.maxLength(50)), // Enrichment_Source
-          timeRequired: new FormControl('', Validators.required), // Enrichment_TimeRequired: int
+          timeRequired: new FormControl(null, [Validators.required, Validators.pattern(this.numberRegex)]), // Enrichment_TimeRequired: int
           whoConstructs: new FormControl('', [Validators.required, Validators.maxLength(1000)]), // Enrichment_Construction
           volunteerDocentUtilized: new FormControl(null, Validators.required), // Enrichment_Volunteers: int (0: false, 1: true)
           enrichmentCategory: new FormControl([''], Validators.required), // Enrichment_Inventory: 'item/category' -> 'category'
@@ -141,32 +143,37 @@ export class RequestFormComponent implements OnInit {
     const completeForm: CompleteRequestForm = {
       department: requestArray[0].department,
       species: requestArray[0].species,
-      animal: requestArray[0].animal,
+      animalId: requestArray[0].animal,
 
       itemId: requestArray[1].itemId,
       enrichmentName: requestArray[1].enrichmentName,
-      enrichmentDayNightTime: requestArray[1].enrichmentDayNightTime,
       enrichmentDescription: requestArray[1].enrichmentDescription,
-      enrichmentFrequency: requestArray[1].enrichmentFrequency,
+      enrichmentLocation: requestArray[1].enrichmentLocation,
       enrichmentPresentationMethod: requestArray[1].enrichmentPresentationMethod,
+      enrichmentDayNightTime: requestArray[1].enrichmentDayNightTime,
+      enrichmentFrequency: requestArray[1].enrichmentFrequency,
 
+      lifeStrategiesWksht: requestArray[2].lifeStrategiesWksht,
       anotherDeptZoo: requestArray[2].anotherDeptZoo,
       anotherDeptZooMoreInfo: requestArray[2].anotherDeptZooMoreInfo,
-      lifeStrategiesWksht: requestArray[2].lifeStrategiesWksht,
-      safetyComment: requestArray[2].safetyComment,
       safetyQuestion: requestArray[2].safetyQuestion,
       risksQuestion: requestArray[2].risksQuestion,
+      safetyComment: requestArray[2].safetyComment,
 
       naturalBehaviors: requestArray[3].naturalBehaviors,
 
-      enrichmentCategory: this.categories,
-      nameOfSubmitter: {name: requestArray[4].nameOfSubmitter, id: this.submitter.id},
-      otherSource: requestArray[4].otherSource,
       source: requestArray[4].source,
+      otherSource: requestArray[4].otherSource,
       timeRequired: requestArray[4].timeRequired,
-      volunteerDocentUtilized: requestArray[4].volunteerDocentUtilized,
       whoConstructs: requestArray[4].whoConstructs,
-      dateOfSubmission: requestArray[4].dateOfSubmission
+      volunteerDocentUtilized: requestArray[4].volunteerDocentUtilized,
+      enrichmentCategory: this.categories.join(','),
+      nameOfSubmitter: {
+        name: `${this.submitter.firstName} ${this.submitter.lastName}`,
+        id: this.submitter.id,
+        username: `${this.submitter.username}`
+      },
+      dateOfSubmission: new Date()
     };
     return completeForm;
   }
@@ -181,7 +188,11 @@ export class RequestFormComponent implements OnInit {
 
   private getCategoriesFromDb() {
     this.service.getCategories().subscribe((data: CategoryInfo[]) => {
-      // this.allCategories = data;
+      this.allCategories = data;
+      this.allCategoryNames = data.map(cat => cat.categoryName);
+      this.filteredCategories = this.enrichmentFormControl.at(4).get('enrichmentCategory').valueChanges.pipe(
+        startWith(null),
+        map((category: string | null) => category ? this._filter(category) : this.allCategoryNames.slice()));
     }, (err: any) => {
       console.error('Error getting categories:', err);
     });
@@ -224,6 +235,8 @@ export class RequestFormComponent implements OnInit {
       return 'Input is required.';
     } else if (this.enrichmentFormControl.at(index).get(formControlName).hasError('maxlength')) {
       return 'Input exceeds max length.';
+    } else if (this.enrichmentFormControl.at(index).get(formControlName).hasError('pattern')) {
+      return 'Input must be a number';
     } else {
       return 'Invalid input.';
     }
@@ -246,7 +259,7 @@ export class RequestFormComponent implements OnInit {
         input.value = '';
       }
 
-      this.enrichmentFormControl.at(4).get('enrichmentCategory').setValue(null);
+      this.enrichmentFormControl.at(4).get('enrichmentCategory').setValue(['']);
     }
   }
 
@@ -265,9 +278,9 @@ export class RequestFormComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    const filterValue = value == null ? '' : value.toLowerCase();
 
-    return this.allCategories.filter(category => category.toLowerCase().indexOf(filterValue) === 0);
+    return this.allCategoryNames.filter(category => category.toLowerCase().indexOf(filterValue) === 0);
   }
 
   openNewItemDialog(): void {

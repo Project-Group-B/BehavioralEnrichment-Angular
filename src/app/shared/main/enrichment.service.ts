@@ -18,6 +18,12 @@ const httpOptions = {
   })
 };
 
+const fileHttpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'multipart/form-data'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,6 +56,18 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
   }
 
+  submitNewAnimal(animalForm: FormGroup) {
+    const requestBody = {
+      isisNumber: animalForm.value.isisNumber,
+      species: animalForm.value.species,
+      location: animalForm.value.location,
+      housed: animalForm.value.housed,
+      activityCycle: animalForm.value.activityCycle,
+      age: animalForm.value.age
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newAnimal`, requestBody, httpOptions);
+  }
+
   changePassword(userId: number, userName: string, passForm: FormGroup) {
     const requestBody = {
       userId,
@@ -77,6 +95,12 @@ export class EnrichmentService {
 
   resetPasswords(users: UserListInfo[]) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/resetUserPasswords`, users, httpOptions);
+  }
+
+  uploadNewHomepageImage(image: File) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', image);
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, formdata);
   }
 
   getDepartments() {

@@ -4,4 +4,5 @@ export interface UserListInfo {
   firstName: string;
   lastName: string;
   department: string;
+  userStatus: string;
 }

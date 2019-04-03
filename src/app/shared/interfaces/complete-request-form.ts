@@ -5,30 +5,31 @@ import { PartialUserInfo } from './partial-user-info';
 export interface CompleteRequestForm {
   department: DepartmentInfo;
   species: SpeciesInfo;
-  animal: number;
+  animalId: number;
 
   itemId: number;
   enrichmentName: string;
-  enrichmentDayNightTime: string;
   enrichmentDescription: string;
-  enrichmentFrequency: string;
+  enrichmentLocation: number;
   enrichmentPresentationMethod: string;
+  enrichmentDayNightTime: string;
+  enrichmentFrequency: number;
 
+  lifeStrategiesWksht: boolean;
   anotherDeptZoo: boolean;
   anotherDeptZooMoreInfo: boolean;
-  lifeStrategiesWksht: boolean;
-  safetyComment: string;
   safetyQuestion: boolean;
   risksQuestion: boolean;
+  safetyComment: string;
 
   naturalBehaviors: string;
 
-  enrichmentCategory: string[];
-  nameOfSubmitter: PartialUserInfo;
-  otherSource: string;
   source: string;
-  timeRequired: string;
-  volunteerDocentUtilized: boolean;
+  otherSource: string;
+  timeRequired: number;
   whoConstructs: string;
+  volunteerDocentUtilized: boolean;
+  enrichmentCategory: string;
+  nameOfSubmitter: PartialUserInfo;
   dateOfSubmission: Date;
 }
