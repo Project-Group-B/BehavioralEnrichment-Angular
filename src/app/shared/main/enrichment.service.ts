@@ -103,6 +103,10 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, formdata);
   }
 
+  getHomepageImage() {
+    return this.http.get<any>(`${this.globals.baseUrl}/getHomepageImage`);
+  }
+
   getDepartments() {
     return this.http.get<DepartmentInfo[]>(`${this.globals.baseUrl}/departments`);
   }

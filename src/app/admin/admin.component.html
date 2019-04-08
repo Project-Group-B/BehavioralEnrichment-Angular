@@ -110,7 +110,7 @@
     <button class="button-margin" [disabled]="!deptIdToRemove" (click)="removeDept()" mat-raised-button color="primary">Remove Department</button>
     <br/>
     <label for="homepagePicture">Upload new home page picture:</label>
-    <input type="file" name="homepagePicture" id="homepagePicture" (change)="setHomepageFileVariable($event)"/>
+    <input type="file" #homepageImageInput accept="image/*" name="homepagePicture" id="homepagePicture" (change)="setHomepageFileVariable($event)"/>
     <button (click)="uploadNewHomepageImage()" matTooltip="WARNING: will replace current home page image" 
       color="warn" mat-raised-button>Upload Image</button>
   </mat-tab>

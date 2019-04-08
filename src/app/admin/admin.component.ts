@@ -28,6 +28,8 @@ export class AdminComponent implements OnInit {
 
   // Picture Variables
   newHomePagePicture: File;
+  @ViewChild('homepageImageInput')
+  homepageImageInput: ElementRef;
 
   // ViewChild
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -188,7 +190,6 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  // TODO: upload image to database/filesystem
   uploadNewHomepageImage() {
       console.log('image to be uploaded:');
       console.log(this.newHomePagePicture);
@@ -196,6 +197,7 @@ export class AdminComponent implements OnInit {
         this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
           duration: 3000
         });
+        this.resetHomepageImageInput();
       }, (err: any) => {
         console.error('HTTP error when uploading image:');
         console.error(err);
@@ -203,6 +205,10 @@ export class AdminComponent implements OnInit {
           duration: 5000
         });
       });
+  }
+
+  resetHomepageImageInput(): void {
+    this.homepageImageInput.nativeElement.value = '';
   }
 
   private getDepartments() {
