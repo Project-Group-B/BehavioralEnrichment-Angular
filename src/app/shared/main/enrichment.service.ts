@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Globals } from '../../globals';
 import { CompleteRequestForm } from '../interfaces/complete-request-form';
 import { FormGroup } from '@angular/forms';
@@ -104,7 +104,7 @@ export class EnrichmentService {
   }
 
   getHomepageImage() {
-    return this.http.get<any>(`${this.globals.baseUrl}/getHomepageImage`);
+    return this.http.get(`${this.globals.baseUrl}/getHomepageImage`, {responseType: 'blob' as 'blob'});
   }
 
   getDepartments() {
