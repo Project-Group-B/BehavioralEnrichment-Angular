@@ -11,6 +11,7 @@ import { ItemInfo } from '../interfaces/item-info';
 import { UserListInfo } from '../interfaces/user-list-info';
 import { AnimalInfo } from '../interfaces/animal-info';
 import { LocationInfo } from '../interfaces/location-info';
+import { EditUserInfo } from '../interfaces/edit-user-info';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -89,12 +90,27 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeDept`, {departmentId}, httpOptions);
   }
 
-  removeUsers(users: UserListInfo[]) {
+  deactivateUsers(users: UserListInfo[]) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeUsers`, users, httpOptions);
+  }
+
+  reactivateUsers(users: UserListInfo[]) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/reactivateUsers`, users, httpOptions);
   }
 
   resetPasswords(users: UserListInfo[]) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/resetUserPasswords`, users, httpOptions);
+  }
+
+  editUser(user: FormGroup) {
+    const requestBody = {
+      firstName: user.value.firstName,
+      lastName: user.value.lastName,
+      username: user.value.userName,
+      userId: user.value.userId,
+      department: user.value.department,
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/editUser`, requestBody, httpOptions);
   }
 
   uploadNewHomepageImage(image: File) {

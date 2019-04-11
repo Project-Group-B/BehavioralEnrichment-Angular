@@ -18,3 +18,6 @@ td, th {
 .admin-row {
   background-color: #75a4ef;
 }
+.deactivated-row {
+  background-color: rgba($color: gray, $alpha: 0.5)
+}
