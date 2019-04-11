@@ -1,6 +1,6 @@
 {
   "/loginUser": {
-    "target": "http://ec2-54-164-31-35.compute-1.amazonaws.com:8080",
+    "target": "http://ec2-3-84-52-67.compute-1.amazonaws.com:8080",
     "secure": false
   }
 }

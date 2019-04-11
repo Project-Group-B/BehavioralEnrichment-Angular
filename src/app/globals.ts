@@ -15,15 +15,5 @@ private changed() {
 })
 export class Globals {
   readonly sessionIdKey = 'behavior-enrichment-session';
-<<<<<<< HEAD
-  readonly userInfoKey = 'behavior-enrichment-user-info';
-  readonly baseUrl = 'http://localhost:8080';
-  constructor(private currentUser: CurrentUserService) {}
-
-  public setCurrentUser(info: UserInfo) {
-    this.currentUser.setUser(info);
-  }
-=======
-  readonly baseUrl = 'http://ec2-54-164-31-35.compute-1.amazonaws.com:8080';
->>>>>>> ZachBranchAngular
+  readonly baseUrl = 'http://ec2-3-84-52-67.compute-1.amazonaws.com:8080';
 }
