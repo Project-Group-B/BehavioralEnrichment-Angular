@@ -53,7 +53,6 @@ export class RequestFormComponent implements OnInit {
   public allCategories: CategoryInfo[];
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  // public allCategories = ['Sensory', 'Feeding', 'Habitation', 'Social', 'Learning'];
 
   constructor(private formBuilder: FormBuilder,
     private service: EnrichmentService,

@@ -36,9 +36,14 @@
     </mat-form-field>
     <button class="button-margin" mat-raised-button (click)="deactivateUsers()" color="warn" 
       [disabled]="userSelection.selected.length === 0" matTooltip="User accounts will be deactivated">Deactivate User(s)</button>
+    <button class="button-margin" mat-raised-button (click)="reactivateUsers()" [disabled]="userSelection.selected.length === 0">Reactivate User(s)</button>
     <button class="button-margin" mat-raised-button matTooltip="Resets selected user passwords to their default" 
       [disabled]="userSelection.selected.length === 0" (click)="resetPasswords()">Reset User Passwords</button>
-    <button class="button-margin" mat-raised-button (click)="getUsers()" matTooltip="Gets the list of users again">Reload Data</button>
+    <button class="button-margin" mat-raised-button (click)="getUsers(true)" matTooltip="Gets the list of users again">Reload Data</button>
+    <label for="showDeactivatedUsers">
+      <mat-checkbox name="showDeactivatedUsers" id="showDeactivatedUsers" class="button-margin" [(ngModel)]="displayInactive"></mat-checkbox>
+      Show Deactivated Users
+    </label>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="select">
@@ -83,12 +88,14 @@
         <ng-container matColumnDef="editButton">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit User</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-raised-button (click)="editUser(element)">Edit User</button>
+            <button mat-raised-button (click)="openEditUserDialog(element)">Edit User</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'admin-row': row.userStatus == 1}">
-        </tr>
+        <tr mat-row
+          *matRowDef="let row; columns: displayedColumns;"
+          [hidden]="row.userStatus == 2 && !displayInactive"
+          [ngClass]="{'admin-row': row.userStatus == 1, 'deactivated-row': row.userStatus == 2}"></tr>
       </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>

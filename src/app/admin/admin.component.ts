@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { FormGroup, FormControl, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { DepartmentInfo } from '../shared/interfaces/department-info';
-import { MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 import { UserListInfo } from '../shared/interfaces/user-list-info';
 import { SelectionModel } from '@angular/cdk/collections';
 import { StandardReturnObject } from '../shared/interfaces/standard-return-object';
+import { EditUserInfo } from '../shared/interfaces/edit-user-info';
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +22,7 @@ export class AdminComponent implements OnInit {
   displayedColumns: string[] = ['select', 'id', 'username', 'firstName', 'lastName', 'department', 'status', 'editButton'];
   userSelection = new SelectionModel<UserListInfo>(true, []);
   dataSource: MatTableDataSource<UserListInfo>;
+  displayInactive = false;
 
   // Department Variables
   newDeptName = '';
@@ -39,9 +41,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private service: EnrichmentService,
     private formBuilder: FormBuilder,
-    private snackbar: MatSnackBar) {
-      this.getUsers();
-    }
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog) {}
 
   ngOnInit() {
     this.addUserForm = this.formBuilder.group({
@@ -51,7 +52,7 @@ export class AdminComponent implements OnInit {
       username: new FormControl('', [Validators.required, Validators.maxLength(25)])
     });
     this.getDepartments();
-    this.getUsers();
+    this.getUsers(false);
   }
 
   applyFilter(filterValue: string) {
@@ -97,32 +98,45 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  // TODO: edit user information dialog
-  editUser(userInfo: any) {
-    console.log('will edit user:');
-    console.log(userInfo);
-  }
-
-  getUsers(): void {
+  getUsers(showSnackbar: boolean): void {
     this.service.getUsers().subscribe((data: UserListInfo[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      if (showSnackbar) {
+        this.snackbar.open('Successfully retrieved users.', 'OK', {
+          duration: 2000
+        });
+      }
     }, (err: any) => {
       console.error('Error getting users', err);
     });
   }
 
-  deactivateUsers() {
-    this.service.removeUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
+  deactivateUsers(): void {
+    this.service.deactivateUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
       this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
         duration: 3000
       });
       this.userSelection.clear();
-      this.getUsers();
+      this.getUsers(false);
+      this.displayInactive = false;
     }, (err: any) => {
       console.error('error deactivating users:', err);
       this.snackbar.open('HTTP error when deactivating user(s). Please try again.', 'OK');
+    });
+  }
+
+  reactivateUsers(): void {
+    this.service.reactivateUsers(this.userSelection.selected).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.userSelection.clear();
+      this.getUsers(false);
+    }, (err: any) => {
+      console.error('error reactivating users:', err);
+      this.snackbar.open('HTTP error when reactivating user(s). Please try again.', 'OK');
     });
   }
 
@@ -224,6 +238,85 @@ export class AdminComponent implements OnInit {
       return 'Input is required.';
     } else if (this.addUserForm.get(formControlName).hasError('maxlength')) {
       return 'Input exceeds max length.';
+    } else {
+      return 'Invalid input.';
+    }
+  }
+
+  openEditUserDialog(userToEdit: UserListInfo): void {
+    console.log('will edit user:');
+    console.log(userToEdit);
+    const editUserInfo: EditUserInfo = {
+      firstName: userToEdit.firstName,
+      lastName: userToEdit.lastName,
+      userName: userToEdit.username,
+      userId: userToEdit.userId,
+      department: this.departments.find(x => x.departmentName === userToEdit.department),
+      allDepartments: this.departments
+    };
+    const editUserDialogRef = this.dialog.open(EditUserInfoDialogComponent, {data: editUserInfo});
+
+    editUserDialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.getUsers(false);
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'app-edit-user-info-dialog',
+  templateUrl: './edit-user-info-dialog.html',
+})
+export class EditUserInfoDialogComponent {
+  editUserForm: FormGroup;
+  editUserDepartments: DepartmentInfo[];
+  usernameToEdit: string;
+  constructor(
+    public dialogRef: MatDialogRef<EditUserInfoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: EditUserInfo,
+    private snackbar: MatSnackBar,
+    private service: EnrichmentService,
+    private formBuilder: FormBuilder) {
+      this.editUserForm = this.formBuilder.group({
+        firstName: new FormControl(data.firstName, [Validators.required, Validators.maxLength(50)]),
+        lastName: new FormControl(data.lastName, [Validators.required, Validators.maxLength(45)]),
+        department: new FormControl(data.department, [Validators.required]),
+        username: new FormControl(data.userName, [Validators.required, Validators.maxLength(25)]),
+        userId: new FormControl(data.userId, Validators.required)
+      });
+      this.editUserDepartments = data.allDepartments;
+      this.usernameToEdit = data.userName;
+    }
+
+  cancel() {
+    this.dialogRef.close(false);
+  }
+
+  editUser() {
+    this.service.editUser(this.editUserForm).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      if (!data.error) {
+        this.dialogRef.close(true);
+      }
+    }, (err: any) => {
+      console.error('Error editing user info:');
+      console.error(err);
+      this.snackbar.open('HTTP error when editing user. Please try again.', 'OK', {
+        duration: 2000
+      });
+    });
+  }
+
+  getErrorMsg(formControlName: string): string {
+    if (this.editUserForm.get(formControlName).hasError('required')) {
+      return 'Input is required.';
+    } else if (this.editUserForm.get(formControlName).hasError('maxlength')) {
+      return 'Input exceeds max length.';
+    } else if (this.editUserForm.get(formControlName).hasError('pattern')) {
+      return 'Input must be a number.';
     } else {
       return 'Invalid input.';
     }

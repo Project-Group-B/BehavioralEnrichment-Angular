@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrentUserService } from '../auth/user/current-user.service';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 import { MatSnackBar } from '@angular/material';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,12 @@ import { MatSnackBar } from '@angular/material';
 })
 export class HomeComponent implements OnInit {
   name: string;
+  homepageImage: SafeUrl;
   constructor(
     private currentUser: CurrentUserService,
     private service: EnrichmentService,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    private sanitization: DomSanitizer) { }
 
   ngOnInit() {
     this.name = this.currentUser.getUser().firstName;
@@ -22,8 +25,7 @@ export class HomeComponent implements OnInit {
 
   getHomepageImage() {
     this.service.getHomepageImage().subscribe((data: any) => {
-      console.log('homepage image from back-end:');
-      console.log(data);
+      this.homepageImage = this.sanitization.bypassSecurityTrustUrl(data);
     }, (err: any) => {
       this.snackbar.open('ERROR: HTTP error when getting homepage image', 'OK', {
         duration: 3000

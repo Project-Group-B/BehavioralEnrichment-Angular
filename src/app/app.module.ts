@@ -42,7 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent, EditUserInfoDialogComponent } from './admin/admin.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HelpComponent } from './help/help.component';
 
@@ -61,7 +61,8 @@ import { HelpComponent } from './help/help.component';
     AdminComponent,
     UserAccountComponent,
     HelpComponent,
-    InsertNewAnimalDialogComponent
+    InsertNewAnimalDialogComponent,
+    EditUserInfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +97,7 @@ import { HelpComponent } from './help/help.component';
     MatTooltipModule,
     MatExpansionModule
   ],
-  entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent],
+  entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent, EditUserInfoDialogComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })
