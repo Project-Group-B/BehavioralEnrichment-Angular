@@ -330,7 +330,14 @@ export class InsertNewAnimalDialogComponent {
   }
 
   submitNewAnimalForm() {
-    return null;
+    this.service.submitNewAnimal(this.newAnimalForm).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      if (!data.error) {
+        this.dialogRef.close(true);
+      }
+    });
   }
 
   getErrorMsg(formControlName: string): string {

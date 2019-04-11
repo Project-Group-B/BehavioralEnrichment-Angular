@@ -106,7 +106,7 @@ export class EnrichmentService {
     const requestBody = {
       firstName: user.value.firstName,
       lastName: user.value.lastName,
-      username: user.value.userName,
+      username: user.value.username,
       userId: user.value.userId,
       department: user.value.department,
     };

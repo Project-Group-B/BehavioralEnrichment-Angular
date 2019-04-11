@@ -40,10 +40,7 @@
     <button class="button-margin" mat-raised-button matTooltip="Resets selected user passwords to their default" 
       [disabled]="userSelection.selected.length === 0" (click)="resetPasswords()">Reset User Passwords</button>
     <button class="button-margin" mat-raised-button (click)="getUsers(true)" matTooltip="Gets the list of users again">Reload Data</button>
-    <label for="showDeactivatedUsers">
-      <mat-checkbox name="showDeactivatedUsers" id="showDeactivatedUsers" class="button-margin" [(ngModel)]="displayInactive"></mat-checkbox>
-      Show Deactivated Users
-    </label>
+    <mat-checkbox name="showDeactivatedUsers" id="showDeactivatedUsers" class="button-margin" [(ngModel)]="displayInactive">Show Deactivated Users</mat-checkbox>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="select">
