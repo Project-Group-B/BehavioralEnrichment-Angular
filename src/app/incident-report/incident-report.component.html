@@ -1,4 +1,135 @@
 <app-header></app-header>
-<p>
-  incident-report works!
-</p>
+<h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Incident Report</h1>
+
+<form [formGroup]="incidentReportFormGroup">
+  <mat-horizontal-stepper [linear]="false" #stepper formArrayName="incidentReport">
+    <mat-step formGroupName="0" [stepControl]="incidentReport?.get([0])" label="General Information">
+
+      
+      <div>
+        <!-- <label for="dept">Department: </label> -->
+        <mat-form-field id="incDepartment" name="incDepartment">
+          <input matInput placeholder="Department" formControlName="incDepartment" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <!-- <label for="date">Date of Incident: </label> -->
+        <label for="date">Date of incident: </label>
+        <mat-form-field id="dateOfIncident" name="dateOfIncident">
+          <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="dateOfIncident" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <!-- <label for="location">Location: </label> -->
+        <mat-form-field id="locationOfIncident" name="locationOfIncident">
+          <input matInput placeholder="Location of Incident:" formControlName="locationOfIncident" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <!-- <label for="location">Location: </label> -->
+        <mat-form-field id="animalsIncident" name="animalsIncident">
+          <input matInput placeholder="Animal(s) Involved:" formControlName="animalsIncident" required>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+          <button mat-raised-button matStepperPrevious type="button">Back</button>
+          <button mat-raised-button matStepperNext type="button">Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step formGroupName="1" [stepControl]="incidentReport?.get([1])" label="Enrichment Data">
+      <div>
+        <label for="enrichmentInvolved">Enrichment(s) Involved in the Incident:</label>
+        <br/>
+        <mat-radio-group class="radio-group left-margin" id="enrichmentInvolved" name="enrichmentInvolved" formControlName="enrichmentInvolved" required>
+          <mat-radio-button class="radio-button" value="novel">Novel enrichment</mat-radio-button>
+          <mat-radio-button class="radio-button" value="previous">Previously introduced enrichment</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div *ngIf="incidentReport?.get([1]).value.enrichmentInvolved === 'novel'" class="left-margin">
+        <mat-form-field id="novelYN" name="novelYN">
+          <label for="novelYN">Was an enrichment request form filled out and approved? </label>
+          <mat-select placeholder="" formControlName="novelYN" required>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label for="enrichDescription">Describe the Enrichment Involved in the Incident:</label>
+        <br/>
+        <mat-form-field class="increased-width" id="enrichDescription" name="enrichDescription">
+          <textarea matInput placeholder="Details, articles, any data if possible" formControlName="enrichDescription" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+          <button mat-raised-button matStepperPrevious type="button">Back</button>
+          <button mat-raised-button matStepperNext type="button">Next</button>
+        </div>
+
+    </mat-step>
+
+    <mat-step formGroupName="2" [stepControl]="incidentReport?.get([2])" label="Incident Data">
+      <div>
+        <label for="bestDescribes">Please choose which one best describes the incident: </label>
+        <br/>
+        <mat-radio-group class="radio-group left-margin" id="bestDescribes" name="bestDescribes" formControlName="bestDescribes" required>
+          <mat-radio-button class="radio-button" value="death">An animal is deceased as a result of the incident</mat-radio-button>
+          <mat-radio-button class="radio-button" value="danger">An animal’s life was in immediate danger</mat-radio-button>
+          <mat-radio-button class="radio-button" value="injured">An animal or another in area was injured by the enrichment item</mat-radio-button>
+          <mat-radio-button class="radio-button" value="caught">An animal was caught in/on the enrichment item</mat-radio-button>
+          <mat-radio-button class="radio-button" value="injested">An animal ingested part of the enrichment item</mat-radio-button>
+          <mat-radio-button class="radio-button" value="distress">Enrichment caused distress or social disruption</mat-radio-button>
+          <mat-radio-button class="radio-button" value="other">Other. Detail in text box below.</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <label for="incDescription">Describe the incident: </label>
+        <br/>
+        <mat-form-field class="increased-width" id="incDescription" name="incDescription">
+          <textarea matInput placeholder="Details, articles, any data if possible" formControlName="incDescription" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label for="actionsTaken">Describe actions taken: </label>
+        <br/>
+        <mat-form-field class="increased-width" id="actionsTaken" name="actionsTaken">
+          <textarea matInput placeholder="Details, articles, any data if possible" formControlName="actionsTaken" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <!-- <label for="name">Name: </label> -->
+        <label for="name">Your name: </label>
+        <mat-form-field id="incName" name="incName">
+          <input matInput placeholder="John Smith" formControlName="incName" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <!-- <label for="date">Date of Incident: </label> -->
+        <label for="dateOfSubmission">Date of submission: </label>
+        <mat-form-field id="dateOfSubmission" name="dateOfSubmission">
+          <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="dateOfSubmission" required>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button mat-raised-button matStepperPrevious type="button">Back</button>
+        <button mat-raised-button color="primary" [disabled]="!incidentReportFormGroup.valid" (click)="submitForm(stepper)">Submit</button>
+      </div>
+
+    </mat-step>
+
+
+  </mat-horizontal-stepper>
+</form>
+
