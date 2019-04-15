@@ -8,10 +8,10 @@
     <button mat-menu-item color="primary" routerLink="/request-form-status" routerLinkActive="active">Request Form Status Report</button>
     <button mat-menu-item color="primary" routerLink="/incident-report-status" routerLinkActive="active">Incident Status Report</button>
   </mat-menu>
-  <button *ngIf="isAdmin" mat-button [matMenuTriggerFor]="adminMenu">Admin</button>
-  <mat-menu #adminMenu="matMenu">
-    <button mat-menu-item color="primary" routerLink="" routerLinkActive="active">Create User</button>
-  </mat-menu>
+  <button mat-button routerLink="/account" routerLinkActive="active">My Account</button>
+  <button *ngIf="isAdmin" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
+  <img class="left-margin-to-center" src="../../assets/images/Zoo_Logo_Horizontal.jpg" alt="Zoo Logo" height="50" width="120">
   <span class="fill-remaining-space"></span>
+  <button mat-button class="right-margin" routerLink="/help" routerLinkActive="active">Help</button>
   <button mat-raised-button color="accent" (click)="logout()">Logout</button>
 </mat-toolbar>

@@ -28,8 +28,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { HomeComponent } from './home/home.component';
-import { RequestFormComponent } from './request-form/request-form.component';
+import { RequestFormComponent, InsertNewItemDialogComponent, InsertNewAnimalDialogComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
 import { IncidentReportComponent } from './incident-report/incident-report.component';
 import { IncidentReportStatusComponent } from './incident-report-status/incident-report-status.component';
@@ -37,8 +41,10 @@ import { MasterApprovedComponent } from './master-approved/master-approved.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { Globals } from './globals';
+import { AdminComponent, EditUserInfoDialogComponent } from './admin/admin.component';
+import { UserAccountComponent } from './user-account/user-account.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +57,12 @@ import { Globals } from './globals';
     IncidentReportStatusComponent,
     MasterApprovedComponent,
     HeaderComponent,
-    SignUpComponent
+    InsertNewItemDialogComponent,
+    AdminComponent,
+    UserAccountComponent,
+    HelpComponent,
+    InsertNewAnimalDialogComponent,
+    EditUserInfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,8 +91,13 @@ import { Globals } from './globals';
     MatSortModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatExpansionModule
   ],
+  entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent, EditUserInfoDialogComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

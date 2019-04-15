@@ -1,0 +1,166 @@
+<app-header></app-header>
+<h1 class="mat-display-1 center-align">Help & Tutorial</h1>
+
+<mat-tab-group>
+  <mat-tab label="All Users">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Submitting Incident Report</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>To submit an incident report, follow these steps:</p>
+        <ol>
+          <li>Go to the "Incident Report" page</li>
+          <li>Fill it out</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Submitting Enrichment Request</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>To submit a request to add an enrichment item, follow these steps:</p>
+        <ol>
+          <li>Go to the "Request Form" page</li>
+          <li>Fill out each step on the page</li>
+          <li>If a dropdown doesn't have the value you want, contact an administrator to get it added</li>
+          <li>Before you submit, double check everything is correct. You will not be able to edit your request after submisssion.</li>
+          <li>If everything checks out, submit the request.</li>
+          <li>Check back on the status of your request by going to the "Request Form Status Report" page</li>
+        </ol>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Admins" *ngIf="isAdmin">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Approving Enrichment Requests</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Approve an enrichment request by following these steps:</p>
+        <ol>
+          <li>Step one</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Adding a user</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Add a new user by following these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "Add User" tab.</li>
+          <li>Fill out the form with the new user information.</li>
+          <li>The password will be set to a default value. Please encourage the user to change it as soon as possible.</li>
+          <li>Submit the form.</li>
+          <li>If successful, the user has been added.</li>
+          <li>If unsuccessful, the user has not been added and you may need to try again (or contact an IT professional).</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Edit user info</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Edit a user's info by following these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "User Actions" tab.</li>
+          <li>Here you will see a list of every user that has access to the site.</li>
+          <li>Search for the user whose info you need to change.</li>
+          <li>The right-most column on that user's row will have a button labeled "Edit User". Click it.</li>
+          <li>A pop-up dialog will show containing a form filled out with the user's current information.</li>
+          <li>Change the information you need to.</li>
+          <li>Warning: any information you change will replace the current information. Make sure everything you entered is correct!</li>
+          <li>Submit the form.</li>
+          <li>A snackbar will show at the bottom detailing whether the request was successful or not.</li>
+          <li>If successful, the new information will now be shown in the table.</li>
+          <li>If unsuccessful, try again or contact an IT professional.</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Deactivate/Reactivate a User Account</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p><strong>Warning: deactivating a user's account will prevent them from logging in.</strong></p>
+        <p>To deactivate or reactivate a user's account, follow these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "User Actions" tab.</li>
+          <li>You will see a list of all users with access to the site.
+            <ul>
+              <li>Optional: currently deactivated users are hidden by default. Check the "Show Deactivated Users" checkbox to show them.</li>
+            </ul>
+          </li>
+          <li>Search for the user(s) you wish to deactivate.</li>
+          <li>The left-most column of each row should be a checkbox. Check the row for each user whose account you wish to deactivate or reactivate.</li>
+          <li>The deactivate/reactivate button should now be clickable.</li>
+          <li>Make sure only those users whose accounts you wish to deactivate or reactivate are checked.</li>
+          <li>Click the appropriate button.</li>
+          <li>A snackbar will show at the bottom detailing whether the request was successful or not.</li>
+          <li>If successful, the user account status will be changed.</li>
+          <li>If unsuccessful, try again or contact an IT professional.</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Reset a User's Password</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p><strong>Warning: only reset a user's password if the user has forgotten theirs.</strong></p>
+        <p>To reset a user's password, follow these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "User Actions" tab.</li>
+          <li>You will see a list of all users with access to the site.</li>
+          <li>Search for the user(s) you need.</li>
+          <li>The left-most column of each row should be a checkbox. Check the row for each user whose password you need to reset.</li>
+          <li>The "Reset User Passwords" button should now be clickable.</li>
+          <li>Make sure only those users whose account passwords you need to reset are checked.</li>
+          <li>Click the "Reset User Passwords" button.</li>
+          <li>A snackbar will show at the bottom detailing whether the request was successful or not.</li>
+          <li>If successful, the user's password will be changed to the default password:
+            <ul>
+              <li>Default password is the first letter of the user's firstname followed by the first 5 letters of their last name, all lower case.</li>
+              <li>For example, user "John Doe" has a default password of "jdoe" and user "Ash Ketchum" has a default password of "aketch".</li>
+            </ul>
+          </li>
+          <li>If unsuccessful, try again or contact an IT professional.</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Add a New Department, Change Homepage Image, etc.</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>To add new information, follow these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "Additions/Deletions" tab.</li>
+          <li>You will see a variety of inputs.</li>
+          <li>Find the input for the information you want to add.</li>
+          <li>Fill out the information for the addition.</li>
+          <li>Make sure the information is correct.</li>
+          <li>Click the appropriate button.</li>
+          <li>A snackbar will show at the bottom detailing whether the request was successful or not.</li>
+          <li>If successful, the information will be added.</li>
+          <li>If unsuccessful, try again or contact an IT professional.</li>
+        </ol>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Delete a Department, etc.</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>To delete some information, follow these steps:</p>
+        <ol>
+          <li>Go to the "Admin" page using the button on the header bar.</li>
+          <li>Click on the "Additions/Deletions" tab.</li>
+          <li>You will see a variety of inputs.</li>
+          <li>Find the input for the information you want to delete.</li>
+          <li>Select the information you need to delete.</li>
+          <li>Make sure the information you selected is correct.</li>
+          <li>Click the appropriate button.</li>
+          <li>A snackbar will show at the bottom detailing whether the request was successful or not.</li>
+          <li>If successful, the information will be deleted/removed.</li>
+          <li>If unsuccessful, try again or contact an IT professional.</li>
+        </ol>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>

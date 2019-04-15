@@ -1,6 +1,6 @@
 <app-header></app-header>
-<h1 class="mat-display-1 center-align">The Henry Doorly Zoo Behavior Enrichment Program</h1>
-<mat-grid-list cols="2" rowHeight="500px">
+<h1 class="mat-display-1 center-align">Omaha's Henry Doorly Zoo & Aquarium Behavioral Enrichment Program</h1>
+<mat-grid-list cols="2" rowHeight="550px">
   <mat-grid-tile [colspan]="1">
     <mat-card class="mat-elevation-z8">
       <mat-card-header>
@@ -9,9 +9,9 @@
       </mat-card-header>
       <mat-card-content>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/home" routerLinkActive="active">Home</button>
+        <button mat-raised-button class="button-full-width" color="primary" routerLink="/master-approved" routerLinkActive="active">Master Log</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/request-form" routerLinkActive="active">Request Form</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/incident-report" routerLinkActive="active">Incident Report</button>
-        <button mat-raised-button class="button-full-width" color="primary" routerLink="/master-approved" routerLinkActive="active">Master Log</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/request-form-status" routerLinkActive="active">Request Form Status Report</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/incident-report-status" routerLinkActive="active">Incident Status Report</button>
       </mat-card-content>
@@ -20,9 +20,11 @@
   <mat-grid-tile [colspan]="1">
     <mat-card class="mat-elevation-z8">
       <mat-card-header>
-        <mat-card-title>Welcome!</mat-card-title>
+        <mat-card-title>Welcome {{name}}!</mat-card-title>
         <mat-card-subtitle>To the Behavior Enrichment Logs</mat-card-subtitle>
       </mat-card-header>
+      <!-- TODO: put image on filesystem and get location from database (load image from back-end) -->
+      <img mat-card-image [src]="homepageImage" height="375">
       <mat-card-content>
         <p>On the tabs to the left, you will see some tabs that organize the information by department. 
           Take a look at some awesome behavior enrichment information!</p>

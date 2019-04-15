@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
+## Documentation
+
+Documentation was generated with Compodoc (https://compodoc.app) version 1.1.9. Navigate to https://project-group-b.github.io/BehavioralEnrichment-Angular/ to view the documentation pages.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -25,3 +29,37 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deployment
+
+1) Use '$git clone __your_github_repo_url'
+
+2) $cd _new_directory_created_by_git_clone
+
+3) $npm install
+
+4) $npm install -g @angular/cli
+
+5) $npm install --save-dev --unsafe-perm node-sass (sass module needs fixed every time)
+
+6) Follow prompts to conduct and npm audit
+
+7) $ng build
+
+8) $cp ~/BehavioralEnrichment-Angular/dist /var/www/html (copies to nginx, install directions
+here: https://arjunphp.com/deploy-angular-app-production-nginx/)
+
+9) Edit /etc/nginx/nginx.conf so that it is as follows:
+
+http {
+         ...
+  server{
+                listen 80;
+                server_name 52.90.189.136;
+                location / {
+                        root /var/www/html/BehavioralEnrichment-Angular;
+                        index index.html index.htm;
+                }
+        }
+        ...
+}

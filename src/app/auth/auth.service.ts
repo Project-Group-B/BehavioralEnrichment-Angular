@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Globals } from '../globals';
-import UserInfo from '../shared/interfaces/user-info';
+import { UserInfo } from '../shared/interfaces/user-info';
 
 const httpOptions = {
   headers: new HttpHeaders({

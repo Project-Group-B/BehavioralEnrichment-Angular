@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
     private currentUser: CurrentUserService) { }
 
   ngOnInit() {
-    this.username = this.currentUser.getUsername();
-    this.isAdmin = this.currentUser.adminUser();
+    this.username = this.currentUser.getUser().username;
+    this.isAdmin = this.currentUser.getUser().admin;
   }
 
   logout() {

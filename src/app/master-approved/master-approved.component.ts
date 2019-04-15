@@ -10,7 +10,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 export class MasterApprovedComponent implements OnInit {
   displayedColumns: string[] = ['enrichmentItem', 'category',
   'species', 'behaviorsEncouraged', 'dateApproved', 'comments', 'safetyConcerns', 'reports'];
-  dataSource =  new MatTableDataSource<ApprovedEntry>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<ApprovedEntry>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

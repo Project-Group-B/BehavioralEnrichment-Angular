@@ -1,30 +1,35 @@
+import { SpeciesInfo } from './species-info';
+import { DepartmentInfo } from './department-info';
+import { PartialUserInfo } from './partial-user-info';
+
 export interface CompleteRequestForm {
-  department: string;
-  species: string;
-  housed: string;
-  activityCycle: string;
-  age: string;
+  department: DepartmentInfo;
+  species: SpeciesInfo;
+  animalId: number;
 
+  itemId: number;
   enrichmentName: string;
-  enrichmentDayNightTime: string;
   enrichmentDescription: string;
-  enrichmentFrequency: string;
-  enrichmentPresentation: string;
+  enrichmentLocation: number;
+  enrichmentPresentationMethod: string;
+  enrichmentDayNightTime: string;
+  enrichmentFrequency: number;
 
+  lifeStrategiesWksht: boolean;
   anotherDeptZoo: boolean;
   anotherDeptZooMoreInfo: boolean;
-  lifeStrategiesWksht: boolean;
-  safetyComment: string;
   safetyQuestion: boolean;
+  risksQuestion: boolean;
+  safetyComment: string;
 
   naturalBehaviors: string;
 
-  enrichmentCategory: string[];
-  nameOfSubmitter: string;
-  otherSource: string;
   source: string;
-  timeRequired: string;
-  volunteerDocentUtilized: boolean;
+  otherSource: string;
+  timeRequired: number;
   whoConstructs: string;
+  volunteerDocentUtilized: boolean;
+  enrichmentCategory: string;
+  nameOfSubmitter: PartialUserInfo;
   dateOfSubmission: Date;
 }
