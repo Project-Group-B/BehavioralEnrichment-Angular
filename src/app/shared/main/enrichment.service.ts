@@ -12,6 +12,7 @@ import { UserListInfo } from '../interfaces/user-list-info';
 import { AnimalInfo } from '../interfaces/animal-info';
 import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
+import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,7 +30,10 @@ const fileHttpOptions = {
   providedIn: 'root'
 })
 export class EnrichmentService {
-  constructor(private http: HttpClient, private globals: Globals) { }
+  constructor(
+    private http: HttpClient,
+    private globals: Globals,
+    private currentUser: CurrentUserService) { }
 
   addUser(form: FormGroup) {
     const requestBody = {
@@ -52,9 +56,10 @@ export class EnrichmentService {
       photo: itemForm.value.photo,
       comments: itemForm.value.comments,
       safetyNotes: itemForm.value.safetyNotes,
-      exceptions: itemForm.value.exceptions
+      exceptions: itemForm.value.exceptions,
+      submittor: this.currentUser.getUser().id
     };
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody);
   }
 
   submitNewAnimal(animalForm: FormGroup) {

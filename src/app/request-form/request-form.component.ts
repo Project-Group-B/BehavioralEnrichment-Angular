@@ -395,11 +395,8 @@ export class InsertNewItemDialogComponent {
       reader.readAsDataURL(file);
 
       reader.onloadend = () => {
-        /* this.newItemForm.patchValue({
-          photo: reader.result
-        }); */
         this.newItemForm.patchValue({
-          photo: file.name
+          photo: file
         });
 
         // need to run CD since file load runs outside of zone
