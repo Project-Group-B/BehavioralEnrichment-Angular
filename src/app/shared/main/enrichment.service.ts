@@ -53,7 +53,7 @@ export class EnrichmentService {
   submitNewItem(itemForm: FormGroup) {
     const requestBody = {
       itemName: itemForm.value.name,
-      photo: itemForm.value.photo,
+      base64EncodedPhoto: itemForm.value.photo,
       comments: itemForm.value.comments,
       safetyNotes: itemForm.value.safetyNotes,
       exceptions: itemForm.value.exceptions,

@@ -392,16 +392,15 @@ export class InsertNewItemDialogComponent {
 
     if (event.target.files && event.target.files.length) {
       const file = event.target.files[0];
-      reader.readAsDataURL(file);
 
       reader.onloadend = () => {
         this.newItemForm.patchValue({
-          photo: file
+          photo: reader.result
         });
-
         // need to run CD since file load runs outside of zone
         this.changeDetector.markForCheck();
       };
+      reader.readAsDataURL(file);
     }
   }
 
