@@ -95,7 +95,7 @@ export class RequestFormComponent implements OnInit {
         this.formBuilder.group({
           lifeStrategiesWksht: new FormControl(null, Validators.required), // Enrichment_LifeStrategies: int (0: false, 1: true)
           anotherDeptZoo: new FormControl(null, Validators.required), // Enrichment_PreviousUse: int (0: false, 1: true)
-          anotherDeptZooMoreInfo: new FormControl(null), // Enrichment_Contact: int (0: false, 1: true), can be null
+          anotherDeptZooMoreInfo: new FormControl(null, Validators.required), // Enrichment_Contact: int (0: false, 1: true), can be null
           safetyQuestion: new FormControl(null, Validators.required), // Enrichment_SafetyQuestions: int
           risksQuestion: new FormControl(null, Validators.required), // Enrichment_RisksHazards: int
           safetyComment: new FormControl('', Validators.maxLength(1000)) // Enrichment_Concerns

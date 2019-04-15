@@ -15,5 +15,6 @@ private changed() {
 })
 export class Globals {
   readonly sessionIdKey = 'behavior-enrichment-session';
-  readonly baseUrl = 'http://ec2-3-84-52-67.compute-1.amazonaws.com:8080';
+  readonly baseUrl = 'http://localhost:8080';
+  readonly userInfoKey = 'behavioral-user-info';
 }

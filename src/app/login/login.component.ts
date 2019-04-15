@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Globals } from '../globals';
 import { UserInfo } from '../shared/interfaces/user-info';
+import { CurrentUserService } from '../auth/user/current-user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private service: AuthService,
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private globals: Globals) { }
+    private globals: Globals,
+    private currentUser: CurrentUserService) { }
 
   // https://angular.io/guide/reactive-forms
   ngOnInit() {
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.service.loginUser(this.loginForm.value.username, this.loginForm.value.password).subscribe((data: UserInfo) => {
       if (data.loggedIn) {
         // set current user info
-        this.globals.setCurrentUser(data);
+        this.currentUser.setUser(data);
         console.log(data);
 
         // put user info as stringified JSON in session storage
