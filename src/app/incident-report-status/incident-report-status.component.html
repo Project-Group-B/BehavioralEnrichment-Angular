@@ -1,4 +1,34 @@
 <app-header></app-header>
-<p>
-  incident-report-status works!
-</p>
+<h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Incident Reports</h1>
+
+<mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Request ID Column -->
+    <ng-container matColumnDef="requestID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.requestID}} </td>
+    </ng-container>
+
+    <!-- Request Item Column -->
+    <ng-container matColumnDef="requestItem">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Item </th>
+      <td mat-cell *matCellDef="let element"> {{element.requestItem}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="approved">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Approved? </th>
+      <td mat-cell *matCellDef="let element"> {{element.approved}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
