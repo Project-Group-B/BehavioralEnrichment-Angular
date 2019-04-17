@@ -39,5 +39,6 @@ export interface IncidentInstance {
 // Stand in sampling data until database ready
 const REQUESTS: IncidentInstance[] = [
   {requestID: 1, incDate: '12 Apr 19', enrichItem: 'Feather', department: 'Birds', futureUse: "Do not use"},
+  {requestID: 2, incDate: '13 Apr 19', enrichItem: 'Log', department: 'Lizards', futureUse: "Do not use"},
 ];
 
