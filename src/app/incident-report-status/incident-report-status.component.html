@@ -1,5 +1,5 @@
 <app-header></app-header>
-<h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Incident Reports</h1>
+<h1 class="mat-display-1 center-align">Novel Life Strategy Enrichment Incidents</h1>
 
 <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
@@ -14,16 +14,28 @@
       <td mat-cell *matCellDef="let element"> {{element.requestID}} </td>
     </ng-container>
 
-    <!-- Request Item Column -->
-    <ng-container matColumnDef="requestItem">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Item </th>
-      <td mat-cell *matCellDef="let element"> {{element.requestItem}} </td>
+    <!-- Incident Date Column -->
+    <ng-container matColumnDef="incDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Incident Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.incDate}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="approved">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Approved? </th>
-      <td mat-cell *matCellDef="let element"> {{element.approved}} </td>
+    <!-- Enrichment Item Column -->
+    <ng-container matColumnDef="enrichItem">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Enrichment Item </th>
+      <td mat-cell *matCellDef="let element"> {{element.enrichItem}} </td>
+    </ng-container>    
+
+    <!-- Department Column -->
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+      <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+    </ng-container>
+
+    <!--Future Use Column -->
+    <ng-container matColumnDef="futureUse">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Future Use Decision </th>
+      <td mat-cell *matCellDef="let element"> {{element.futureUse}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
