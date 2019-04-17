@@ -134,12 +134,12 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="requestForm.at(2).get('anotherDeptZoo').value">
+      <div>
         <!-- Normal Key: Enrichment_Contact -->
         <label for="anotherPlaceMoreInfo">Have they been contacted for more information?</label>
         <br/>
         <mat-form-field id="anotherPlaceMoreInfo" name="anotherPlaceMoreInfo">
-          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" [required]="requestForm.at(2).get('anotherDeptZoo').value">
+          <mat-select placeholder="Yes/No" formControlName="anotherDeptZooMoreInfo" required>
             <mat-option [value]="true">Yes</mat-option>
             <mat-option [value]="false">No</mat-option>
           </mat-select>

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const userInfo = JSON.parse(sessionStorage.getItem(this.globals.userInfoKey)) as UserInfo;
     if (userInfo) {
-      this.globals.setCurrentUser(userInfo);
+      this.currentUser.setUser(userInfo);
     }
   }
 }
