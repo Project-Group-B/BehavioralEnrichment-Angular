@@ -119,10 +119,11 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/editUser`, requestBody, httpOptions);
   }
 
-  uploadNewHomepageImage(image: File) {
-    const formdata: FormData = new FormData();
-    formdata.append('file', image);
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, formdata);
+  uploadNewHomepageImage(imageForm: FormGroup) {
+    const requestBody: ImageInfo = {
+      base64EncodedImage: imageForm.value.image
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, requestBody);
   }
 
   getHomepageImage() {

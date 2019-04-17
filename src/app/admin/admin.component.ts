@@ -29,9 +29,7 @@ export class AdminComponent implements OnInit {
   deptIdToRemove: number;
 
   // Picture Variables
-  newHomePagePicture: File;
-  @ViewChild('homepageImageInput')
-  homepageImageInput: ElementRef;
+  homepageImageForm: FormGroup;
 
   // ViewChild
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,6 +48,9 @@ export class AdminComponent implements OnInit {
       lastName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
       department: new FormControl({departmentId: -1, departmentName: ''}, [Validators.required]),
       username: new FormControl('', [Validators.required, Validators.maxLength(25)])
+    });
+    this.homepageImageForm = this.formBuilder.group({
+      image: new FormControl(null)
     });
     this.getDepartments();
     this.getUsers(false);
@@ -189,40 +190,34 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  setHomepageFileVariable(event) {
+  uploadNewHomepageImage() {
+    this.service.uploadNewHomepageImage(this.homepageImageForm).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+    }, (err: any) => {
+      console.error('HTTP error when uploading image:');
+      console.error(err);
+      this.snackbar.open('HTTP error when uploading image; please try again', 'OK', {
+        duration: 5000
+      });
+    });
+  }
+
+  onHomepageFileChange(event) {
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
       const file = event.target.files[0];
-      reader.readAsDataURL(file);
 
       reader.onloadend = () => {
-        console.log('file uploaded:');
-        console.log(file);
-        this.newHomePagePicture = file;
+        // Sets value to Base64 encoded string
+        this.homepageImageForm.patchValue({
+          image: reader.result
+        });
       };
+      reader.readAsDataURL(file);
     }
-  }
-
-  uploadNewHomepageImage() {
-      console.log('image to be uploaded:');
-      console.log(this.newHomePagePicture);
-      this.service.uploadNewHomepageImage(this.newHomePagePicture).subscribe((data: StandardReturnObject) => {
-        this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
-          duration: 3000
-        });
-        this.resetHomepageImageInput();
-      }, (err: any) => {
-        console.error('HTTP error when uploading image:');
-        console.error(err);
-        this.snackbar.open('HTTP error when uploading image; please try again', 'OK', {
-          duration: 5000
-        });
-      });
-  }
-
-  resetHomepageImageInput(): void {
-    this.homepageImageInput.nativeElement.value = '';
   }
 
   private getDepartments() {
