@@ -12,6 +12,8 @@ import { UserListInfo } from '../interfaces/user-list-info';
 import { AnimalInfo } from '../interfaces/animal-info';
 import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
+import { CurrentUserService } from 'src/app/auth/user/current-user.service';
+import { ImageInfo } from '../interfaces/image-info';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,7 +31,10 @@ const fileHttpOptions = {
   providedIn: 'root'
 })
 export class EnrichmentService {
-  constructor(private http: HttpClient, private globals: Globals) { }
+  constructor(
+    private http: HttpClient,
+    private globals: Globals,
+    private currentUser: CurrentUserService) { }
 
   addUser(form: FormGroup) {
     const requestBody = {
@@ -49,12 +54,13 @@ export class EnrichmentService {
   submitNewItem(itemForm: FormGroup) {
     const requestBody = {
       itemName: itemForm.value.name,
-      photo: itemForm.value.photo,
+      base64EncodedPhoto: itemForm.value.photo,
       comments: itemForm.value.comments,
       safetyNotes: itemForm.value.safetyNotes,
-      exceptions: itemForm.value.exceptions
+      exceptions: itemForm.value.exceptions,
+      submittor: this.currentUser.getUser().id
     };
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody, httpOptions);
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody);
   }
 
   submitNewAnimal(animalForm: FormGroup) {
@@ -120,7 +126,7 @@ export class EnrichmentService {
   }
 
   getHomepageImage() {
-    return this.http.get(`${this.globals.baseUrl}/getHomepageImage`, {responseType: 'blob' as 'blob'});
+    return this.http.get<ImageInfo>(`${this.globals.baseUrl}/getHomepageImage`);
   }
 
   getDepartments() {

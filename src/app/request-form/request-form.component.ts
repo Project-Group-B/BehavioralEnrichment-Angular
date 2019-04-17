@@ -377,7 +377,9 @@ export class InsertNewItemDialogComponent {
 
   submitForm(): void {
     this.service.submitNewItem(this.newItemForm).subscribe((data: StandardReturnObject) => {
-      this.snackbar.open(data.message || data.errorMsg, 'OK');
+      this.snackbar.open(data.message || data.errorMsg, 'OK', {
+        duration: 3000
+      });
       if (!data.error) {
         this.dialogRef.close(true);
       }
@@ -392,19 +394,16 @@ export class InsertNewItemDialogComponent {
 
     if (event.target.files && event.target.files.length) {
       const file = event.target.files[0];
-      reader.readAsDataURL(file);
 
       reader.onloadend = () => {
-        /* this.newItemForm.patchValue({
-          photo: reader.result
-        }); */
+        // Sets value to Base64 encoded string
         this.newItemForm.patchValue({
-          photo: file.name
+          photo: reader.result
         });
-
         // need to run CD since file load runs outside of zone
         this.changeDetector.markForCheck();
       };
+      reader.readAsDataURL(file);
     }
   }
 
