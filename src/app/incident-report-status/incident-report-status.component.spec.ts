@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { IncidentReportStatusComponent } from './incident-report-status.component';
 
 describe('IncidentReportStatusComponent', () => {

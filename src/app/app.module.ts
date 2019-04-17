@@ -46,6 +46,7 @@ import { AdminComponent, EditUserInfoDialogComponent } from './admin/admin.compo
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HelpComponent } from './help/help.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,7 @@ import { HelpComponent } from './help/help.component';
     MatDialogModule,
     MatTabsModule,
     MatTooltipModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent, EditUserInfoDialogComponent],
   providers: [Globals],

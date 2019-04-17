@@ -5,42 +5,81 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 </mat-form-field>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
 
-    <!-- Request ID Column -->
-    <ng-container matColumnDef="requestID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.requestID}} </td>
-    </ng-container>
 
-    <!-- Incident Date Column -->
-    <ng-container matColumnDef="incDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Incident Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.incDate}} </td>
-    </ng-container>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-    <!-- Enrichment Item Column -->
-    <ng-container matColumnDef="enrichItem">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Enrichment Item </th>
-      <td mat-cell *matCellDef="let element"> {{element.enrichItem}} </td>
-    </ng-container>    
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>    
 
-    <!-- Department Column -->
-    <ng-container matColumnDef="department">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
-      <td mat-cell *matCellDef="let element"> {{element.department}} </td>
-    </ng-container>
+    
+  <!-- Incident ID Column -->
+  <ng-container matColumnDef="incidentID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Incident ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.incidentID}} </td>
+  </ng-container>
 
-    <!--Future Use Column -->
-    <ng-container matColumnDef="futureUse">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Future Use Decision </th>
-      <td mat-cell *matCellDef="let element"> {{element.futureUse}} </td>
-    </ng-container>
+  <!-- Incident Date Column -->
+  <ng-container matColumnDef="incDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Incident Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.incDate}} </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <!-- Enrichment Item Column -->
+  <ng-container matColumnDef="enrichItem">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Enrichment Item </th>
+    <td mat-cell *matCellDef="let element"> {{element.enrichItem}} </td>
+  </ng-container>    
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+  <!-- Department Column -->
+  <ng-container matColumnDef="department">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+    <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+  </ng-container>
+
+  <!--Future Use Column -->
+  <ng-container matColumnDef="futureUse">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Future Use Decision </th>
+    <td mat-cell *matCellDef="let element"> {{element.futureUse}} </td>
+
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+
+<!--div>
+  <label for="pending">Decision on Future Use of the Enrichment Involved in the Incident (Pending Only):</label>
+  <br/>
+  <mat-radio-group class="radio-group left-margin" id="pending" name="pending" formControlName="pending" required>
+    <mat-radio-button class="radio-button" value="dontUse">The enrichment item should no longer be used</mat-radio-button>
+    <mat-radio-button class="radio-button" value="certainUse">The enrichment item should no longer be used for this particular animal</mat-radio-button>
+    <mat-radio-button class="radio-button" value="modify">The enrichment item should be modified before use again</mat-radio-button>
+    <mat-radio-button class="radio-button" value="other">Other</mat-radio-button> 
+  </mat-radio-group>
+</div-->
+
+
+
+
