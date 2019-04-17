@@ -377,7 +377,9 @@ export class InsertNewItemDialogComponent {
 
   submitForm(): void {
     this.service.submitNewItem(this.newItemForm).subscribe((data: StandardReturnObject) => {
-      this.snackbar.open(data.message || data.errorMsg, 'OK');
+      this.snackbar.open(data.message || data.errorMsg, 'OK', {
+        duration: 3000
+      });
       if (!data.error) {
         this.dialogRef.close(true);
       }
@@ -394,6 +396,7 @@ export class InsertNewItemDialogComponent {
       const file = event.target.files[0];
 
       reader.onloadend = () => {
+        // Sets value to Base64 encoded string
         this.newItemForm.patchValue({
           photo: reader.result
         });
