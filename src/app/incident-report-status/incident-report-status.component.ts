@@ -8,7 +8,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 })
 export class IncidentReportStatusComponent implements OnInit {
 
-  displayedColumns: string[] = ['requestID', 'incDate', 'department', 'futureUse'];
+  displayedColumns: string[] = ['requestID', 'incDate', 'enrichItem','department', 'futureUse'];
   dataSource = new MatTableDataSource<IncidentInstance>(REQUESTS);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,10 +33,11 @@ export interface IncidentInstance {
   incDate: string;
   department: string;
   futureUse: string;
+  enrichItem: string;
 }
 
 // Stand in sampling data until database ready
 const REQUESTS: IncidentInstance[] = [
-  {requestID: 1, incDate: '12 Apr 19', department: 'Birds', futureUse: "Do not use"},
+  {requestID: 1, incDate: '12 Apr 19', enrichItem: 'Feather', department: 'Birds', futureUse: "Do not use"},
 ];
 
