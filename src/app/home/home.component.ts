@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CurrentUserService } from '../auth/user/current-user.service';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 import { MatSnackBar } from '@angular/material';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageInfo } from '../shared/interfaces/image-info';
 
 @Component({
@@ -16,8 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private currentUser: CurrentUserService,
     private service: EnrichmentService,
-    private snackbar: MatSnackBar,
-    private sanitization: DomSanitizer) { }
+    private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.name = this.currentUser.getUser().firstName;
