@@ -44,6 +44,7 @@
   <ng-container matColumnDef="futureUseUpdate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
     <td mat-cell *matCellDef="let element"> {{element.futureUseUpdate}} </td>
+    <button mat-raised-button class="left-margin" (click)="openFutureUseDialog()">Update Future Use</button>
     
   </ng-container>
 

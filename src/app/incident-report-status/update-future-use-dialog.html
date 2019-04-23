@@ -1,2 +1,20 @@
 <h1 mat-dialog-title>Update Future Use Decision</h1>
 
+<mat-dialog-content>
+    <form [formGroup]="updatedFutureUseForm">
+        <div>
+        <!-- Normal Key: Animal_IsisNumber -->
+            <mat-radio-group class="radio-group" formControlName="updated" required>
+                    <mat-radio-button class="radio-button" value="dontUse">The enrichment item should no longer be used</mat-radio-button>
+                    <mat-radio-button class="radio-button" value="certainUse">The enrichment item should no longer be used for this particular animal</mat-radio-button>
+                    <mat-radio-button class="radio-button" value="modify">The enrichment item should be modified before use again</mat-radio-button>
+                    <mat-radio-button class="radio-button" value="other">Other</mat-radio-button> 
+            </mat-radio-group>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="submitUpdatedFutureUse()" [disabled]="!updatedFutureUseForm.valid">Submit</button>
+</div>

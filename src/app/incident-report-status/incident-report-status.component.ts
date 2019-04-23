@@ -36,6 +36,9 @@ export class IncidentReportStatusComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  
+
+
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -48,6 +51,8 @@ export class IncidentReportStatusComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  
 }
 
 
