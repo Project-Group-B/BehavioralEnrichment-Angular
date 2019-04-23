@@ -42,24 +42,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 5) $npm install --save-dev --unsafe-perm node-sass (sass module needs fixed every time)
 
-6) Follow prompts to conduct and npm audit
+6) Follow prompts to conduct an npm audit
 
 7) $ng build
 
 8) $cp ~/BehavioralEnrichment-Angular/dist /var/www/html (copies to nginx, install directions
 here: https://arjunphp.com/deploy-angular-app-production-nginx/)
 
-9) Edit /etc/nginx/nginx.conf so that it is as follows:
+9) Edit /etc/nginx/ so it contains the files in the Nginx Config Files on the PGB-Java Repository.
 
-http {
-         ...
-  server{
-                listen 80;
-                server_name 52.90.189.136;
-                location / {
-                        root /var/www/html/BehavioralEnrichment-Angular;
-                        index index.html index.htm;
-                }
-        }
-        ...
-}
+10) Ensure 'baseUrl' in "global.ts" matches the front facing deployment address, and is using port 8080, as below:
+`readonly baseUrl = 'http://ec2-3-84-52-67.compute-1.amazonaws.com:8080';`
+

@@ -14,6 +14,8 @@ import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
 import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
+import { ApprovedEntry } from '../interfaces/approved-entry';
+import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -119,10 +121,11 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/editUser`, requestBody, httpOptions);
   }
 
-  uploadNewHomepageImage(image: File) {
-    const formdata: FormData = new FormData();
-    formdata.append('file', image);
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, formdata);
+  uploadNewHomepageImage(imageForm: FormGroup) {
+    const requestBody: ImageInfo = {
+      base64EncodedImage: imageForm.value.image
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/homepageImage`, requestBody);
   }
 
   getHomepageImage() {
@@ -156,4 +159,9 @@ export class EnrichmentService {
   getLocations() {
     return this.http.get<LocationInfo[]>(`${this.globals.baseUrl}/locations`);
   }
+
+  getApprovedEntry() {
+    return this.http.get<ApprovedEntry[]>(`${this.globals.baseUrl}/approvedEntries`);
+  }
+
 }
