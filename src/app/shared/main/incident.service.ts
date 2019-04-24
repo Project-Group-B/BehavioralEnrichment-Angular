@@ -14,7 +14,7 @@ import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
 import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
-import { incidentStatus } from '../interfaces/incident-status';
+import { SubmittedIncident } from '../interfaces/incident-status';
 
 
 const httpOptions = {
@@ -124,7 +124,7 @@ export class IncidentService {
   }
 
   getIncidentReport(){
-    return this.http.get<incidentStatus[]>(`${this.globals.baseUrl}/incidentStatusReports`);
+    return this.http.get<SubmittedIncident[]>(`${this.globals.baseUrl}/incidentStatusReports`);
   }
 
 

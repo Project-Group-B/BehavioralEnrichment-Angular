@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatTable} from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {incidentStatus} from '../shared/interfaces/incident-status';
+import {SubmittedIncident} from '../shared/interfaces/incident-status';
 import { DataSource } from '@angular/cdk/table';
 import { EnrichmentService } from '../shared/main/enrichment.service';
 
@@ -26,8 +26,8 @@ export class IncidentReportStatusComponent implements OnInit {
   displayedColumns: string[] = ['incidentID', 'incDate', 'enrichItem','department', 'futureUse', 'futureUseUpdate'];
   //dataSource = new MatTableDataSource<IncidentInstance>(INCIDENTS);
 
-  incidentStatusReports: incidentStatus[];
-  dataSource: MatTableDataSource<incidentStatus>;
+  incidentReports: SubmittedIncident[];
+  dataSource: MatTableDataSource<SubmittedIncident>;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,14 +36,14 @@ export class IncidentReportStatusComponent implements OnInit {
 
   ngOnInit() {
     this.getIncidentReportFromDB();
-    this.dataSource= new MatTableDataSource<incidentStatus>(this.incidentStatusReports)
+    this.dataSource= new MatTableDataSource<SubmittedIncident>(this.incidentReports)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   getIncidentReportFromDB() {
-    this.service.getIncidentReport().subscribe((data: incidentStatus[]) => {
-      this.incidentStatusReports = data;
+    this.service.getIncidentReport().subscribe((data: SubmittedIncident[]) => {
+      this.incidentReports = data;
     }, (err: any) => {
         console.error('Error :', err);
     });

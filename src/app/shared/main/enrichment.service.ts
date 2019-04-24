@@ -16,7 +16,7 @@ import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
 import { ApprovedEntry } from '../interfaces/approved-entry';
 import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
-import { incidentStatus } from '../interfaces/incident-status';
+import { SubmittedIncident } from '../interfaces/incident-status';
 import { IncidentReportForm } from '../interfaces/incident-report-form';
 
 const httpOptions = {
@@ -171,7 +171,7 @@ export class EnrichmentService {
   }
 
   getIncidentReport(){
-    return this.http.get<incidentStatus[]>(`${this.globals.baseUrl}/incidentStatusReports`);
+    return this.http.get<SubmittedIncident[]>(`${this.globals.baseUrl}/incidentReports`);
   }
 
 }

@@ -1,7 +1,7 @@
 /* Abstraction of incident reports. */
 import{IncidentReportForm} from './incident-report-form'
 
-export interface incidentStatus {
+export interface SubmittedIncident {
     incidentID: IncidentReportForm;
     incidentDate: IncidentReportForm;
     enrichmentItem: IncidentReportForm;
