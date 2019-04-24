@@ -8,22 +8,165 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <!-- Request ID Column -->
-    <ng-container matColumnDef="requestID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.requestID}} </td>
-    </ng-container>
-
-    <!-- Request Item Column -->
-    <ng-container matColumnDef="requestItem">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Item </th>
-      <td mat-cell *matCellDef="let element"> {{element.requestItem}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="approved">
+    <!-- Enrichment_IsApproved Column -->
+    <ng-container matColumnDef="Enrichment_IsApproved">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Approved? </th>
-      <td mat-cell *matCellDef="let element"> {{element.approved}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_IsApproved}} </td>
+    </ng-container>
+
+    <!-- Enrichment_DateSubmitted Column -->
+    <ng-container matColumnDef="Enrichment_DateSubmitted">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Submitted </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_DateSubmitted}} </td>
+    </ng-container>
+
+    <!-- Enrichment_Name Column -->
+    <ng-container matColumnDef="Enrichment_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Form Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Name}} </td>
+    </ng-container>
+    
+    <!-- Submittor_User_Name Column -->
+    <ng-container matColumnDef="Submittor_User_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Submitted By </th>
+      <td mat-cell *matCellDef="let element"> {{element.Submittor_User_Name}} </td>
+    </ng-container>
+    
+    <!-- Department_Name Column -->
+    <ng-container matColumnDef="Department_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+      <td mat-cell *matCellDef="let element"> {{element.Department_Name}} </td>
+    </ng-container>
+    
+    <!-- Item_Name Column -->
+    <ng-container matColumnDef="Item_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Item </th>
+      <td mat-cell *matCellDef="let element"> {{element.Item_Name}} </td>
+    </ng-container>
+    
+    <!-- Species_Name Column -->
+    <ng-container matColumnDef="Species_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Species </th>
+      <td mat-cell *matCellDef="let element"> {{element.Species_Name}} </td>
+    </ng-container>
+    
+    <!-- Animal_IsisNumber Column -->
+    <ng-container matColumnDef="Animal_IsisNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Isis # </th>
+      <td mat-cell *matCellDef="let element"> {{element.Animal_IsisNumber}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Description -->
+    <ng-container matColumnDef="Enrichment_Description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Description}} </td>
+    </ng-container>
+    
+    <!-- Location_Name Column -->
+    <ng-container matColumnDef="Location_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.Location_Name}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_PresentationMethod Column -->
+    <ng-container matColumnDef="Enrichment_PresentationMethod">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Presentation Method </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_PresentationMethod}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_TimeStart Column -->
+    <ng-container matColumnDef="Enrichment_TimeStart">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_TimeStart}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_TimeEnd Column -->
+    <ng-container matColumnDef="Enrichment_TimeEnd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> End </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_TimeEnd}} </td>
+    </ng-container>
+
+
+
+    
+    <!-- Enrichment_Frequency Column -->
+    <ng-container matColumnDef="Enrichment_Frequency">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Frequency </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Frequency}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_LifeStrategies Column -->
+    <ng-container matColumnDef="Enrichment_LifeStrategies">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Life Strategies? </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_LifeStrategies}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_PreviousUse Column -->
+    <ng-container matColumnDef="Enrichment_PreviousUse">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Previous Use </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_PreviousUse}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Contact Column -->
+    <ng-container matColumnDef="Enrichment_Contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Contact}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_SafetyQuestions Column -->
+    <ng-container matColumnDef="Enrichment_SafetyQuestions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Safety Questions </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_SafetyQuestions}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_RisksHazards Column -->
+    <ng-container matColumnDef="Enrichment_RisksHazards">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Risks/Hazards </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_RisksHazards}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Goal Column -->
+    <ng-container matColumnDef="Enrichment_Goal">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Goal </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Goal}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Source Column -->
+    <ng-container matColumnDef="Enrichment_Source">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Source}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_TimeRequired Column -->
+    <ng-container matColumnDef="Enrichment_TimeRequired">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Time Required </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_TimeRequired}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Construction Column -->
+    <ng-container matColumnDef="Enrichment_Construction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Construction </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Construction}} </td>
+    </ng-container>
+
+
+    
+    <!-- Enrichment_Volunteers Column -->
+    <ng-container matColumnDef="Enrichment_Volunteers">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Volunteers? </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Volunteers}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Inventory Column -->
+    <ng-container matColumnDef="Enrichment_Inventory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Inventory </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Inventory}} </td>
+    </ng-container>
+    
+    <!-- Enrichment_Concerns Column -->
+    <ng-container matColumnDef="Enrichment_Concerns">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Concerns </th>
+      <td mat-cell *matCellDef="let element"> {{element.Enrichment_Concerns}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

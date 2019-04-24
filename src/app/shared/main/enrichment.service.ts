@@ -15,7 +15,7 @@ import { EditUserInfo } from '../interfaces/edit-user-info';
 import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
 import { ApprovedEntry } from '../interfaces/approved-entry';
-import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
+import { EnrichmentForm } from '../interfaces/enrichment-form';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -162,6 +162,10 @@ export class EnrichmentService {
 
   getApprovedEntry() {
     return this.http.get<ApprovedEntry[]>(`${this.globals.baseUrl}/approvedEntries`);
+  }
+
+  getEnrichmentForm() {
+    return this.http.get<EnrichmentForm[]>(`${this.globals.baseUrl}/getEnrichmentForm`);
   }
 
 }
