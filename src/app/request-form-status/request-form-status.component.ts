@@ -13,7 +13,7 @@ export class RequestFormStatusComponent implements OnInit {
   constructor(private service: EnrichmentService) { }
 
   displayedColumns: string[] = ['Enrichment_IsApproved',
-  'Enrichment_DateSubmitted',
+  /* 'Enrichment_DateSubmitted',
   'Enrichment_Name',
   'Submittor_User_Name',
   'Department_Name',
@@ -39,7 +39,7 @@ export class RequestFormStatusComponent implements OnInit {
 
   'Enrichment_Volunteers',
   'Enrichment_Inventory',
-  'Enrichment_Concerns'];
+  'Enrichment_Concerns' */];
   enrichmentForms: EnrichmentForm[];
   dataSource: MatTableDataSource<EnrichmentForm>;
 
@@ -48,17 +48,14 @@ export class RequestFormStatusComponent implements OnInit {
 
   ngOnInit() {
     this.getEnrichmentFormFromDB();
-    //this.dataSource = new MatTableDataSource<EnrichmentForm>(this.enrichmentForms);
-
+    // this.dataSource = new MatTableDataSource<EnrichmentForm>(this.enrichmentForms);
   }
 
   getEnrichmentFormFromDB() {
     this.service.getEnrichmentForm().subscribe((data: EnrichmentForm[]) => {
-      this.enrichmentForms = data;
-      console.log(this.enrichmentForms);
-      this.dataSource = new MatTableDataSource(this.enrichmentForms);
-      
-      console.log(this.dataSource);
+      this.dataSource = new MatTableDataSource(data);
+      console.log('enrichment form approved items:');
+      console.log(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, (err: any) => {

@@ -1,5 +1,5 @@
 export interface EnrichmentForm {
-    Enrichment_IsApproved: string;
+  enrichmentIsApproved: string;
     Enrichment_DateSubmitted: string;
     Enrichment_Name: string;
     Submittor_User_Name: string;

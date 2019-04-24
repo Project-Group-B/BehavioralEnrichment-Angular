@@ -9,9 +9,13 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- Enrichment_IsApproved Column -->
-    <ng-container matColumnDef="Enrichment_IsApproved">
+    <!-- <ng-container matColumnDef="Enrichment_IsApproved">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Approved? </th>
       <td mat-cell *matCellDef="let element"> {{element.Enrichment_IsApproved}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="Enrichment_IsApproved">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved?</th>
+      <td mat-cell *matCellDef="let row">{{row.enrichmentIsApproved}</td>
     </ng-container>
 
     <!-- Enrichment_DateSubmitted Column -->
