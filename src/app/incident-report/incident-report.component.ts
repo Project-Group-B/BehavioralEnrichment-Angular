@@ -107,6 +107,7 @@ export class IncidentReportComponent implements OnInit {
       actionsTaken: requestArray[2].actionsTaken,
       incName: requestArray[2].incName,
       dateOfSubmission: requestArray[2].dateOfSubmission,
+      futureUse: requestArray[2].futureUse,
     
     };
     return completeForm;

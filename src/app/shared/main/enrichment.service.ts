@@ -16,6 +16,8 @@ import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
 import { ApprovedEntry } from '../interfaces/approved-entry';
 import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
+import { incidentStatus } from '../interfaces/incident-status';
+import { IncidentReportForm } from '../interfaces/incident-report-form';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -51,6 +53,10 @@ export class EnrichmentService {
 
   submitEnrichmentRequestForm(completeForm: CompleteRequestForm) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/enrichmentRequest`, completeForm, httpOptions);
+  }
+
+  submitIncidentReportForm(completeForm: IncidentReportForm) {
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/incidentReport`, completeForm, httpOptions);
   }
 
   submitNewItem(itemForm: FormGroup) {
@@ -162,6 +168,10 @@ export class EnrichmentService {
 
   getApprovedEntry() {
     return this.http.get<ApprovedEntry[]>(`${this.globals.baseUrl}/approvedEntries`);
+  }
+
+  getIncidentReport(){
+    return this.http.get<incidentStatus[]>(`${this.globals.baseUrl}/incidentStatusReports`);
   }
 
 }

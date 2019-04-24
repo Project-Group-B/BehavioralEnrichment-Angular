@@ -14,6 +14,7 @@ import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
 import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
+import { incidentStatus } from '../interfaces/incident-status';
 
 
 const httpOptions = {
@@ -68,8 +69,63 @@ export class IncidentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newItem`, requestBody);
   }
 
+  submitNewAnimal(animalForm: FormGroup) {
+    const requestBody = {
+      isisNumber: animalForm.value.isisNumber,
+      species: animalForm.value.species,
+      location: animalForm.value.location,
+      housed: animalForm.value.housed,
+      activityCycle: animalForm.value.activityCycle,
+      age: animalForm.value.age
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/newAnimal`, requestBody, httpOptions);
+  }
 
+  changePassword(userId: number, userName: string, passForm: FormGroup) {
+    const requestBody = {
+      userId,
+      userName,
+      oldPassword: passForm.value.oldPassword,
+      newPassword: passForm.value.newPassword
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/changePassword`, requestBody, httpOptions);
+  }
 
+  getHomepageImage() {
+    return this.http.get<ImageInfo>(`${this.globals.baseUrl}/getHomepageImage`);
+  }
+
+  getDepartments() {
+    return this.http.get<DepartmentInfo[]>(`${this.globals.baseUrl}/departments`);
+  }
+
+  getCategories() {
+    return this.http.get<CategoryInfo[]>(`${this.globals.baseUrl}/categories`);
+  }
+
+  getSpecies() {
+    return this.http.get<SpeciesInfo[]>(`${this.globals.baseUrl}/species`);
+  }
+
+  getItems() {
+    return this.http.get<ItemInfo[]>(`${this.globals.baseUrl}/items`);
+  }
+
+  getUsers() {
+    return this.http.get<UserListInfo[]>(`${this.globals.baseUrl}/userList`);
+  }
+
+  getAnimals() {
+    return this.http.get<AnimalInfo[]>(`${this.globals.baseUrl}/animals`);
+  }
+
+  getLocations() {
+    return this.http.get<LocationInfo[]>(`${this.globals.baseUrl}/locations`);
+  }
+
+  getIncidentReport(){
+    return this.http.get<incidentStatus[]>(`${this.globals.baseUrl}/incidentStatusReports`);
+  }
 
 
 }

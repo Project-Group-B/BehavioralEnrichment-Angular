@@ -11,5 +11,6 @@ export interface IncidentReportForm {
     incDescription: string;
     actionsTaken: string;
     dateOfSubmission: string;
+    futureUse: string;
 
 }
