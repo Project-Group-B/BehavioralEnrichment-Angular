@@ -18,6 +18,7 @@ import { ApprovedEntry } from '../interfaces/approved-entry';
 import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
 import { SubmittedIncident } from '../interfaces/incident-status';
 import { IncidentReportForm } from '../interfaces/incident-report-form';
+import { EnrichmentForm } from '../interfaces/enrichment-form';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -199,9 +200,9 @@ export class EnrichmentService {
   getIncidentReport(){
     return this.http.get<SubmittedIncident[]>(`${this.globals.baseUrl}/incidentReports`);
 
-  /*getEnrichmentForm() {
-    return this.http.get<EnrichmentForm[]>(`${this.globals.baseUrl}/getEnrichmentForm`);
-  }*/
-
   }
+  getEnrichmentForm() {
+    return this.http.get<EnrichmentForm[]>(`${this.globals.baseUrl}/getEnrichmentForm`);
+  }
+
 }
