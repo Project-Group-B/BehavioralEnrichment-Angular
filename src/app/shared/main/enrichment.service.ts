@@ -116,6 +116,14 @@ export class EnrichmentService {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeSpecies`, requestBody, httpOptions);
   }
 
+  addCategory(cat: FormGroup) {
+    const requestBody = {
+      categoryName: cat.value.catName,
+      categoryDescription: cat.value.catDescription
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/addCategory`, requestBody, httpOptions);
+  }
+
   deactivateUsers(users: UserListInfo[]) {
     return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeUsers`, users, httpOptions);
   }

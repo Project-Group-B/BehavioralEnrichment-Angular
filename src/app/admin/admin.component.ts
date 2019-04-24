@@ -34,6 +34,9 @@ export class AdminComponent implements OnInit {
   speciesIdToRemove: number;
   species: SpeciesInfo[];
 
+  // Add Category Variables
+  newCategoryForm: FormGroup;
+
   // Picture Variables
   homepageImageForm: FormGroup;
 
@@ -43,6 +46,7 @@ export class AdminComponent implements OnInit {
   @ViewChild('username') usernameRef: ElementRef;
   @ViewChild('newUserFormDirective') private newUserformDirective: NgForm;
   @ViewChild('newSpeciesFormDirective') private newSpeciesFormDirective: NgForm;
+  @ViewChild('newCategoryFormDirective') private newCategoryFormDirective: NgForm;
   constructor(
     private service: EnrichmentService,
     private formBuilder: FormBuilder,
@@ -62,6 +66,10 @@ export class AdminComponent implements OnInit {
     this.newSpeciesForm = this.formBuilder.group({
       speciesName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       speciesDescription: new FormControl('', [Validators.required, Validators.maxLength(500)])
+    });
+    this.newCategoryForm = this.formBuilder.group({
+      catName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
+      catDescription: new FormControl('', [Validators.required, Validators.maxLength(500)])
     });
     this.getDepartments();
     this.getUsers(false);
@@ -203,8 +211,10 @@ export class AdminComponent implements OnInit {
       this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
         duration: 3000
       });
-      this.newSpeciesFormDirective.resetForm();
-      this.getSpecies();
+      if (!data.error) {
+        this.newSpeciesFormDirective.resetForm();
+        this.getSpecies();
+      }
     }, (err: any) => {
       this.snackbar.open('HTTP error when adding species. Please try again.', 'OK', {
         duration: 3000
@@ -221,6 +231,21 @@ export class AdminComponent implements OnInit {
       this.getSpecies();
     }, (err: any) => {
       this.snackbar.open('HTTP error when removing species. Please try again.', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  addNewCategory() {
+    this.service.addCategory(this.newCategoryForm).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      if (!data.error) {
+        this.newCategoryFormDirective.resetForm();
+      }
+    }, (err: any) => {
+      this.snackbar.open('HTTP error when adding new category. Please try again.', 'OK', {
         duration: 3000
       });
     });
