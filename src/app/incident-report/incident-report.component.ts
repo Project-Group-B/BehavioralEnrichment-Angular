@@ -6,6 +6,13 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { IncidentReportForm } from '../shared/interfaces/incident-report-form';
+import { SpeciesInfo } from '../shared/interfaces/species-info';
+import { DepartmentInfo } from '../shared/interfaces/department-info';
+import { UserInfo } from '../shared/interfaces/user-info';
+import { ItemInfo } from '../shared/interfaces/item-info';
+import { AnimalInfo } from '../shared/interfaces/animal-info';
+import { LocationInfo } from '../shared/interfaces/location-info';
+
 
 @Component({
   selector: 'app-incident-report',
@@ -16,6 +23,12 @@ import { IncidentReportForm } from '../shared/interfaces/incident-report-form';
 export class IncidentReportComponent implements OnInit {
   incidentReportFormGroup: FormGroup;
   get incidentReport(): AbstractControl | null { return this.incidentReportFormGroup.get('incidentReport'); }
+  departments: DepartmentInfo[];
+  species: SpeciesInfo[];
+  items: ItemInfo[];
+  animals: AnimalInfo[];
+  locations: LocationInfo[];
+  reporter: UserInfo[];
 
   // Category chips variables
   visible = true;
@@ -34,7 +47,13 @@ export class IncidentReportComponent implements OnInit {
   ngOnInit() {
     this.initFormGroup();
     this.incidentFormControl = this.incidentReportFormGroup.controls['incidentReport'] as FormArray;
-
+    this.getReporterFromDb();
+    this.initFormGroup();
+    this.getDepartmentsFromDb();
+    this.getSpeciesFromDb();
+    this.getItemsFromDb();
+    this.getAnimalsFromDb();
+    this.getLocationsFromDb();
   }
 
   initFormGroup() {
@@ -141,6 +160,56 @@ export class IncidentReportComponent implements OnInit {
       this.categories.splice(index, 1);
     }
   }
+
+
+  private getDepartmentsFromDb() {
+    this.service.getDepartments().subscribe((data: DepartmentInfo[]) => {
+      this.departments = data;
+    }, (err: any) => {
+        console.error('Error getting departments:', err);
+    });
+  }
+
+  private getSpeciesFromDb() {
+    this.service.getSpecies().subscribe((data: SpeciesInfo[]) => {
+      this.species = data;
+    }, (err: any) => {
+      console.error('Error getting species:', err);
+    });
+  }
+
+  private getItemsFromDb() {
+    this.service.getItems().subscribe((data: ItemInfo[]) => {
+      this.items = data;
+    }, (err: any) => {
+      console.error('Error getting items:', err);
+    });
+  }
+
+  private getAnimalsFromDb() {
+    this.service.getAnimals().subscribe((data: AnimalInfo[]) => {
+      this.animals = data;
+    }, (err: any) => {
+      console.error('Error getting animals:', err);
+    });
+  }
+
+  private getLocationsFromDb() {
+    this.service.getLocations().subscribe((data: LocationInfo[]) => {
+      this.locations = data;
+    }, (err: any) => {
+      console.error('Error getting locations:', err);
+    });
+  }
+
+  private getReporterFromDb() {
+    this.service.getUsers().subscribe((data: UserInfo[]) => {
+      this.reporter = data;
+    }, (err:any) => {
+      console.error('Error getting users:', err);
+    });
+  }
+
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.categories.push(event.option.viewValue);
