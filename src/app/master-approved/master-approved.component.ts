@@ -31,7 +31,7 @@ export class MasterApprovedComponent implements OnInit {
     this.service.getApprovedEntry().subscribe((data: ApprovedEntry[]) => {
       this.approvedEntries = data;
     }, (err: any) => {
-        console.error('Error getting departments:', err);
+        console.error('Error getting Approved Entries:', err);
     });
   }
 
