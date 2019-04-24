@@ -45,22 +45,18 @@ export class IncidentReportComponent implements OnInit {
           dateOfIncident: new FormControl('', Validators.required),
           locationOfIncident: new FormControl('', Validators.required),
           animalsIncident: new FormControl('', Validators.required),
-
         }),
         this.formBuilder.group({
           enrichmentInvolved: new FormControl('', Validators.required),
           novelYN: new FormControl(''),
           enrichDescription: new FormControl('', Validators.required),
-
         }),
-
         this.formBuilder.group({
           bestDescribes: new FormControl('', Validators.required),
           incDescription: new FormControl('', Validators.required),
           actionsTaken: new FormControl('', Validators.required),
           incName: new FormControl('', Validators.required),
           dateOfSubmission: new FormControl('', Validators.required),
-
         })
       ])
     });
@@ -99,15 +95,14 @@ export class IncidentReportComponent implements OnInit {
       animalsIncident: requestArray[0].locationOfIncident,
 
       enrichmentInvolved: requestArray[1].enrichmentInvolved,
-      novelYN: requestArray[1].novelYN,  
-      enrichDescription: requestArray[1].enrichDescription,   
+      novelYN: requestArray[1].novelYN,
+      enrichDescription: requestArray[1].enrichDescription,
 
       bestDescribes: requestArray[2].bestDescribes,
       incDescription: requestArray[2].incDescription,
       actionsTaken: requestArray[2].actionsTaken,
       incName: requestArray[2].incName,
       dateOfSubmission: requestArray[2].dateOfSubmission,
-    
     };
     return completeForm;
   }
