@@ -22,15 +22,16 @@ export class MasterApprovedComponent implements OnInit {
 
   ngOnInit() {
     this.getApprovedEntryFromDB();
-    this.dataSource = new MatTableDataSource<ApprovedEntry>(this.approvedEntries);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
 
   getApprovedEntryFromDB() {
     this.service.getApprovedEntry().subscribe((data: ApprovedEntry[]) => {
       this.approvedEntries = data;
+      this.dataSource = new MatTableDataSource(data);
+      console.log(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }, (err: any) => {
         console.error('Error getting Approved Entries:', err);
     });
