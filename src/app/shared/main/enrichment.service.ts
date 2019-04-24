@@ -14,6 +14,8 @@ import { LocationInfo } from '../interfaces/location-info';
 import { EditUserInfo } from '../interfaces/edit-user-info';
 import { CurrentUserService } from 'src/app/auth/user/current-user.service';
 import { ImageInfo } from '../interfaces/image-info';
+import { ApprovedEntry } from '../interfaces/approved-entry';
+import { IncidentInstance } from 'src/app/incident-report-status/incident-report-status.component';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -157,4 +159,9 @@ export class EnrichmentService {
   getLocations() {
     return this.http.get<LocationInfo[]>(`${this.globals.baseUrl}/locations`);
   }
+
+  getApprovedEntry() {
+    return this.http.get<ApprovedEntry[]>(`${this.globals.baseUrl}/approvedEntries`);
+  }
+
 }

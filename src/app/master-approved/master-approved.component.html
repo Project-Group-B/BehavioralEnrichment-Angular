@@ -15,28 +15,28 @@
       <td mat-cell *matCellDef="let element"> {{element.enrichmentItem}} </td>
     </ng-container>
 
-    <!-- Category Column -->
-    <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-    </ng-container>
-
-    <!-- Species Column -->
-    <ng-container matColumnDef="species">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Species </th>
-        <td mat-cell *matCellDef="let element"> {{element.species}} </td>
-    </ng-container>
-
-    <!-- Behaviors Encouraged Column -->
-    <ng-container matColumnDef="behaviorsEncouraged" >
+    <!-- behaviorsEncouraged Column -->
+    <ng-container matColumnDef="behaviorsEncouraged">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Behaviors Encouraged </th>
         <td mat-cell *matCellDef="let element"> {{element.behaviorsEncouraged}} </td>
     </ng-container>
 
-    <!-- Date Approved Column -->
+    <!-- dateApproved Column -->
     <ng-container matColumnDef="dateApproved">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Approved </th>
         <td mat-cell *matCellDef="let element"> {{element.dateApproved}} </td>
+    </ng-container>
+
+    <!-- safetyConcerns Column -->
+    <ng-container matColumnDef="safetyConcerns" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Safety Concerns </th>
+        <td mat-cell *matCellDef="let element"> {{element.safetyConcerns}} </td>
+    </ng-container>
+
+    <!-- exceptions Column -->
+    <ng-container matColumnDef="exceptions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Exceptions </th>
+        <td mat-cell *matCellDef="let element"> {{element.exceptions}} </td>
     </ng-container>
 
     <!-- Comments Column -->
@@ -45,16 +45,16 @@
         <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
     </ng-container>
 
-    <!-- Safety Concerns Column -->
-    <ng-container matColumnDef="safetyConcerns">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Safety Concerns </th>
-        <td mat-cell *matCellDef="let element"> {{element.safetyConcerns}} </td>
+    <!-- species Column -->
+    <ng-container matColumnDef="species">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Species </th>
+        <td mat-cell *matCellDef="let element"> {{element.species}} </td>
     </ng-container>
 
-    <!-- Reports Column -->
-    <ng-container matColumnDef="reports">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reports </th>
-        <td mat-cell *matCellDef="let element"> {{element.reports}} </td>
+    <!-- category Column -->
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
