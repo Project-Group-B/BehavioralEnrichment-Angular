@@ -32,6 +32,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
 import { HomeComponent } from './home/home.component';
 import { RequestFormComponent, InsertNewItemDialogComponent, InsertNewAnimalDialogComponent } from './request-form/request-form.component';
 import { RequestFormStatusComponent } from './request-form-status/request-form-status.component';
@@ -39,7 +40,7 @@ import { IncidentReportComponent } from './incident-report/incident-report.compo
 import { IncidentReportStatusComponent } from './incident-report-status/incident-report-status.component';
 import { MasterApprovedComponent } from './master-approved/master-approved.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent, AboutDialogComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
 import { AdminComponent, EditUserInfoDialogComponent } from './admin/admin.component';
@@ -63,7 +64,8 @@ import { HelpComponent } from './help/help.component';
     UserAccountComponent,
     HelpComponent,
     InsertNewAnimalDialogComponent,
-    EditUserInfoDialogComponent
+    EditUserInfoDialogComponent,
+    AboutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -97,8 +99,14 @@ import { HelpComponent } from './help/help.component';
     MatTabsModule,
     MatTooltipModule,
     MatExpansionModule,
+    MatDividerModule
   ],
-  entryComponents: [InsertNewItemDialogComponent, InsertNewAnimalDialogComponent, EditUserInfoDialogComponent],
+  entryComponents: [
+    InsertNewItemDialogComponent,
+    InsertNewAnimalDialogComponent,
+    EditUserInfoDialogComponent,
+    AboutDialogComponent
+  ],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

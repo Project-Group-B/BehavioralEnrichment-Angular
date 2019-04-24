@@ -2,9 +2,9 @@
   <button mat-button routerLink="/home" routerLinkActive="active">Home</button>
   <button mat-button [matMenuTriggerFor]="menu">Menu</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item color="primary" routerLink="/request-form" routerLinkActive="active">Request Form</button>
+    <button mat-menu-item color="primary" routerLink="/request-form" routerLinkActive="active">Novel Enrichment Request Form</button>
     <button mat-menu-item color="primary" routerLink="/incident-report" routerLinkActive="active">Incident Report</button>
-    <button mat-menu-item color="primary" routerLink="/master-approved" routerLinkActive="active">Master Log</button>
+    <button mat-menu-item color="primary" routerLink="/master-approved" routerLinkActive="active">Approved Enrichment</button>
     <button mat-menu-item color="primary" routerLink="/request-form-status" routerLinkActive="active">Request Form Status Report</button>
     <button mat-menu-item color="primary" routerLink="/incident-report-status" routerLinkActive="active">Incident Status Report</button>
   </mat-menu>
@@ -12,6 +12,7 @@
   <button *ngIf="isAdmin" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
   <img class="left-margin-to-center" src="../../assets/images/Zoo_Logo_Horizontal.jpg" alt="Zoo Logo" height="50" width="120">
   <span class="fill-remaining-space"></span>
-  <button mat-button class="right-margin" routerLink="/help" routerLinkActive="active">Help</button>
+  <button mat-button routerLink="/help" routerLinkActive="active">Help</button>
+  <button mat-button class="right-margin" (click)="showAboutDialog()">About</button>
   <button mat-raised-button color="accent" (click)="logout()">Logout</button>
 </mat-toolbar>

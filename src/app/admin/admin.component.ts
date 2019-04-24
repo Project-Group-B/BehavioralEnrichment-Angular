@@ -7,6 +7,7 @@ import { UserListInfo } from '../shared/interfaces/user-list-info';
 import { SelectionModel } from '@angular/cdk/collections';
 import { StandardReturnObject } from '../shared/interfaces/standard-return-object';
 import { EditUserInfo } from '../shared/interfaces/edit-user-info';
+import { SpeciesInfo } from '../shared/interfaces/species-info';
 
 @Component({
   selector: 'app-admin',
@@ -28,6 +29,11 @@ export class AdminComponent implements OnInit {
   newDeptName = '';
   deptIdToRemove: number;
 
+  // Species Variables
+  newSpeciesForm: FormGroup;
+  speciesIdToRemove: number;
+  species: SpeciesInfo[];
+
   // Picture Variables
   homepageImageForm: FormGroup;
 
@@ -35,7 +41,8 @@ export class AdminComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('username') usernameRef: ElementRef;
-  @ViewChild('formDirective') private formDirective: NgForm;
+  @ViewChild('newUserFormDirective') private newUserformDirective: NgForm;
+  @ViewChild('newSpeciesFormDirective') private newSpeciesFormDirective: NgForm;
   constructor(
     private service: EnrichmentService,
     private formBuilder: FormBuilder,
@@ -52,8 +59,13 @@ export class AdminComponent implements OnInit {
     this.homepageImageForm = this.formBuilder.group({
       image: new FormControl(null)
     });
+    this.newSpeciesForm = this.formBuilder.group({
+      speciesName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      speciesDescription: new FormControl('', [Validators.required, Validators.maxLength(500)])
+    });
     this.getDepartments();
     this.getUsers(false);
+    this.getSpecies();
   }
 
   applyFilter(filterValue: string) {
@@ -84,7 +96,7 @@ export class AdminComponent implements OnInit {
         this.snackbar.open(data.message, 'OK', {
           duration: 3000
         });
-        this.formDirective.resetForm();
+        this.newUserformDirective.resetForm();
         this.usernameRef.nativeElement.focus();
       } else {
         this.snackbar.open(data.errorMsg, 'OK', {
@@ -171,6 +183,44 @@ export class AdminComponent implements OnInit {
     }, (err: any) => {
       console.error(`error removing department with id ${this.deptIdToRemove}`, err);
       this.snackbar.open('HTTP error when removing department', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  getSpecies() {
+    this.service.getSpecies().subscribe((data: SpeciesInfo[]) => {
+      this.species = data;
+    }, (err: any) => {
+      this.snackbar.open('HTTP error getting species. Please reload the page.', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  addNewSpecies() {
+    this.service.addSpecies(this.newSpeciesForm).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.newSpeciesFormDirective.resetForm();
+      this.getSpecies();
+    }, (err: any) => {
+      this.snackbar.open('HTTP error when adding species. Please try again.', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  removeSpecies() {
+    this.service.removeSpeciesbyId(this.speciesIdToRemove).subscribe((data: StandardReturnObject) => {
+      this.snackbar.open(data.error ? data.errorMsg : data.message, 'OK', {
+        duration: 3000
+      });
+      this.speciesIdToRemove = null;
+      this.getSpecies();
+    }, (err: any) => {
+      this.snackbar.open('HTTP error when removing species. Please try again.', 'OK', {
         duration: 3000
       });
     });

@@ -5,12 +5,12 @@
     <mat-card class="mat-elevation-z8">
       <mat-card-header>
         <mat-card-title>Navigation</mat-card-title>
-        <mat-card-subtitle>Also included in the menu</mat-card-subtitle>
+        <mat-card-subtitle>Also included in the Menu Dropdown</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/home" routerLinkActive="active">Home</button>
-        <button mat-raised-button class="button-full-width" color="primary" routerLink="/master-approved" routerLinkActive="active">Master Log</button>
-        <button mat-raised-button class="button-full-width" color="primary" routerLink="/request-form" routerLinkActive="active">Request Form</button>
+        <button mat-raised-button class="button-full-width" color="primary" routerLink="/master-approved" routerLinkActive="active">Approved Enrichment</button>
+        <button mat-raised-button class="button-full-width" color="primary" routerLink="/request-form" routerLinkActive="active">Novel Enrichment Request Form</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/incident-report" routerLinkActive="active">Incident Report</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/request-form-status" routerLinkActive="active">Request Form Status Report</button>
         <button mat-raised-button class="button-full-width" color="primary" routerLink="/incident-report-status" routerLinkActive="active">Incident Status Report</button>
@@ -18,16 +18,14 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1">
-    <mat-card class="mat-elevation-z8">
+    <mat-card class="mat-elevation-z8 set-width">
       <mat-card-header>
-        <mat-card-title>Welcome {{name}}!</mat-card-title>
+        <mat-card-title>Welcome {{name}} to the OHDZA Enrichment Database!</mat-card-title>
         <mat-card-subtitle>To the Behavior Enrichment Logs</mat-card-subtitle>
       </mat-card-header>
-      <!-- TODO: put image on filesystem and get location from database (load image from back-end) -->
       <img mat-card-image [src]="homepageImage" height="375">
       <mat-card-content>
-        <p>On the tabs to the left, you will see some tabs that organize the information by department. 
-          Take a look at some awesome behavior enrichment information!</p>
+        <p>REWORD this!</p>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>

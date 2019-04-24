@@ -2,7 +2,7 @@
 <h1 class="mat-display-1 center-align">Admin Page</h1>
 <mat-tab-group>
   <mat-tab label="Add User">
-    <form class="form-css" [formGroup]="addUserForm" #formDirective="ngForm" (ngSubmit)="addUser()">
+    <form class="form-css" [formGroup]="addUserForm" #newUserFormDirective="ngForm" (ngSubmit)="addUser()">
       <mat-form-field class="full-width" hintLabel="Max 50 characters">
         <input #username matInput formControlName="firstName" type="text" placeholder="User first Name" required/>
         <mat-hint align="end">{{addUserForm.get('firstName').value?.length || 0}}/50</mat-hint>
@@ -112,6 +112,30 @@
       </mat-select>
     </mat-form-field>
     <button class="button-margin" [disabled]="!deptIdToRemove" (click)="removeDept()" mat-raised-button color="primary">Remove Department</button>
+    <mat-divider></mat-divider>
+    <form class="form-css" [formGroup]="newSpeciesForm" #newSpeciesFormDirective="ngForm" (ngSubmit)="addNewSpecies()">
+      <mat-form-field class="max-width" hintLabel="Max 50 characters">
+        <input matInput formControlName="speciesName" type="text" placeholder="New Species Name" required>
+        <mat-hint align="end">{{newSpeciesForm.get('speciesName').value?.length || 0}}/50</mat-hint>
+        <mat-error *ngIf="newSpeciesForm.get('speciesName').invalid">Invalid Species Name</mat-error>
+      </mat-form-field>
+      <mat-form-field class="max-width" hintLabel="Max 500 characters">
+        <textarea matInput formControlName="speciesDescription" type="text" placeholder="New Species Description" required></textarea>
+        <mat-hint align="end">{{newSpeciesForm.get('speciesDescription').value?.length || 0}}/500</mat-hint>
+        <mat-error *ngIf="newSpeciesForm.get('speciesDescription').invalid">Invalid Species Description</mat-error>
+      </mat-form-field>
+      <button type="submit" style="display:none" [disabled]="!newSpeciesForm.valid"></button>
+    </form>
+    <button [disabled]="!newSpeciesForm.valid" (click)="addNewSpecies()" mat-raised-button color="primary">Add Species</button>
+    <mat-divider></mat-divider>
+    <mat-form-field hintLabel="Select a species to remove">
+      <mat-select placeholder="Species" [(ngModel)]="speciesIdToRemove">
+        <mat-option *ngFor="let spec of species" [value]="spec.speciesId">
+          {{spec.speciesName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="button-margin" [disabled]="!speciesIdToRemove" (click)="removeSpecies()" mat-raised-button color="primary">Remove Species</button>
     <br/>
     <form [formGroup]="homepageImageForm">
       <label for="homepagePicture">Upload new home page picture:</label>
