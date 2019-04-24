@@ -48,14 +48,19 @@ export class RequestFormStatusComponent implements OnInit {
 
   ngOnInit() {
     this.getEnrichmentFormFromDB();
-    this.dataSource = new MatTableDataSource<EnrichmentForm>(this.enrichmentForms);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    //this.dataSource = new MatTableDataSource<EnrichmentForm>(this.enrichmentForms);
+
   }
 
   getEnrichmentFormFromDB() {
     this.service.getEnrichmentForm().subscribe((data: EnrichmentForm[]) => {
       this.enrichmentForms = data;
+      console.log(this.enrichmentForms);
+      this.dataSource = new MatTableDataSource(this.enrichmentForms);
+      
+      console.log(this.dataSource);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }, (err: any) => {
         console.error('Error getting Enrichment Forms:', err);
     });
