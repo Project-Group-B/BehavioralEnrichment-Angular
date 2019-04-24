@@ -101,7 +101,33 @@ export class EnrichmentService {
   }
 
   removeDepartmentById(departmentId: number) {
-    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeDept`, {departmentId}, httpOptions);
+    const requestBody = {
+      departmentId
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeDept`, requestBody, httpOptions);
+  }
+
+  addSpecies(newSpeciesForm: FormGroup) {
+    const requestBody = {
+      speciesName: newSpeciesForm.value.speciesName,
+      speciesDescription: newSpeciesForm.value.speciesDescription
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/addSpecies`, requestBody, httpOptions);
+  }
+
+  removeSpeciesbyId(speciesId: number) {
+    const requestBody = {
+      speciesId
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/removeSpecies`, requestBody, httpOptions);
+  }
+
+  addCategory(cat: FormGroup) {
+    const requestBody = {
+      categoryName: cat.value.catName,
+      categoryDescription: cat.value.catDescription
+    };
+    return this.http.post<StandardReturnObject>(`${this.globals.baseUrl}/addCategory`, requestBody, httpOptions);
   }
 
   deactivateUsers(users: UserListInfo[]) {
@@ -172,6 +198,10 @@ export class EnrichmentService {
 
   getIncidentReport(){
     return this.http.get<SubmittedIncident[]>(`${this.globals.baseUrl}/incidentReports`);
-  }
 
+  /*getEnrichmentForm() {
+    return this.http.get<EnrichmentForm[]>(`${this.globals.baseUrl}/getEnrichmentForm`);
+  }*/
+
+  }
 }

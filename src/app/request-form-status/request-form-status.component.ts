@@ -1,5 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { EnrichmentService } from '../shared/main/enrichment.service';
+import {EnrichmentForm} from '../shared/interfaces/enrichment-form';
+
 
 @Component({
   selector: 'app-request-form-status',
@@ -7,16 +10,55 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
   styleUrls: ['./request-form-status.component.scss']
 })
 export class RequestFormStatusComponent implements OnInit {
+  constructor(private service: EnrichmentService) { }
 
-  displayedColumns: string[] = ['requestID', 'requestItem', 'approved'];
-  dataSource = new MatTableDataSource<RequestInstance>(REQUESTS);
+  displayedColumns: string[] = ['Enrichment_IsApproved',
+  'Enrichment_DateSubmitted',
+  'Enrichment_Name',
+  'Submittor_User_Name',
+  'Department_Name',
+  'Item_Name',
+  'Species_Name',
+  'Animal_IsisNumber',
+  'Enrichment_Description',
+  'Location_Name',
+  'Enrichment_PresentationMethod',
+  'Enrichment_TimeStart',
+  'Enrichment_TimeEnd',
+
+  'Enrichment_Frequency',
+  'Enrichment_LifeStrategies',
+  'Enrichment_PreviousUse',
+  'Enrichment_Contact',
+  'Enrichment_SafetyQuestions',
+  'Enrichment_RisksHazards',
+  'Enrichment_Goal',
+  'Enrichment_Source',
+  'Enrichment_TimeRequired',
+  'Enrichment_Construction',
+
+  'Enrichment_Volunteers',
+  'Enrichment_Inventory',
+  'Enrichment_Concerns'];
+  enrichmentForms: EnrichmentForm[];
+  dataSource: MatTableDataSource<EnrichmentForm>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
+    this.getEnrichmentFormFromDB();
+    this.dataSource = new MatTableDataSource<EnrichmentForm>(this.enrichmentForms);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getEnrichmentFormFromDB() {
+    this.service.getEnrichmentForm().subscribe((data: EnrichmentForm[]) => {
+      this.enrichmentForms = data;
+    }, (err: any) => {
+        console.error('Error getting Enrichment Forms:', err);
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -28,15 +70,9 @@ export class RequestFormStatusComponent implements OnInit {
   }
 }
 
-/* Abstraction of Request Forms */
-export interface RequestInstance {
-  requestItem: string;
-  requestID: number;
-  approved: boolean;
-}
 
 // Stand in sampling data until database ready
-const REQUESTS: RequestInstance[] = [
+/*const REQUESTS: RequestInstance[] = [
   {requestID: 1, requestItem: 'Hydrogen', approved: true},
   {requestID: 2, requestItem: 'Helium',  approved: false},
   {requestID: 3, requestItem: 'Lithium', approved: true},
@@ -57,4 +93,4 @@ const REQUESTS: RequestInstance[] = [
   {requestID: 18, requestItem: 'Argon',  approved: true},
   {requestID: 19, requestItem: 'Potassium', approved: false},
   {requestID: 20, requestItem: 'Calcium',  approved: true},
-];
+];*/
