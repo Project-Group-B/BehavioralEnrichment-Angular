@@ -55,7 +55,6 @@ export class AdminComponent implements OnInit {
     this.getDepartments();
     this.getUsers(false);
   }
-  // TODO: export user table to excel table or csv (xlsx, pdfmake, etc.)
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
