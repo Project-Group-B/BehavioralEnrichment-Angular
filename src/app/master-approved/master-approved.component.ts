@@ -27,6 +27,7 @@ export class MasterApprovedComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+
   getApprovedEntryFromDB() {
     this.service.getApprovedEntry().subscribe((data: ApprovedEntry[]) => {
       this.approvedEntries = data;
